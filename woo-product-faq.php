@@ -12,7 +12,10 @@ Text Domain: woofaq
 
 defined('ABSPATH') or die('Nice Try!');
 
-require_once __DIR__ . "/vendor/autoload.php";
+if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
+    require_once dirname(__FILE__) . '/vendor/autoload.php';
+}
+
 /**
  * The main class
  */
