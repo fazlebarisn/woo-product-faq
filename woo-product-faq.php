@@ -115,3 +115,4 @@ require_once __DIR__ . "/vendor/autoload.php";
  wooFaq();
 
  //var_dump( $installed );
+ 

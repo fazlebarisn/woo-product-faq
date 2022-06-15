@@ -6,7 +6,7 @@ class Menu{
 
     public function __construct()
     {
-        add_action( 'admin_menu' , [ $this , 'adminMenu'] );,/sa;s
+        add_action( 'admin_menu' , [ $this , 'adminMenu'] );
     }
 
     /**
