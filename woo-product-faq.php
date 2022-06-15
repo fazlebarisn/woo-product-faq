@@ -7,7 +7,7 @@ Version: 1.0.0
 Author: Fazle Bari
 Author URI: https://www.chitabd.com/
 Licence: GPL Or leater
-Text Domain: wpfaq
+Text Domain: woofaq
 */
 
 defined('ABSPATH') or die('Nice Try!');
