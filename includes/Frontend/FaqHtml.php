@@ -2,7 +2,7 @@
 
 namespace Woo\Faq\Frontend;
 
-class Shortcode{
+class FaqHtml{
 
     function __construct()
     {

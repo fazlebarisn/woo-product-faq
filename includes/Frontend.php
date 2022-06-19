@@ -6,7 +6,7 @@ class Frontend{
 
     function __construct()
     {
-        new Frontend\Shortcode();
+        new Frontend\FaqHtml();
         new Frontend\Enqueue();
     }
 
