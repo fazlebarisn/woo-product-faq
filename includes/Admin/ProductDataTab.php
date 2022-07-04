@@ -69,7 +69,52 @@ class ProductDataTab{
             'description'=> 'Add 1st Answer',
             'data_type' => 'text'
         );
+        $args[] = array(
+            'id'        => 'faq_2',
+            'name'      => 'faq_2',
+            'label'     =>  'Question 2',
+            'class'     =>  'sfaq_input',
+            'type'      =>  'text',
+            'desc_tip'  =>  true,
+            'description'=> 'Add 2nd question',
+            'data_type' => 'text'
+        );
     
+        $args[] = array(
+            'id'        => 'faq_ans_2',
+            'name'      => 'faq_ans_2',
+            'label'     =>  'Answer 2',
+            'class'     =>  'sfaq_input',
+            'type'      =>  'text',
+            'desc_tip'  =>  true,
+            'description'=> 'Add 2nd Answer',
+            'data_type' => 'text'
+        );
+
+        $args[] = array(
+            'id'        => 'faq_3',
+            'name'      => 'faq_3',
+            'label'     =>  'Question 3',
+            'class'     =>  'sfaq_input',
+            'type'      =>  'text',
+            'desc_tip'  =>  true,
+            'description'=> 'Add 3rd question',
+            'data_type' => 'text'
+        );
+    
+        $args[] = array(
+            'id'        => 'faq_ans_3',
+            'name'      => 'faq_ans_3',
+            'label'     =>  'Answer 3',
+            'class'     =>  'sfaq_input',
+            'type'      =>  'text',
+            'desc_tip'  =>  true,
+            'description'=> 'Add 3rd Answer',
+            'data_type' => 'text'
+        );
+
+        $args = apply_filters('sfaq_field_args' , $args);
+
         foreach($args as $arg){
         woocommerce_wp_text_input($arg);
         }
@@ -81,10 +126,22 @@ class ProductDataTab{
 
         $_faq_1 = isset( $_POST['faq_1'] ) ? $_POST['faq_1'] : false;
         $_faq_ans_1 = isset( $_POST['faq_ans_1'] ) ? $_POST['faq_ans_1'] : false;
+
+        $_faq_2 = isset( $_POST['faq_2'] ) ? $_POST['faq_2'] : false;
+        $_faq_ans_2 = isset( $_POST['faq_ans_2'] ) ? $_POST['faq_ans_2'] : false;
+
+        $_faq_3 = isset( $_POST['faq_3'] ) ? $_POST['faq_3'] : false;
+        $_faq_ans_3 = isset( $_POST['faq_ans_3'] ) ? $_POST['faq_ans_3'] : false;
     
         // Updating here 
         update_post_meta( $post_id,'faq_1', esc_attr( $_faq_1 ) ); 
-        update_post_meta( $post_id,'faq_ans_1', esc_attr( $_faq_ans_1 ) ); 
+        update_post_meta( $post_id,'faq_ans_1', esc_attr( $_faq_ans_1 ) );
+
+        update_post_meta( $post_id,'faq_2', esc_attr( $_faq_2 ) ); 
+        update_post_meta( $post_id,'faq_ans_2', esc_attr( $_faq_ans_2 ) ); 
+
+        update_post_meta( $post_id,'faq_3', esc_attr( $_faq_3 ) ); 
+        update_post_meta( $post_id,'faq_ans_3', esc_attr( $_faq_ans_3 ) ); 
     
     }
 
