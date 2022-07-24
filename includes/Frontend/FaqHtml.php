@@ -33,6 +33,7 @@ class FaqHtml{
         $_faq_ans_3 = get_post_meta($product_id,'faq_ans_3', true);
 
         ?>
+        <?php if( !empty($faq_1) || !empty($faq_2) || !empty($faq_3) ): ?>
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
                 <?php if( !empty($faq_1)): ?>
@@ -66,6 +67,7 @@ class FaqHtml{
                 </div>
                 <?php endif; ?>
             </div>
+        <?php endif; ?>
         <?php
     }
 
