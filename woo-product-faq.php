@@ -67,6 +67,7 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
          define( 'WOO_FAQ_PATH' , __DIR__ );
          define( 'WOO_FAQ_URL' , plugins_url( '' , WOO_FAQ_FILE ) );
          define( 'WOO_FAQ_ASSETS' , WOO_FAQ_URL . '/assets' );
+         define( 'WOO_FAQ_BASENAME' , plugin_basename(__FILE__) );
 
      }
 
