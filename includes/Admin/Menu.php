@@ -68,4 +68,7 @@ class Menu{
         echo 'From here you can change all setiings';
     }
 
+    public function woofaqFirstName(){
+        echo '<input type="text" name="first_name" value=""/>';
+    }
 }

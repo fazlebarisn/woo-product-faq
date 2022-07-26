@@ -2,4 +2,5 @@
 <form method="post" action="">
     <?php settings_fields('woofaq-settings-group'); ?>
     <?php do_settings_sections('woo_sfaq'); ?>
+    <?php submit_button() ?>
 </form>
