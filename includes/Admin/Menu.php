@@ -69,6 +69,7 @@ class Menu{
     }
 
     public function woofaqFirstName(){
-        echo '<input type="text" name="first_name" value=""/>';
+        $first_name = esc_attr( get_option('first_name') );
+        echo '<input type="text" name="first_name" value="'.$first_name.'" placeholder="Enter First Name" />';
     }
 }
