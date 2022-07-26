@@ -42,8 +42,28 @@ class Menu{
         require_once WOO_FAQ_PATH.'/templates/Admin.php';
     }
 
+    /**
+     * Register custom settings for plugin
+     *
+     * @return void
+     */
     public function wooFaqSettings(){
+        // register sections
+        register_setting('woofaq-settings-group', 'first_name');
+
+        //add section
+        add_settings_section('woofaq-accordion-options', 'Accordion Options',[$this, 'accordionOptions'],'woo_sfaq');
         
+    }
+
+    /**
+     * callback function for settings section
+     * echo html
+     *
+     * @return void
+     */
+    public function accordionOptions(){
+        echo 'From here you can change all setiings';
     }
 
 }
