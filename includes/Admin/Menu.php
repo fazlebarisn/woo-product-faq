@@ -50,12 +50,14 @@ class Menu{
     public function wooFaqSettings(){
         // register sections
         register_setting('woofaq-settings-group', 'first_name');
+        register_setting('woofaq-settings-group', 'last_name');
 
         //add section
         add_settings_section('woofaq-accordion-options', 'Accordion Options',[$this, 'accordionOptions'],'woo_sfaq');
 
         //add settings fields
-        add_settings_field('woofaq-name', 'First Name', [$this, 'woofaqFirstName'], 'woo_sfaq', 'woofaq-accordion-options');
+        add_settings_field('woofaq-first-name', 'First Name', [$this, 'woofaqFirstName'], 'woo_sfaq', 'woofaq-accordion-options');
+        add_settings_field('woofaq-last-name', 'Last Name', [$this, 'woofaqLastName'], 'woo_sfaq', 'woofaq-accordion-options');
     }
 
     /**
@@ -71,5 +73,10 @@ class Menu{
     public function woofaqFirstName(){
         $first_name = esc_attr( get_option('first_name') );
         echo '<input type="text" name="first_name" value="'.$first_name.'" placeholder="Enter First Name" />';
+    }
+
+    public function woofaqLastName(){
+        $last_name = esc_attr( get_option('last_name') );
+        echo '<input type="text" name="last_name" value="'.$last_name.'" placeholder="Enter Last Name" />';
     }
 }
