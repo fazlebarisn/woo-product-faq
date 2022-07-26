@@ -53,7 +53,9 @@ class Menu{
 
         //add section
         add_settings_section('woofaq-accordion-options', 'Accordion Options',[$this, 'accordionOptions'],'woo_sfaq');
-        
+
+        //add settings fields
+        add_settings_field('woofaq-name', 'First Name', [$this, 'woofaqFirstName'], 'woo_sfaq', 'woofaq-accordion-options');
     }
 
     /**
