@@ -5,8 +5,12 @@ class Menu{
 
     public function __construct()
     {
+        // add a menu page in dashboard
         add_action( 'admin_menu' , [ $this , 'adminMenu'] );
+        // add exta links to the plugin
         add_filter('plugin_action_links_'.WOO_FAQ_BASENAME, [$this, 'settingsLink']);
+        // active custom settings
+        add_action('admin_init', [$this, 'wooFaqSettings']);
     }
 
     /**
@@ -36,6 +40,10 @@ class Menu{
      */
     public function adminPage(){
         require_once WOO_FAQ_PATH.'/templates/Admin.php';
+    }
+
+    public function wooFaqSettings(){
+        
     }
 
 }
