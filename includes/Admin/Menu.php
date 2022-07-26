@@ -49,8 +49,8 @@ class Menu{
      */
     public function wooFaqSettings(){
         // register sections
-        register_setting('woofaq-settings-group', 'first_name');
-        register_setting('woofaq-settings-group', 'last_name');
+        register_setting('woofaq-settings-group', 'first_name', [$this, 'sanitizeFirstName']);
+        register_setting('woofaq-settings-group', 'last_name', [$this, 'sanitizeLasttName']);
 
         //add section
         add_settings_section('woofaq-accordion-options', 'Accordion Options',[$this, 'accordionOptions'],'woo_sfaq');
@@ -70,11 +70,24 @@ class Menu{
         echo 'From here you can change all setiings';
     }
 
+    //Sanitize Data before input
+    public function sanitizeFirstName($input){
+        //var_dump($input);
+        $output = sanitize_text_field($input);
+        return $output;
+    }
+    public function sanitizeLasttName($input){
+        $output = sanitize_text_field($input);
+        return $output;
+    }
+
+    // dusplay first name input field
     public function woofaqFirstName(){
         $first_name = esc_attr( get_option('first_name') );
         echo '<input type="text" name="first_name" value="'.$first_name.'" placeholder="Enter First Name" />';
     }
 
+    // Display last name input field
     public function woofaqLastName(){
         $last_name = esc_attr( get_option('last_name') );
         echo '<input type="text" name="last_name" value="'.$last_name.'" placeholder="Enter Last Name" />';
