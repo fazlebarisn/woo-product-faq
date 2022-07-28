@@ -85,7 +85,7 @@ class Menu{
      * @return void
      */
     public function productFaqStyle(){
-        echo 'Change style';
+        echo 'From this section you can change all style for your FAQ html.';
     }
 
     //Sanitize Data before input
