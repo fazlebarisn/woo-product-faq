@@ -37,12 +37,16 @@ class FaqHtml{
         $_faq_ans_3 = get_post_meta($product_id,'faq_ans_3', true);
 
         $faq_heading = esc_attr( get_option('faq_heading') );
-        //$faq_heading = isset($faq_heading) ? $faq_heading : 'Frequently Asked Questions';
+        
+        // Style
+        $faq_heading_color = esc_attr( get_option('faq_heading_color') );
+        $faq_heading_font_size = esc_attr( get_option('faq_heading_font_size') );
+        $faq_heading_style = 'color:'.$faq_heading_color.';' . 'font-size:'.$faq_heading_font_size;
 
         ?>
         <?php if( !empty($faq_1) || !empty($faq_2) || !empty($faq_3) ): ?>
             <div class="container">
-                <h2>
+                <h2 style="<?php echo $faq_heading_style; ?>">
                     <?php 
                         if(!empty($faq_heading)){
                             echo $faq_heading;
