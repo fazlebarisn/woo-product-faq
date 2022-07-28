@@ -36,10 +36,21 @@ class FaqHtml{
         $faq_3 = get_post_meta($product_id,'faq_3', true);
         $_faq_ans_3 = get_post_meta($product_id,'faq_ans_3', true);
 
+        $faq_heading = esc_attr( get_option('faq_heading') );
+        //$faq_heading = isset($faq_heading) ? $faq_heading : 'Frequently Asked Questions';
+
         ?>
         <?php if( !empty($faq_1) || !empty($faq_2) || !empty($faq_3) ): ?>
             <div class="container">
-                <h2>Frequently Asked Questions</h2>
+                <h2>
+                    <?php 
+                        if(!empty($faq_heading)){
+                            echo $faq_heading;
+                        }else{
+                            echo 'Frequently Asked Questions';
+                        }
+                    ?>
+                </h2>
                 <?php if( !empty($faq_1)): ?>
                 <div class="accordion">
                     <div class="accordion-item">

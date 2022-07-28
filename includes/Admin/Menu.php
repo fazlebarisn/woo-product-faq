@@ -49,15 +49,15 @@ class Menu{
      */
     public function wooFaqSettings(){
         // register sections
-        register_setting('woofaq-settings-group', 'product_faq', [$this, 'sanitizeFirstName']);
-        register_setting('woofaq-settings-group', 'last_name', [$this, 'sanitizeLasttName']);
+        register_setting('woofaq-settings-group', 'product_faq');
+        register_setting('woofaq-settings-group', 'faq_heading', [$this, 'sanitizeFaqHeading']);
 
         //add section
-        add_settings_section('woofaq-accordion-options', 'Accordion Options',[$this, 'accordionOptions'],'woo_sfaq');
+        add_settings_section('woofaq-product-faq-options', __('Product Faq Options', 'woofaq'),[$this, 'productFaqOptions'],'woo_sfaq');
 
         //add settings fields
-        add_settings_field('woofaq-first-name', 'Product Faq', [$this, 'woofaqFirstName'], 'woo_sfaq', 'woofaq-accordion-options');
-        add_settings_field('woofaq-last-name', 'Last Name', [$this, 'woofaqLastName'], 'woo_sfaq', 'woofaq-accordion-options');
+        add_settings_field('woofaq-product-faq', __('Product Faq', 'woofaq'), [$this, 'woofaqProductFaq'], 'woo_sfaq', 'woofaq-product-faq-options');
+        add_settings_field('woofaq-faq-heading', __('Faq Heading', 'woofaq'), [$this, 'woofaqHeading'], 'woo_sfaq', 'woofaq-product-faq-options');
     }
 
     /**
@@ -66,36 +66,32 @@ class Menu{
      *
      * @return void
      */
-    public function accordionOptions(){
+    public function productFaqOptions(){
         echo 'From here you can change all setiings';
     }
 
     //Sanitize Data before input
-    public function sanitizeFirstName($input){
+    public function sanitizeFaqHeading($input){
         //var_dump($input);
-        $output = sanitize_text_field($input);
-        return $output;
-    }
-    public function sanitizeLasttName($input){
         $output = sanitize_text_field($input);
         return $output;
     }
 
     // dusplay first name input field
-    public function woofaqFirstName(){
+    public function woofaqProductFaq(){
         $product_faq = esc_attr( get_option('product_faq') );
         ?>
             <select name="product_faq" id="product_faq">
-                <option value="enable" <?php echo isset($product_faq ) &&$product_faq == 'enable' ? 'selected' : ''; ?> >Enable</option>
-                <option value="disable" <?php echo isset($product_faq ) &&$product_faq == 'disable' ? 'selected' : ''; ?> >Disable</option>
+                <option value="enable" <?php echo isset($product_faq ) && $product_faq == 'enable' ? 'selected' : ''; ?> >Enable</option>
+                <option value="disable" <?php echo isset($product_faq ) && $product_faq == 'disable' ? 'selected' : ''; ?> >Disable</option>
             </select>
         <?php
     }
 
     // Display last name input field
-    public function woofaqLastName(){
-        $last_name = esc_attr( get_option('last_name') );
-        echo '<input type="text" name="last_name" value="'.$last_name.'" placeholder="Enter Last Name" />';
+    public function woofaqHeading(){
+        $faq_heading = esc_attr( get_option('faq_heading') );
+        echo '<input type="text" name="faq_heading" value="'.$faq_heading.'" placeholder="Insert Faq Heading" />';
     }
 }
 
