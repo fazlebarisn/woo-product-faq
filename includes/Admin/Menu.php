@@ -49,14 +49,14 @@ class Menu{
      */
     public function wooFaqSettings(){
         // register sections
-        register_setting('woofaq-settings-group', 'first_name', [$this, 'sanitizeFirstName']);
+        register_setting('woofaq-settings-group', 'product_faq', [$this, 'sanitizeFirstName']);
         register_setting('woofaq-settings-group', 'last_name', [$this, 'sanitizeLasttName']);
 
         //add section
         add_settings_section('woofaq-accordion-options', 'Accordion Options',[$this, 'accordionOptions'],'woo_sfaq');
 
         //add settings fields
-        add_settings_field('woofaq-first-name', 'First Name', [$this, 'woofaqFirstName'], 'woo_sfaq', 'woofaq-accordion-options');
+        add_settings_field('woofaq-first-name', 'Product Faq', [$this, 'woofaqFirstName'], 'woo_sfaq', 'woofaq-accordion-options');
         add_settings_field('woofaq-last-name', 'Last Name', [$this, 'woofaqLastName'], 'woo_sfaq', 'woofaq-accordion-options');
     }
 
@@ -83,8 +83,13 @@ class Menu{
 
     // dusplay first name input field
     public function woofaqFirstName(){
-        $first_name = esc_attr( get_option('first_name') );
-        echo '<input type="text" name="first_name" value="'.$first_name.'" placeholder="Enter First Name" />';
+        $product_faq = esc_attr( get_option('product_faq') );
+        ?>
+            <select name="product_faq" id="product_faq">
+                <option value="enable">Enable</option>
+                <option value="disable" selected >Disable</option>
+            </select>
+        <?php
     }
 
     // Display last name input field
@@ -93,3 +98,4 @@ class Menu{
         echo '<input type="text" name="last_name" value="'.$last_name.'" placeholder="Enter Last Name" />';
     }
 }
+

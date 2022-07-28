@@ -6,6 +6,10 @@ class FaqHtml{
 
     function __construct()
     {
+        $product_faq = esc_attr( get_option('product_faq') );
+
+        if('disable'== $product_faq) return;
+        
         add_action( 'woocommerce_after_single_product', [ $this, 'rendeFaqHtml'] );
     }
 
