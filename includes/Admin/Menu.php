@@ -50,6 +50,7 @@ class Menu{
     public function wooFaqSettings(){
         // register sections
         register_setting('woofaq-settings-group', 'product_faq');
+        register_setting('woofaq-settings-group', 'product_faq_position');
         register_setting('woofaq-settings-group', 'faq_heading', [$this, 'sanitizeFaqHeading']);
         register_setting('woofaq-settings-group', 'faq_heading_color');
         register_setting('woofaq-settings-group', 'faq_heading_font_size', [$this, 'sanitizeFaqFontSize']);
@@ -62,10 +63,11 @@ class Menu{
 
         //add settings fields
         add_settings_field('woofaq-product-faq', __('Product Faq', 'woofaq'), [$this, 'ProductFaq'], 'woo_sfaq', 'woofaq-product-faq-options');
+        add_settings_field('woofaq-faq-position', __('Faq Position', 'woofaq'), [$this, 'faqPosition'], 'woo_sfaq', 'woofaq-product-faq-options');
         add_settings_field('woofaq-heading', __('Faq Heading', 'woofaq'), [$this, 'Heading'], 'woo_sfaq', 'woofaq-product-faq-options');
 
         add_settings_field('woofaq-heading-color', __('Heading Color', 'woofaq'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-heading-font-size', __('Heading Font', 'woofaq'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-heading-font-size', __('Heading Font Size', 'woofaq'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
     }
 
     /**
@@ -105,6 +107,19 @@ class Menu{
             <select name="product_faq" id="product_faq">
                 <option value="enable" <?php echo isset($product_faq ) && $product_faq == 'enable' ? 'selected' : ''; ?> >Enable</option>
                 <option value="disable" <?php echo isset($product_faq ) && $product_faq == 'disable' ? 'selected' : ''; ?> >Disable</option>
+            </select>
+        <?php
+    }
+
+    // dusplay faq position field
+    public function faqPosition(){
+        $product_faq_position = esc_attr( get_option('product_faq_position') );
+        ?>
+            <select name="product_faq_position" id="product_faq_position">
+                <option value="after_cart_button" <?php echo isset($product_faq_position ) && $product_faq_position == 'after_cart_button' ? 'selected' : ''; ?> >After Cart Button</option>
+                <option value="after_meta" <?php echo isset($product_faq_position ) && $product_faq_position == 'after_meta' ? 'selected' : ''; ?> >After Meta</option>
+                <option value="after_summary" <?php echo isset($product_faq_position ) && $product_faq_position == 'after_summary' ? 'selected' : ''; ?> >After Summary</option>
+                <option value="after_single_product" <?php echo isset($product_faq_position ) && $product_faq_position == 'after_single_product' ? 'selected' : ''; ?> >After Single Product</option>
             </select>
         <?php
     }

@@ -10,7 +10,10 @@ class FaqHtml{
 
         if('disable'== $product_faq) return;
         
-        add_action( 'woocommerce_after_single_product', [ $this, 'rendeFaqHtml'] );
+        //add_action( 'woocommerce_after_single_product', [ $this, 'rendeFaqHtml'] );
+        //add_action( 'woocommerce_after_single_product_summary', [ $this, 'rendeFaqHtml'] );
+        //add_action( 'woocommerce_product_meta_end', [ $this, 'rendeFaqHtml'] );
+        add_action( 'woocommerce_after_add_to_cart_button', [ $this, 'rendeFaqHtml'] );
     }
 
     /**
