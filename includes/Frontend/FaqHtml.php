@@ -6,13 +6,14 @@ class FaqHtml{
 
     function __construct()
     {
+        
         $product_faq = esc_attr( get_option('product_faq') );
         $product_faq_position = esc_attr( get_option('product_faq_position') );
 
         if('disable'== $product_faq) return;
         
         if( 'after_cart_button' == $product_faq_position ){
-            add_action( 'woocommerce_after_add_to_cart_button', [ $this, 'rendeFaqHtml'] );
+            add_action( 'woocommerce_after_add_to_cart_form', [ $this, 'rendeFaqHtml'] );
         }elseif( 'after_meta' == $product_faq_position ){
             add_action( 'woocommerce_product_meta_end', [ $this, 'rendeFaqHtml'] );
         }elseif( 'after_summary' == $product_faq_position ){

@@ -105,8 +105,8 @@ class Menu{
         $product_faq = esc_attr( get_option('product_faq') );
         ?>
             <select name="product_faq" id="product_faq">
-                <option value="enable" <?php echo isset($product_faq ) && $product_faq == 'enable' ? 'selected' : ''; ?> >Enable</option>
                 <option value="disable" <?php echo isset($product_faq ) && $product_faq == 'disable' ? 'selected' : ''; ?> >Disable</option>
+                <option value="enable" <?php echo isset($product_faq ) && $product_faq == 'enable' ? 'selected' : ''; ?> >Enable</option>
             </select>
         <?php
     }
