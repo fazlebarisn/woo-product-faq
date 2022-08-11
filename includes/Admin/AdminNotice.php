@@ -4,7 +4,7 @@ namespace Woo\Faq\Admin;
 
 class AdminNotice{
     public function __construct(){
-        add_action( 'admin_notices', [$this ,'sample_admin_notice__error'] );
+        //add_action( 'admin_notices', [$this ,'sample_admin_notice__error'] );
     }
 
     public function sample_admin_notice__error(){
