@@ -46,72 +46,113 @@ class ProductDataTab{
 
     // add input box for faq
     function sfaq_add_field_in_panel(){
+        global $post;
+        $value = get_post_meta($post->ID,'fazle',true);
+        // var_dump($value);
+        $value = is_array( $value ) ? $value : [
+            'question' => [
+                '',
+            ],
+            
+            'answer' => [
+                '',
+            ]
+
+        ];
 
         $args = array();
-        $args[] = array(
-            'id'        => 'faq_1',
-            'name'      => 'faq_1',
-            'label'     =>  'Question 1',
-            'class'     =>  'sfaq_input',
-            'type'      =>  'text',
-            'desc_tip'  =>  true,
-            'description'=> 'Add 1st question',
-            'data_type' => 'text'
-        );
-    
-        $args[] = array(
-            'id'        => 'faq_ans_1',
-            'name'      => 'faq_ans_1',
-            'label'     =>  'Answer 1',
-            'class'     =>  'sfaq_input',
-            'type'      =>  'text',
-            'desc_tip'  =>  true,
-            'description'=> 'Add 1st Answer',
-            'data_type' => 'text'
-        );
-        $args[] = array(
-            'id'        => 'faq_2',
-            'name'      => 'faq_2',
-            'label'     =>  'Question 2',
-            'class'     =>  'sfaq_input',
-            'type'      =>  'text',
-            'desc_tip'  =>  true,
-            'description'=> 'Add 2nd question',
-            'data_type' => 'text'
-        );
-    
-        $args[] = array(
-            'id'        => 'faq_ans_2',
-            'name'      => 'faq_ans_2',
-            'label'     =>  'Answer 2',
-            'class'     =>  'sfaq_input',
-            'type'      =>  'text',
-            'desc_tip'  =>  true,
-            'description'=> 'Add 2nd Answer',
-            'data_type' => 'text'
-        );
 
-        $args[] = array(
-            'id'        => 'faq_3',
-            'name'      => 'faq_3',
-            'label'     =>  'Question 3',
-            'class'     =>  'sfaq_input',
-            'type'      =>  'text',
-            'desc_tip'  =>  true,
-            'description'=> 'Add 3rd question',
-            'data_type' => 'text'
-        );
+        foreach( $value['question'] as $key => $val ){
+            $args[] = array(
+                'id'        => 'faq_'. $key,
+                'name'      => 'fazle[question][' . $key . ']',
+                'label'     =>  'Question ' . $key,
+                'class'     =>  'sfaq_input',
+                'type'      =>  'text',
+                'desc_tip'  =>  true,
+                // 'description'=> 'Add 1st question',
+                'data_type' => 'text',
+                'value'     => $value['question'][$key] ?? '',
+            );
+            $args[] = array(
+                'id'        => 'faq_ans_'. $key,
+                'name'      => 'fazle[answer][' . $key . ']',
+                'label'     =>  'Answer ' . $key,
+                'class'     =>  'sfaq_input',
+                'type'      =>  'text',
+                'desc_tip'  =>  true,
+                'description'=> 'Add 1st Answer',
+                'data_type' => 'text',
+                'value'     => $value['answer'][$key] ?? '',
+            );
+        }
+
+        // $args[] = array(
+        //     'id'        => 'faq_1',
+        //     'name'      => 'fazle[question][1]',
+        //     'label'     =>  'Question 1',
+        //     'class'     =>  'sfaq_input',
+        //     'type'      =>  'text',
+        //     'desc_tip'  =>  true,
+        //     'description'=> 'Add 1st question',
+        //     'data_type' => 'text',
+        //     'value'     => $value['question'][1] ?? '',
+        // );
     
-        $args[] = array(
-            'id'        => 'faq_ans_3',
-            'name'      => 'faq_ans_3',
-            'label'     =>  'Answer 3',
-            'class'     =>  'sfaq_input',
-            'type'      =>  'text',
-            'desc_tip'  =>  true,
-            'description'=> 'Add 3rd Answer',
-            'data_type' => 'text'
-        );
+        // $args[] = array(
+        //     'id'        => 'faq_ans_1',
+        //     'name'      => 'fazle[answer][1]',
+        //     'label'     =>  'Answer 1',
+        //     'class'     =>  'sfaq_input',
+        //     'type'      =>  'text',
+        //     'desc_tip'  =>  true,
+        //     'description'=> 'Add 1st Answer',
+        //     'data_type' => 'text',
+        //     'value'     => $value['answer'][1] ?? '',
+        // );
+        // $args[] = array(
+        //     'id'        => 'faq_2',
+        //     'name'      => 'faq_2',
+        //     'label'     =>  'Question 2',
+        //     'class'     =>  'sfaq_input',
+        //     'type'      =>  'text',
+        //     'desc_tip'  =>  true,
+        //     'description'=> 'Add 2nd question',
+        //     'data_type' => 'text'
+        // );
+    
+        // $args[] = array(
+        //     'id'        => 'faq_ans_2',
+        //     'name'      => 'faq_ans_2',
+        //     'label'     =>  'Answer 2',
+        //     'class'     =>  'sfaq_input',
+        //     'type'      =>  'text',
+        //     'desc_tip'  =>  true,
+        //     'description'=> 'Add 2nd Answer',
+        //     'data_type' => 'text'
+        // );
+
+        // $args[] = array(
+        //     'id'        => 'faq_3',
+        //     'name'      => 'faq_3',
+        //     'label'     =>  'Question 3',
+        //     'class'     =>  'sfaq_input',
+        //     'type'      =>  'text',
+        //     'desc_tip'  =>  true,
+        //     'description'=> 'Add 3rd question',
+        //     'data_type' => 'text'
+        // );
+    
+        // $args[] = array(
+        //     'id'        => 'faq_ans_3',
+        //     'name'      => 'faq_ans_3',
+        //     'label'     =>  'Answer 3',
+        //     'class'     =>  'sfaq_input',
+        //     'type'      =>  'text',
+        //     'desc_tip'  =>  true,
+        //     'description'=> 'Add 3rd Answer',
+        //     'data_type' => 'text'
+        // );
 
         $args = apply_filters('sfaq_field_args' , $args);
 
@@ -124,24 +165,29 @@ class ProductDataTab{
     // save data
     function sfaq_save_field_data( $post_id ){
 
-        $_faq_1 = isset( $_POST['faq_1'] ) ? $_POST['faq_1'] : false;
-        $_faq_ans_1 = isset( $_POST['faq_ans_1'] ) ? $_POST['faq_ans_1'] : false;
+        $_data = $_POST['fazle'] ?? [];
+        var_dump($_POST['fazle']);
+        update_post_meta( $post_id,'fazle', $_data); 
+        // die();
 
-        $_faq_2 = isset( $_POST['faq_2'] ) ? $_POST['faq_2'] : false;
-        $_faq_ans_2 = isset( $_POST['faq_ans_2'] ) ? $_POST['faq_ans_2'] : false;
+        // $_faq_1 = isset( $_POST['faq_1'] ) ? $_POST['faq_1'] : false;
+        // $_faq_ans_1 = isset( $_POST['faq_ans_1'] ) ? $_POST['faq_ans_1'] : false;
 
-        $_faq_3 = isset( $_POST['faq_3'] ) ? $_POST['faq_3'] : false;
-        $_faq_ans_3 = isset( $_POST['faq_ans_3'] ) ? $_POST['faq_ans_3'] : false;
+        // $_faq_2 = isset( $_POST['faq_2'] ) ? $_POST['faq_2'] : false;
+        // $_faq_ans_2 = isset( $_POST['faq_ans_2'] ) ? $_POST['faq_ans_2'] : false;
+
+        // $_faq_3 = isset( $_POST['faq_3'] ) ? $_POST['faq_3'] : false;
+        // $_faq_ans_3 = isset( $_POST['faq_ans_3'] ) ? $_POST['faq_ans_3'] : false;
     
-        // Updating here 
-        update_post_meta( $post_id,'faq_1', esc_attr( $_faq_1 ) ); 
-        update_post_meta( $post_id,'faq_ans_1', esc_attr( $_faq_ans_1 ) );
+        // // Updating here 
+        // update_post_meta( $post_id,'faq_1', esc_attr( $_faq_1 ) ); 
+        // update_post_meta( $post_id,'faq_ans_1', esc_attr( $_faq_ans_1 ) );
 
-        update_post_meta( $post_id,'faq_2', esc_attr( $_faq_2 ) ); 
-        update_post_meta( $post_id,'faq_ans_2', esc_attr( $_faq_ans_2 ) ); 
+        // update_post_meta( $post_id,'faq_2', esc_attr( $_faq_2 ) ); 
+        // update_post_meta( $post_id,'faq_ans_2', esc_attr( $_faq_ans_2 ) ); 
 
-        update_post_meta( $post_id,'faq_3', esc_attr( $_faq_3 ) ); 
-        update_post_meta( $post_id,'faq_ans_3', esc_attr( $_faq_ans_3 ) ); 
+        // update_post_meta( $post_id,'faq_3', esc_attr( $_faq_3 ) ); 
+        // update_post_meta( $post_id,'faq_ans_3', esc_attr( $_faq_ans_3 ) ); 
     
     }
 
