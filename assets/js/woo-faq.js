@@ -15,5 +15,15 @@
         }
         
         items.forEach(item => item.addEventListener('click', toggleAccordion));
-    });
+
+        // $('.add-question').on('click' , function(event){
+        //   //event.preventDefault();
+        //   console.log(88888888);
+        //   alert(2222222);
+        });
+        $(".add-question").click(function(){
+          alert("The paragraph was clicked.");
+        });
+      }
+    );
 })(jQuery);

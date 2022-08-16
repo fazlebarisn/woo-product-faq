@@ -40,8 +40,9 @@ class ProductDataTab{
                 <div class="options_group">
                     <?php do_action( 'faq_woocommerce_product_options' ); ?>
                 </div>
-                <button>Add New FAQ</button>
+                <button type="button" class="add-question">Add New FAQ</button>
             </div>
+            
         <?php 
     }
 
@@ -51,7 +52,7 @@ class ProductDataTab{
         global $post;
         $value = get_post_meta($post->ID,'faq',true);
         //$value;
-        array_push($value['question'],'');
+        //array_push($value['question'],'');
 
         $value = is_array( $value ) ? $value : array(
             'question' => array(''),
