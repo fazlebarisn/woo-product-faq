@@ -37,24 +37,16 @@ class FaqHtml{
         }
         $product_id = get_the_ID();
 
-        $faq_1 = get_post_meta($product_id,'faq_1', true);
-        $_faq_ans_1 = get_post_meta($product_id,'faq_ans_1', true);
-
-        $faq_2 = get_post_meta($product_id,'faq_2', true);
-        $_faq_ans_2 = get_post_meta($product_id,'faq_ans_2', true);
-
-        $faq_3 = get_post_meta($product_id,'faq_3', true);
-        $_faq_ans_3 = get_post_meta($product_id,'faq_ans_3', true);
-
-        $faq_heading = esc_attr( get_option('faq_heading') );
-        
-        // Style
+        $faqs = get_post_meta($product_id,'faq',true);
+        // echo '<pre>';
+        // var_dump($faqs);
+        // echo '</pre>';
+        // // Style
         $faq_heading_color = esc_attr( get_option('faq_heading_color') );
         $faq_heading_font_size = esc_attr( get_option('faq_heading_font_size') );
         $faq_heading_style = 'color:'.$faq_heading_color.';' . 'font-size:'.$faq_heading_font_size;
 
         ?>
-        <?php if( !empty($faq_1) || !empty($faq_2) || !empty($faq_3) ): ?>
             <div class="container">
                 <h2 style="<?php echo $faq_heading_style; ?>">
                     <?php 
@@ -65,38 +57,20 @@ class FaqHtml{
                         }
                     ?>
                 </h2>
-                <?php if( !empty($faq_1)): ?>
+                <?php if( !empty($faqs)): 
+                    foreach($faqs as $key=>$faq ){
+                    //var_dump($key);
+                ?>
                 <div class="accordion">
                     <div class="accordion-item">
-                        <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faq_1 ?? $faq_1; ?></span><span class="icon" aria-hidden="true"></span></button>
+                        <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faq[0] ?? $faq[0]; ?></span><span class="icon" aria-hidden="true"></span></button>
                         <div class="accordion-content">
-                            <p><?php echo $_faq_ans_1 ?? $_faq_ans_1; ?></p>
+                            <p><?php echo $faq[0] ?? $faq[0]; ?></p>
                         </div>
                     </div>
                 </div>
-                <?php endif; ?>
-                <?php if( !empty($faq_2)): ?>
-                <div class="accordion">
-                    <div class="accordion-item">
-                        <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faq_2 ?? $faq_2; ?></span><span class="icon" aria-hidden="true"></span></button>
-                        <div class="accordion-content">
-                            <p><?php echo $_faq_ans_2 ?? $_faq_ans_2; ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php endif; ?>
-                <?php if( !empty($faq_3)): ?>
-                <div class="accordion">
-                    <div class="accordion-item">
-                        <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faq_3 ?? $faq_3; ?></span><span class="icon" aria-hidden="true"></span></button>
-                        <div class="accordion-content">
-                            <p><?php echo $_faq_ans_3 ?? $_faq_ans_3; ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php endif; ?>
+                <?php } endif; ?>
             </div>
-        <?php endif; ?>
         <?php
     }
 
