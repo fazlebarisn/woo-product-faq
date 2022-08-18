@@ -20,10 +20,10 @@
         //   //event.preventDefault();
         //   console.log(88888888);
         //   alert(2222222);
-        });
-        $(".add-question").click(function(){
-          alert("The paragraph was clicked.");
-        });
+        // });
+        // $(".add-question").click(function(){
+        //   alert("The paragraph was clicked.");
+        // });
       }
     );
 })(jQuery);
