@@ -60,7 +60,7 @@ class FaqHtml{
                 </h2>
                 <?php if( !empty($faqs) ): 
                     foreach($faqs['question'] as $key=>$faq ){
-                    echo $faq;
+                    //echo $faq;
                 ?>
                 <div class="accordion">
                     <div class="accordion-item">
