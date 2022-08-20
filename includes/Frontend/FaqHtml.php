@@ -38,14 +38,15 @@ class FaqHtml{
         $product_id = get_the_ID();
 
         $faqs = get_post_meta($product_id,'faq',true);
-        // echo '<pre>';
-        // var_dump($faqs);
-        // echo '</pre>';
-        // // Style
+        echo '<pre>';
+        var_dump($faqs);
+        var_dump(empty($faqs));
+        echo '</pre>';
+        // Style
         $faq_heading_color = esc_attr( get_option('faq_heading_color') );
         $faq_heading_font_size = esc_attr( get_option('faq_heading_font_size') );
         $faq_heading_style = 'color:'.$faq_heading_color.';' . 'font-size:'.$faq_heading_font_size;
-
+        //if( empty($faqs) ): 
         ?>
             <div class="container">
                 <h2 style="<?php echo $faq_heading_style; ?>">
@@ -57,21 +58,22 @@ class FaqHtml{
                         }
                     ?>
                 </h2>
-                <?php if( !empty($faqs)): 
-                    foreach($faqs as $key=>$faq ){
-                    //var_dump($key);
+                <?php if( !empty($faqs) ): 
+                    foreach($faqs['question'] as $key=>$faq ){
+                    echo $faq;
                 ?>
                 <div class="accordion">
                     <div class="accordion-item">
-                        <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faq[0] ?? $faq[0]; ?></span><span class="icon" aria-hidden="true"></span></button>
+                        <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faqs['question'][$key] ?? $faqs['question'][$key]; ?></span><span class="icon" aria-hidden="true"></span></button>
                         <div class="accordion-content">
-                            <p><?php echo $faq[0] ?? $faq[0]; ?></p>
+                            <p><?php echo $faqs['answer'][$key] ?? $faqs['answer'][$key]; ?></p>
                         </div>
                     </div>
                 </div>
                 <?php } endif; ?>
             </div>
         <?php
+        //endif;
     }
 
 }
