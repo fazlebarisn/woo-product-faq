@@ -51,7 +51,7 @@ class ProductDataTab{
 
         global $post;
         $value = get_post_meta($post->ID,'faq',true);
-        var_dump($value['question']);
+        //var_dump($value['question']);
         //array_push($value['question'],'');
 
         $value = is_array( $value ) ? $value : array(

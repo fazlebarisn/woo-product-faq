@@ -38,15 +38,14 @@ class FaqHtml{
         $product_id = get_the_ID();
 
         $faqs = get_post_meta($product_id,'faq',true);
-        echo '<pre>';
-        var_dump($faqs);
-        var_dump(empty($faqs));
-        echo '</pre>';
+        
+        if(empty($faqs['question'][0])) return;
+
         // Style
         $faq_heading_color = esc_attr( get_option('faq_heading_color') );
         $faq_heading_font_size = esc_attr( get_option('faq_heading_font_size') );
         $faq_heading_style = 'color:'.$faq_heading_color.';' . 'font-size:'.$faq_heading_font_size;
-        //if( empty($faqs) ): 
+        //if( !empty($faqs) ): 
         ?>
             <div class="container">
                 <h2 style="<?php echo $faq_heading_style; ?>">
