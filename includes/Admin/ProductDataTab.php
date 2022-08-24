@@ -70,7 +70,7 @@ class ProductDataTab{
                 'class'     =>  'faq_input',
                 'type'      =>  'text',
                 'desc_tip'  =>  true,
-                'description'=> 'Add 1st Question',
+                //'description'=> 'Add 1st Question',
                 'data_type' => 'text',
                 'value'     =>  $value['question'][$key] ?? '',
             );
@@ -82,7 +82,7 @@ class ProductDataTab{
                 'class'     => 'faq_input',
                 'type'      => 'text',
                 'desc_tip'  => true,
-                'description'=> 'Add 1st Answer',
+                //'description'=> 'Add 1st Answer',
                 'data_type' => 'text',
                 'value'     =>  $value['answer'][$key] ?? '',
             );

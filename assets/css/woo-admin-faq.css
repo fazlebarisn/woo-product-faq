@@ -1,3 +1,4 @@
-.faq-add-question{
+button.faq-add-question.button.button-primary{
     margin-bottom: 10px;
+    margin-left: 15px;
 }
