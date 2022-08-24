@@ -37,8 +37,10 @@ class ProductDataTab{
     public function faq_product_tab_options(){
         ?>
             <div  id="frequently_asked_questions" class="panel woocommerce_options_panel">
-                <div class="options_group">
-                    <?php do_action( 'faq_woocommerce_product_options' ); ?>
+                <div class="option-group-wrapper">
+                    <div class="options_group">
+                        <?php do_action( 'faq_woocommerce_product_options' ); ?>
+                    </div>
                 </div>
                 <button type="button" class="add-question">Add New FAQ</button>
             </div>
@@ -62,10 +64,11 @@ class ProductDataTab{
         $args = array();
 
         foreach($value['question'] as $key => $val ){
+            
             $args[] = array(
                 'id'        => 'faq_'.$key,
                 'name'      => 'faq[question]['.$key.']',
-                'label'     =>  'Question ' . $key +1 ,
+                'label'     =>  'Question ' . $key,
                 'class'     =>  'faq_input',
                 'type'      =>  'text',
                 'desc_tip'  =>  true,
@@ -77,7 +80,7 @@ class ProductDataTab{
             $args[] = array(
                 'id'        => 'faq_ans_'.$key,
                 'name'      => 'faq[answer]['.$key.']',
-                'label'     => 'Answer ' .$key+1,
+                'label'     => 'Answer ' .$key,
                 'class'     => 'faq_input',
                 'type'      => 'text',
                 'desc_tip'  => true,
