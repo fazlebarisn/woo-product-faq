@@ -42,7 +42,7 @@ class ProductDataTab{
                         <?php do_action( 'faq_woocommerce_product_options' ); ?>
                     </div>
                 </div>
-                <button type="button" class="add-question">Add New FAQ</button>
+                <button type="button" class="faq-add-question button button-primary">Add New FAQ</button>
             </div>
             
         <?php 
@@ -53,8 +53,6 @@ class ProductDataTab{
 
         global $post;
         $value = get_post_meta($post->ID,'faq',true);
-        //var_dump($value['question']);
-        //array_push($value['question'],'');
 
         $value = is_array( $value ) ? $value : array(
             'question' => array(''),
@@ -68,11 +66,11 @@ class ProductDataTab{
             $args[] = array(
                 'id'        => 'faq_'.$key,
                 'name'      => 'faq[question]['.$key.']',
-                'label'     =>  'Question ' . $key,
+                'label'     =>  'Question 1',
                 'class'     =>  'faq_input',
                 'type'      =>  'text',
                 'desc_tip'  =>  true,
-                // 'description'=> 'Add 1st question',
+                'description'=> 'Add 1st Question',
                 'data_type' => 'text',
                 'value'     =>  $value['question'][$key] ?? '',
             );
@@ -80,11 +78,11 @@ class ProductDataTab{
             $args[] = array(
                 'id'        => 'faq_ans_'.$key,
                 'name'      => 'faq[answer]['.$key.']',
-                'label'     => 'Answer ' .$key,
+                'label'     => 'Answer 1',
                 'class'     => 'faq_input',
                 'type'      => 'text',
                 'desc_tip'  => true,
-                // 'description'=> 'Add 1st question',
+                'description'=> 'Add 1st Answer',
                 'data_type' => 'text',
                 'value'     =>  $value['answer'][$key] ?? '',
             );
@@ -102,7 +100,6 @@ class ProductDataTab{
     function sfaq_save_field_data( $post_id ){
 
         $_data = $_POST['faq'] ?? [];
-        //var_dump($_POST['faq']);
         update_post_meta( $post_id,'faq', $_data);  
     
     }
