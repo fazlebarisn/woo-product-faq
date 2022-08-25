@@ -1,13 +1,19 @@
 <?php
 /**
-Plugin Name: Product FAQ for WooCommerce
-Plugin URI: https://www.chitabd.com/
-Description: Add FAQ in WooCommerce Product Page
-Version: 1.0.0
-Author: Fazle Bari
-Author URI: https://www.chitabd.com/
-Licence: GPL Or leater
-Text Domain: woofaq
+* Plugin Name: Product FAQ for WooCommerce
+* Plugin URI: https://github.com/fazlebarisn/woo-product-faq
+* Description: Add FAQ in WooCommerce Product Page
+* Version: 1.0.0
+* Author: Fazle Bari
+* Author URI: https://www.chitabd.com/
+* Requires PHP: 7.2
+* Tested up to:         6.0.5
+* WC requires at least: 3.0.0
+* WC tested up to: 	 6.8.2
+* Licence: GPL Or leater
+* Text Domain: woofaq
+* Domain Path: /languages/
+* @package woofaq
 */
 
 defined('ABSPATH') or die('Nice Try!');

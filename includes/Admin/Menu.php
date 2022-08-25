@@ -39,7 +39,7 @@ class Menu{
      * @return void
      */
     public function adminPage(){
-        require_once WOO_FAQ_PATH.'/templates/Admin.php';
+        require_once WOO_FAQ_PATH.'/pages/dashboard.php';
     }
 
     /**
