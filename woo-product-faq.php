@@ -106,7 +106,7 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
         }
 
         // what is the version number when first install
-        update_option( 'woo_faq_version' , WOO_FAQ_VERSION );
+        update_option( 'woo_faq_version' , WOO_FAQ_VERSION ); 
 
      }
 
