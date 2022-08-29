@@ -38,6 +38,11 @@ class FaqHtml{
         $product_id = get_the_ID();
 
         $faqs = get_post_meta($product_id,'faq',true);
+        // echo '<pre>';
+        // // var_dump($faqs);
+        // // var_dump(empty($faqs['question']));
+        // var_dump(!$faqs);
+        // echo '</pre>';
         
         if(empty($faqs['question'][0])) return;
 

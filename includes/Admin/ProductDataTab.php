@@ -8,8 +8,8 @@ class ProductDataTab{
     {
         add_filter( 'woocommerce_product_data_tabs' , [ $this , 'faq_product_edit_tab'] );
         add_filter( 'woocommerce_product_data_panels' , [ $this , 'faq_product_tab_options'] );
-        add_action( 'faq_woocommerce_product_options' , [ $this , 'sfaq_add_field_in_panel'] );
-        add_action( 'woocommerce_process_product_meta' , [ $this , 'sfaq_save_field_data'] );
+        add_action( 'faq_woocommerce_product_options' , [ $this , 'faq_add_field_in_panel'] );
+        add_action( 'woocommerce_process_product_meta' , [ $this , 'faq_save_field_data'] );
     }
 
     /**
@@ -49,7 +49,7 @@ class ProductDataTab{
     }
 
     // add input box for faq
-    function sfaq_add_field_in_panel(){
+    function faq_add_field_in_panel(){
 
         global $post;
         $value = get_post_meta($post->ID,'faq',true);
@@ -88,7 +88,7 @@ class ProductDataTab{
             );
         }
 
-        $args = apply_filters('sfaq_field_args' , $args);
+        $args = apply_filters('faq_field_args' , $args);
 
         foreach($args as $arg){
             woocommerce_wp_text_input($arg);
@@ -97,7 +97,7 @@ class ProductDataTab{
     }
 
     // save data
-    function sfaq_save_field_data( $post_id ){
+    function faq_save_field_data( $post_id ){
 
         $_data = $_POST['faq'] ?? [];
         update_post_meta( $post_id,'faq', $_data);  
