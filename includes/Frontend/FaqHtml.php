@@ -38,13 +38,8 @@ class FaqHtml{
         $product_id = get_the_ID();
 
         $faqs = get_post_meta($product_id,'faq',true);
-        // echo '<pre>';
-        // // var_dump($faqs);
-        // // var_dump(empty($faqs['question']));
-        // var_dump(!$faqs);
-        // echo '</pre>';
-        
-        if(empty($faqs['question'][0])) return;
+
+        if( in_array(!null, $faqs['question']) ) :
 
         // Style
         $faq_heading_color = esc_attr( get_option('faq_heading_color') );
@@ -65,19 +60,19 @@ class FaqHtml{
                 <?php if( !empty($faqs) ): 
                     foreach($faqs['question'] as $key=>$faq ){
                     //echo $faq;
-                ?>
-                <div class="accordion">
-                    <div class="accordion-item">
-                        <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faqs['question'][$key] ?? $faqs['question'][$key]; ?></span><span class="icon" aria-hidden="true"></span></button>
-                        <div class="accordion-content">
-                            <p><?php echo $faqs['answer'][$key] ?? $faqs['answer'][$key]; ?></p>
+                        ?>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faqs['question'][$key] ?? $faqs['question'][$key]; ?></span><span class="icon" aria-hidden="true"></span></button>
+                                <div class="accordion-content">
+                                    <p><?php echo $faqs['answer'][$key] ?? $faqs['answer'][$key]; ?></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <?php } endif; ?>
+                    <?php } endif; ?>
             </div>
         <?php
-        //endif;
+        endif;
     }
 
 }
