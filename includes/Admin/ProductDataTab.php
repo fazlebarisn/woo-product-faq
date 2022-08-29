@@ -66,7 +66,7 @@ class ProductDataTab{
             $args[] = array(
                 'id'        => 'faq_'.$key,
                 'name'      => 'faq[question]['.$key.']',
-                'label'     =>  'Question 1',
+                'label'     =>  'Question',
                 'class'     =>  'faq_input',
                 'type'      =>  'text',
                 'desc_tip'  =>  true,
@@ -78,7 +78,7 @@ class ProductDataTab{
             $args[] = array(
                 'id'        => 'faq_ans_'.$key,
                 'name'      => 'faq[answer]['.$key.']',
-                'label'     => 'Answer 1',
+                'label'     => 'Answer',
                 'class'     => 'faq_input',
                 'type'      => 'text',
                 'desc_tip'  => true,
