@@ -39,6 +39,10 @@ class FaqHtml{
 
         $faqs = get_post_meta($product_id,'faq',true);
 
+        if( !isset($faqs['question']) ){
+            return;
+        }
+         
         if( in_array(!null, $faqs['question']) ) :
 
         // Style
