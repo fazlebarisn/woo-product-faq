@@ -18,21 +18,21 @@ Product FAQ for WooCommerce helps you to add frequently asked questions on singl
 
 **Demo Product list**
 
-👉 [FAQ after add to cart button](https://www.chitabd.com/product/one-hot-cake) <br>FAQ is added after add to card button.<br>
-👉 [FAQ after meta](https://www.chitabd.com/product/local-salty-country-ham) <br>FAQ is added after eeta<br>
-👉 [FAQ after summary](https://www.chitabd.com/product/prawn-with-garlic-sauce) <br>FAQ is added after summary.<br>
-👉 [FAQ after single product](https://www.chitabd.com/product/vegetables) <br>FAQ is added after single product.<br>
+[FAQ after add to cart button](https://www.chitabd.com/product/one-hot-cake) <br>FAQ is added after add to card button.<br>
+[FAQ after meta](https://www.chitabd.com/product/local-salty-country-ham) <br>FAQ is added after eeta<br>
+[FAQ after summary](https://www.chitabd.com/product/prawn-with-garlic-sauce) <br>FAQ is added after summary.<br>
+[FAQ after single product](https://www.chitabd.com/product/vegetables) <br>FAQ is added after single product.<br>
 
 
 <h2>Our main features</h2>
 
-🔅 **Add individual questions**<br> 🔅
+**Add individual questions**<br>
 You can add individual questions for every product. 
 
-🔅 **Diaplay position**<br> 🔅
+**Diaplay position**<br>
 You can change dispaly position on single product page.
 
-🔅 **change design**<br> 🔅
+**change design**<br>
 You can design your faq section
 
 
