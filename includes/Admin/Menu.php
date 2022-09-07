@@ -102,45 +102,52 @@ class Menu{
 
     // dusplay enable/disable input field
     public function ProductFaq(){
-        $product_faq = esc_attr( get_option('product_faq') );
+        $product_faq = get_option('product_faq');
+        $product_faq = isset($product_faq ) ? $product_faq : 'enable';
         ?>
             <select name="product_faq" id="product_faq">
-                <option value="disable" <?php echo isset($product_faq ) && $product_faq == 'disable' ? 'selected' : ''; ?> >Disable</option>
-                <option value="enable" <?php echo isset($product_faq ) && $product_faq == 'enable' ? 'selected' : ''; ?> >Enable</option>
+                <option value="disable" <?php echo esc_attr($product_faq ) && $product_faq == 'disable' ? 'selected' : ''; ?> >Disable</option>
+                <option value="enable" <?php echo esc_attr($product_faq ) && $product_faq == 'enable' ? 'selected' : ''; ?> >Enable</option>
             </select>
         <?php
     }
 
     // dusplay faq position field
     public function faqPosition(){
-        $product_faq_position = esc_attr( get_option('product_faq_position') );
+        $product_faq_position = get_option('product_faq_position');
+        $faq_position = isset($product_faq_position ) ? $product_faq_position : 'after_single_product';
         ?>
             <select name="product_faq_position" id="product_faq_position">
-                <option value="after_cart_button" <?php echo isset($product_faq_position ) && $product_faq_position == 'after_cart_button' ? 'selected' : ''; ?> >After Cart Button</option>
-                <option value="after_meta" <?php echo isset($product_faq_position ) && $product_faq_position == 'after_meta' ? 'selected' : ''; ?> >After Meta</option>
-                <option value="after_summary" <?php echo isset($product_faq_position ) && $product_faq_position == 'after_summary' ? 'selected' : ''; ?> >After Summary</option>
-                <option value="after_single_product" <?php echo isset($product_faq_position ) && $product_faq_position == 'after_single_product' ? 'selected' : ''; ?> >After Single Product</option>
+                <option value="after_cart_button" <?php echo esc_attr( $faq_position ) && $faq_position == 'after_cart_button' ? 'selected' : ''; ?> >After Cart Button</option>
+                <option value="after_meta" <?php echo esc_attr( $faq_position ) && $faq_position == 'after_meta' ? 'selected' : ''; ?> >After Meta</option>
+                <option value="after_summary" <?php echo esc_attr( $faq_position ) && $faq_position == 'after_summary' ? 'selected' : ''; ?> >After Summary</option>
+                <option value="after_single_product" <?php echo esc_attr( $faq_position ) && $faq_position == 'after_single_product' ? 'selected' : ''; ?> >After Single Product</option>
             </select>
         <?php
     }
 
     // Display heading input field
     public function Heading(){
-        $faq_heading = esc_attr( get_option('faq_heading') );
-        echo '<input type="text" name="faq_heading" value="'.$faq_heading.'" placeholder="Insert Faq Heading" />';
+        $faq_heading = get_option('faq_heading');
+        ?>
+            <input type="text" name="faq_heading" value="<?php echo esc_attr( $faq_heading ); ?>" placeholder="Insert Faq Heading" />
+        <?php
     }
 
     // Display heading color input field
     public function HeadingColor(){
-        $faq_heading_color = esc_attr( get_option('faq_heading_color') );
-        //var_dump($faq_heading_color);
-        echo '<input type="color" name="faq_heading_color" value="'.$faq_heading_color.'" />';
+        $faq_heading_color = get_option('faq_heading_color');
+        ?>
+            <input type="color" name="faq_heading_color" value="<?php echo esc_attr( $faq_heading_color ); ?>" />
+        <?php
     }
 
     // Display heading input field
     public function HeadingFontSize(){
-        $faq_heading_font_size = esc_attr( get_option('faq_heading_font_size') );
-        echo '<input type="text" name="faq_heading_font_size" value="'.$faq_heading_font_size.'" placeholder="Faq Heading Font Size" />';
+        $faq_heading_font_size = get_option('faq_heading_font_size');
+        ?>
+            <input type="text" name="faq_heading_font_size" value="<?php esc_attr( $faq_heading_font_size ); ?>" placeholder="Faq Heading Font Size" />
+        <?php
     }
 }
 
