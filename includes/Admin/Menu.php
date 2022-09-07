@@ -77,7 +77,7 @@ class Menu{
      * @return void
      */
     public function productFaqOptions(){
-        echo 'From here you can change all setiings';
+        echo esc_html__('From here you can change all setiings' , 'woofaq');
     }
 
     /**
@@ -87,7 +87,7 @@ class Menu{
      * @return void
      */
     public function productFaqStyle(){
-        echo 'From this section you can change all style for your FAQ html.';
+        echo esc_html__('From this section you can change all style for your FAQ html.' , 'woofaq');
     }
 
     //Sanitize Data before input
