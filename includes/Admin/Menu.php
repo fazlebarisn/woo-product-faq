@@ -77,7 +77,7 @@ class Menu{
      * @return void
      */
     public function productFaqOptions(){
-        echo 'From here you can change all setiings';
+        echo esc_html__( 'From here you can change all setiings', 'woofaq' );
     }
 
     /**
@@ -126,8 +126,10 @@ class Menu{
 
     // Display heading input field
     public function Heading(){
-        $faq_heading = esc_attr( get_option('faq_heading') );
-        echo '<input type="text" name="faq_heading" value="'.$faq_heading.'" placeholder="Insert Faq Heading" />';
+        $faq_heading = get_option('faq_heading');
+        ?>
+        <input type="text" name="faq_heading" value="<?php echo esc_attr( $faq_heading ); ?>" placeholder="Insert Faq Heading" />
+        <?php
     }
 
     // Display heading color input field
