@@ -100,7 +100,24 @@ class ProductDataTab{
     function faq_save_field_data( $post_id ){
 
         $_data = $_POST['faq'] ?? [];
-        update_post_meta( $post_id,'faq', $_data);  
+        if( ! is_array( $_data ) ) return;
+        $new_data = [];
+        
+        foreach( $_data as $key => $data ){
+
+            $each_data = isset( $data )  && is_array( $data ) ? $data : false;
+            
+            if($each_data && ( $key == 'question' || $key == 'answer' )){
+                $new_data[$key] = array_filter( $each_data, function($item){
+                    $santi_string = sanitize_text_field( $item );
+                    return is_string($santi_string) && ! empty( $santi_string );
+                });
+            }
+        }
+
+        if( empty( $new_data ) ) return;
+
+        update_post_meta( $post_id,'faq', $_data); 
     
     }
 
