@@ -146,7 +146,7 @@ class Menu{
     public function HeadingFontSize(){
         $faq_heading_font_size = get_option('faq_heading_font_size');
         ?>
-            <input type="text" name="faq_heading_font_size" value="<?php esc_attr( $faq_heading_font_size ); ?>" placeholder="Faq Heading Font Size" />
+            <input type="text" name="faq_heading_font_size" value="<?php echo esc_attr( $faq_heading_font_size ); ?>" placeholder="Faq Heading Font Size" />
         <?php
     }
 }
