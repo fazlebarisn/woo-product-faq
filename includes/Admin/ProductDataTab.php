@@ -101,24 +101,28 @@ class ProductDataTab{
 
         $_data = $_POST['faq'] ?? [];
         if( ! is_array( $_data ) ) return;
-        $new_data = [];
+
+        $sanitize_data = [];
+
         
         foreach( $_data as $key => $data ){
 
             $each_data = isset( $data )  && is_array( $data ) ? $data : false;
             
             if($each_data && ( $key == 'question' || $key == 'answer' )){
-                $new_data[$key] = array_filter( $each_data, function($item){
-                    $santi_string = sanitize_text_field( $item );
-                    return is_string($santi_string) && ! empty( $santi_string );
+                $sanitize_data[$key] = array_filter( $each_data, function($item){
+                    $sanitize_string = sanitize_text_field( $item );
+                    return is_string($sanitize_string) && ! empty( $sanitize_string );
+
                 });
             }
         }
 
-        if( empty( $new_data ) ) return;
+        if( empty( $sanitize_data ) ) return;
 
         update_post_meta( $post_id,'faq', $_data); 
-    
+
+
     }
 
 }
