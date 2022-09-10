@@ -67,7 +67,7 @@ class ProductDataTab{
                 'id'        => 'faq_'.$key,
                 'name'      => 'faq[question]['.$key.']',
                 'label'     =>  'Question',
-                'class'     =>  'faq_input',
+                'class'     =>  'faq_input woo-faq-question-box',
                 'type'      =>  'text',
                 'desc_tip'  =>  true,
                 //'description'=> 'Add 1st Question',

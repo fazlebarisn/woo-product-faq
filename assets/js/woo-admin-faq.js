@@ -3,14 +3,14 @@
 
         $(document.body).on('click','.faq-add-question',function(){
 
-          var myNum = $('div.option-group-wrapper .options_group').length + 1;
-          
+          var myNum = $('div.option-group-wrapper .options_group .woo-faq-question-box').length + 1;
+          alert(myNum);
           var myElement = '<div class="options_group">';
           myElement += '<p class="form-field faq_' + myNum + '_field ">';
           myElement += '<label for="faq_' + myNum + '">Question' + '</label><input type="text" class="faq_input" name="faq[question][' + myNum + ']" id="faq_' + myNum + '" value="" placeholder="Add Question"> </p><p class="form-field faq_ans_' + myNum + '_field ">';
           myElement += '<label for="faq_ans_' + myNum + '">Answer' + '</label><input type="text" class="faq_input" name="faq[answer][' + myNum + ']" id="faq_ans_' + myNum + '" value="" placeholder="Add Answer"> </p></div>';
 
-          $('div.option-group-wrapper').append(myElement);
+          $('div.option-group-wrapper .options_group').append(myElement);
 
         });
       }
