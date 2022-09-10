@@ -52,12 +52,12 @@ class FaqHtml{
         //if( !empty($faqs) ): 
         ?>
             <div class="container">
-                <h2 style="<?php echo $faq_heading_style; ?>">
+                <h2 style="<?php echo esc_attr($faq_heading_style); ?>">
                     <?php 
                         if(!empty($faq_heading)){
-                            echo $faq_heading;
+                            echo esc_html($faq_heading);
                         }else{
-                            echo 'Frequently Asked Questions';
+                            echo esc_html__('Frequently Asked Questions' , 'woofaq');
                         }
                     ?>
                 </h2>
@@ -67,9 +67,9 @@ class FaqHtml{
                         ?>
                         <div class="accordion">
                             <div class="accordion-item">
-                                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo $faqs['question'][$key] ?? $faqs['question'][$key]; ?></span><span class="icon" aria-hidden="true"></span></button>
+                                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo esc_html( $faqs['question'][$key] ?? '' ); ?></span><span class="icon" aria-hidden="true"></span></button>
                                 <div class="accordion-content">
-                                    <p><?php echo $faqs['answer'][$key] ?? $faqs['answer'][$key]; ?></p>
+                                    <p><?php echo esc_html( $faqs['answer'][$key] ?? '' ) ?></p>
                                 </div>
                             </div>
                         </div>
