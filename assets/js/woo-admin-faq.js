@@ -3,7 +3,7 @@
 
         $(document.body).on('click','.faq-add-question',function(){
 
-          var myNum = $('div.option-group-wrapper .options_group').length + 1;
+          var myNum = $('div.option-group-wrapper .options_group .faq-question-box').length + 1;
           
           var myElement = '<div class="options_group">';
           myElement += '<p class="form-field faq_' + myNum + '_field ">';
