@@ -19,7 +19,7 @@ class ProductDataTab{
     public function faq_product_edit_tab( $product_data_tab ){
 
         $faq_tab['frequently_asked_questions'] = array(
-          'label' => __('FAQ','pfaq'),
+          'label' => __('FAQ','woofaq'),
           'target'   => 'frequently_asked_questions', //This is targetted div's id
           'class'     => array( 'hide_if_downloadable','hide_if_grouped' ), //'hide_if_grouped',
           );
