@@ -57,7 +57,7 @@ class FaqHtml{
                         if(!empty($faq_heading)){
                             echo esc_html($faq_heading);
                         }else{
-                            echo esc_html__('Frequently Asked Questions' , 'woofaq');
+                            echo esc_html__('Frequently Asked Questions' , 'product-faq-for-woocommerce');
                         }
                     ?>
                 </h2>

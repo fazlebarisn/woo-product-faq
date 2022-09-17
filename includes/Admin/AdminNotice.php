@@ -12,7 +12,7 @@ class AdminNotice{
 
     public function admin_notice_missing_main_plugin(){
         $class = 'notice notice-error';
-        $message = __( "Product FAQ for WooCommerce Requires WooCommerce to be Activated", "woofaq" );
+        $message = __( "Product FAQ for WooCommerce Requires WooCommerce to be Activated", "product-faq-for-woocommerce" );
      
         printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
     }

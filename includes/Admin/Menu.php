@@ -29,7 +29,7 @@ class Menu{
      * @return void
      */
     public function adminMenu(){
-        add_menu_page( __('Product Faq' , 'woofaq' ) , __('Product Faq' , 'woofaq') , 'manage_options' , 'woo_sfaq' , [$this , 'adminPage'] , 'dashicons-info' );
+        add_menu_page( __('Product Faq' , 'product-faq-for-woocommerce' ) , __('Product Faq' , 'product-faq-for-woocommerce') , 'manage_options' , 'woo_sfaq' , [$this , 'adminPage'] , 'dashicons-info' );
     }
 
     /**
@@ -56,18 +56,18 @@ class Menu{
         register_setting('woofaq-settings-group', 'faq_heading_font_size', [$this, 'sanitizeFaqFontSize']);
 
         //add section
-        add_settings_section('woofaq-product-faq-options', __('Product Faq Options', 'woofaq'),[$this, 'productFaqOptions'],'woo_sfaq');
+        add_settings_section('woofaq-product-faq-options', __('Product Faq Options', 'product-faq-for-woocommerce'),[$this, 'productFaqOptions'],'woo_sfaq');
 
         //add color section
-        add_settings_section('woofaq-product-faq-style', __('Product Faq Style', 'woofaq'),[$this, 'productFaqStyle'],'woo_sfaq');
+        add_settings_section('woofaq-product-faq-style', __('Product Faq Style', 'product-faq-for-woocommerce'),[$this, 'productFaqStyle'],'woo_sfaq');
 
         //add settings fields
-        add_settings_field('woofaq-product-faq', __('Product Faq', 'woofaq'), [$this, 'ProductFaq'], 'woo_sfaq', 'woofaq-product-faq-options');
-        add_settings_field('woofaq-faq-position', __('Faq Position', 'woofaq'), [$this, 'faqPosition'], 'woo_sfaq', 'woofaq-product-faq-options');
-        add_settings_field('woofaq-heading', __('Faq Heading', 'woofaq'), [$this, 'Heading'], 'woo_sfaq', 'woofaq-product-faq-options');
+        add_settings_field('woofaq-product-faq', __('Product Faq', 'product-faq-for-woocommerce'), [$this, 'ProductFaq'], 'woo_sfaq', 'woofaq-product-faq-options');
+        add_settings_field('woofaq-faq-position', __('Faq Position', 'product-faq-for-woocommerce'), [$this, 'faqPosition'], 'woo_sfaq', 'woofaq-product-faq-options');
+        add_settings_field('woofaq-heading', __('Faq Heading', 'product-faq-for-woocommerce'), [$this, 'Heading'], 'woo_sfaq', 'woofaq-product-faq-options');
 
-        add_settings_field('woofaq-heading-color', __('Heading Color', 'woofaq'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-heading-font-size', __('Heading Font Size', 'woofaq'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-heading-color', __('Heading Color', 'product-faq-for-woocommerce'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-heading-font-size', __('Heading Font Size', 'product-faq-for-woocommerce'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
     }
 
     /**
@@ -77,7 +77,7 @@ class Menu{
      * @return void
      */
     public function productFaqOptions(){
-        echo esc_html__('From here you can change all setiings' , 'woofaq');
+        echo esc_html__('From here you can change all setiings' , 'product-faq-for-woocommerce');
     }
 
     /**
@@ -87,7 +87,7 @@ class Menu{
      * @return void
      */
     public function productFaqStyle(){
-        echo esc_html__('From this section you can change all style for your FAQ html.' , 'woofaq');
+        echo esc_html__('From this section you can change all style for your FAQ html.' , 'product-faq-for-woocommerce');
     }
 
     //Sanitize Data before input
