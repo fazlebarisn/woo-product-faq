@@ -46,6 +46,7 @@ class FaqHtml{
         if( in_array(!null, $faqs['question']) ) :
 
         // Style
+        $faq_heading = esc_attr( get_option('faq_heading') );
         $faq_heading_color = esc_attr( get_option('faq_heading_color') );
         $faq_heading_font_size = esc_attr( get_option('faq_heading_font_size') );
         $faq_heading_style = 'color:'.$faq_heading_color.';' . 'font-size:'.$faq_heading_font_size;

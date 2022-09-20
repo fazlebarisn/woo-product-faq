@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Product FAQ for WooCommerce
 * Plugin URI: https://github.com/fazlebarisn/woo-product-faq
-* Description: Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered. It will help them to understand to product better.
+* Description: Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered.
 * Version: 1.0.1
 * Author: Fazle Bari
 * Author URI: https://www.chitabd.com/
