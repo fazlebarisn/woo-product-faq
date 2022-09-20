@@ -1,6 +1,6 @@
 === Product FAQ for WooCommerce ===
 Contributors: fazlebari
-Tags: product faq, frequently asked questions, faq in single product page
+Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, woocommerce
 Requires at least: 4.0.0
 Tested up to: 6.0.1
 Stable tag: 1.0.0
