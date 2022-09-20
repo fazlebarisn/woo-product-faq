@@ -11,7 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Product FAQ for WooCommerce helps you to add frequently asked questions on single product page.
 
 == Description ==
-Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered. It will help them to understand to product better
+Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered. It will help them to understand to product better.
 
 
 **[Visit example site](https://chitabd.com/shop)**
@@ -44,9 +44,9 @@ You can design your faq section
 
 == Screenshots ==
 
-1. Enabled table columns by checking the boxes
-2. Show/Hide columns on mobile and tablet devices
-3. Drag-n-drop ordering system for column's inners items
+1. Plugin menu position
+2. Faq settings
+3. Faq output in single product page
 
 
 == Changelog ==
