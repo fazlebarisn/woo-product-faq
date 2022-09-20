@@ -7,9 +7,9 @@
 * Author: Fazle Bari
 * Author URI: https://www.chitabd.com/
 * Requires PHP: 7.2
-* Tested up to:         6.0.5
+* Tested up to: 6.0.2
 * WC requires at least: 3.0.0
-* WC tested up to: 	 6.8.2
+* WC tested up to: 	 6.9.2
 * Licence: GPL Or leater 
 * Text Domain: product-faq-for-woocommerce
 * Domain Path: /languages/
