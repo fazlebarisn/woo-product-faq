@@ -10,7 +10,7 @@
 * Tested up to:         6.0.5
 * WC requires at least: 3.0.0
 * WC tested up to: 	 6.8.2
-* Licence: GPL Or leater
+* Licence: GPL Or leater 
 * Text Domain: product-faq-for-woocommerce
 * Domain Path: /languages/
 * @package woofaq
