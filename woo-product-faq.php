@@ -12,7 +12,7 @@
 * WC tested up to: 	 6.9.2
 * Licence: GPL Or leater 
 * Text Domain: product-faq-for-woocommerce
-* Domain Path: /languages/
+* Domain Path: /i18n/languages/
 * @package woofaq
 */
 
