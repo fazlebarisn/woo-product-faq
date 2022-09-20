@@ -3,7 +3,7 @@ Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, woocommerce
 Requires at least: 4.0.0
 Tested up to: 6.0.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
