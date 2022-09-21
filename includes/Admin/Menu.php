@@ -11,6 +11,8 @@ class Menu{
         add_filter('plugin_action_links_'.WOO_FAQ_BASENAME, [$this, 'settingsLink']);
         // active custom settings
         add_action('admin_init', [$this, 'wooFaqSettings']);
+
+        add_action('admin_menu', [$this, 'addNewFaq'] );
     }
 
     /**
@@ -31,6 +33,10 @@ class Menu{
     public function adminMenu(){
         add_menu_page( __('Product Faq' , 'product-faq-for-woocommerce' ) , __('Product Faq' , 'product-faq-for-woocommerce') , 'manage_options' , 'woo_sfaq' , [$this , 'adminPage'] , 'dashicons-info' );
     }
+    
+    public function addNewFaq(){
+        add_submenu_page('woo_sfaq', __('Add New FAQs', 'product-faq-for-woocommerce'), __('Add New', 'product-faq-for-woocommerce'),'manage_options','add_new_faq', [$this , 'addNewFaqPage'] );
+    }
 
     /**
      * admin page function
@@ -40,6 +46,10 @@ class Menu{
      */
     public function adminPage(){
         require_once WOO_FAQ_PATH.'/pages/dashboard.php';
+    }
+
+    public function addNewFaqPage(){
+        require_once WOO_FAQ_PATH.'/pages/addnewfaq.php';
     }
 
     /**
