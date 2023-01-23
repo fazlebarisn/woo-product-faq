@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: Product FAQ for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-14 06:51+0000\n"
-"PO-Revision-Date: 2023-01-23 17:44+0000\n"
+"PO-Revision-Date: 2023-01-23 16:09+0000\n"
 "Last-Translator: Admin\n"
-"Language-Team: বাংলা\n"
+"Language-Team: Bengali (Bangladesh)\n"
 "Language: bn_BD\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -78,13 +78,11 @@ msgstr ""
 #: includes/Admin/AdminNotice.php:15
 msgid "Product FAQ for WooCommerce Requires WooCommerce to be Activated"
 msgstr ""
-"Product FAQ for WooCommerce প্লাগিনটি চালাতে গেলে WooCommerce প্লাগিনটি "
-"ইন্সটল থাকতে হবে। "
 
 #: includes/Admin/Menu.php:59
 msgid "Product Faq Options"
-msgstr "প্রডাক্ট Faq অপশন "
+msgstr ""
 
 #: includes/Admin/Menu.php:62
 msgid "Product Faq Style"
-msgstr "প্রডাক্ট Faq স্টাইল "
+msgstr ""
