@@ -1,9 +1,12 @@
 === Product FAQ for WooCommerce ===
 Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, woocommerce
-Requires PHP: 7.2
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Requires at least: 6.0
+Tested up to: 6.2
+Requires PHP: 7.3
+Stable tag: 1.1.0
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Product FAQ for WooCommerce helps you to add frequently asked questions on single product page.
 
