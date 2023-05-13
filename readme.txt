@@ -48,6 +48,10 @@ You can design your faq section
 
 == Changelog ==
 
+= 1.0.4 =
+* Fixed Bug
+* Update wp,wc and php version info
+
 = 1.0.1 =
 * Fixed FAQ title issue
 * Update wp,wc and php version info
