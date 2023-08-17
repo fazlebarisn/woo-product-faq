@@ -9,7 +9,7 @@
 * Requires PHP: 7.2
 * Tested up to: 6.3
 * WC requires at least: 3.0.0
-* WC tested up to: 	 8.8.0
+* WC tested up to: 	 8.0.2
 * Licence: GPL Or leater 
 * Text Domain: product-faq-for-woocommerce
 * Domain Path: /i18n/languages/
@@ -18,6 +18,23 @@
 
 defined('ABSPATH') or die('Nice Try!');
 
+/**
+ * Only for developer
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ */
+if( ! function_exists('dd') ){
+	function dd( ...$vals){
+		if( ! empty($vals) && is_array($vals) ){
+			foreach($vals as $val ){
+				echo "<pre>";
+				var_dump($val);
+				echo "</pre>";
+			}
+		}
+	}
+}
+
+// Include autoload.php
 if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
