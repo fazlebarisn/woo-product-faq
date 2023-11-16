@@ -57,10 +57,24 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
     {
         $this->defineConstants();
 
+        add_action( 'before_woocommerce_init', [$this, 'product_faq_hpos'] );
+
         register_activation_hook( __FILE__ , [ $this , 'activate'] );
 
         add_action( 'plugins_loaded' , [ $this , 'initPlugin'] );
     }
+
+    /**
+     * Declare compatibility with custom order tables for WooCommerce.
+     * Support WooCommerce High-performance order storage
+     * @since 1.1.2
+     * @author Fazle Bari <fazlebarisn@gmail.com>
+     */
+    public function product_faq_hpos(){
+		if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+		}
+	}
 
     /**
      * initilize a singileton 
