@@ -3,21 +3,38 @@
 * Plugin Name: Product FAQ for WooCommerce
 * Plugin URI: https://github.com/fazlebarisn/woo-product-faq
 * Description: Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered.
-* Version: 1.0.1
+* Version: 1.1.2
 * Author: Fazle Bari
 * Author URI: https://www.chitabd.com/
 * Requires PHP: 7.2
-* Tested up to: 6.0.2
+* Tested up to: 6.4
 * WC requires at least: 3.0.0
-* WC tested up to: 	 6.9.2
+* WC tested up to: 	 8.2.2
 * Licence: GPL Or leater 
 * Text Domain: product-faq-for-woocommerce
-* Domain Path: /languages/
+* Domain Path: /i18n/languages/
 * @package woofaq
 */
 
 defined('ABSPATH') or die('Nice Try!');
 
+/**
+ * Only for developer
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ */
+if( ! function_exists('dd') ){
+	function dd( ...$vals){
+		if( ! empty($vals) && is_array($vals) ){
+			foreach($vals as $val ){
+				echo "<pre>";
+				var_dump($val);
+				echo "</pre>";
+			}
+		}
+	}
+}
+
+// Include autoload.php
 if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
@@ -31,7 +48,7 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
     /**
      * defien plugin version
      */
-    const version = "1.0.1";
+    const version = "1.1.2";
 
     /**
      * class constructor
@@ -40,10 +57,24 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
     {
         $this->defineConstants();
 
+        add_action( 'before_woocommerce_init', [$this, 'product_faq_hpos'] );
+
         register_activation_hook( __FILE__ , [ $this , 'activate'] );
 
         add_action( 'plugins_loaded' , [ $this , 'initPlugin'] );
     }
+
+    /**
+     * Declare compatibility with custom order tables for WooCommerce.
+     * Support WooCommerce High-performance order storage
+     * @since 1.1.2
+     * @author Fazle Bari <fazlebarisn@gmail.com>
+     */
+    public function product_faq_hpos(){
+		if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+		}
+	}
 
     /**
      * initilize a singileton 

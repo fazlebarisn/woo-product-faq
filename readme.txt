@@ -1,12 +1,13 @@
 === Product FAQ for WooCommerce ===
 Contributors: fazlebari
-Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, woocommerce
-Requires at least: 4.0.0
-Tested up to: 6.0.2
-Stable tag: 1.0.1
-Requires PHP: 7.2
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, woocommerce, faq
+Requires at least: 6.0
+Tested up to: 6.4
+WC tested up to: 8.2.2
+Requires PHP: 7.3
+Stable tag: 1.1.2
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Product FAQ for WooCommerce helps you to add frequently asked questions on single product page.
 
@@ -50,5 +51,27 @@ You can design your faq section
 
 
 == Changelog ==
+
+= 1.1.2 =
+* Add support WooCommerce High-performance order storage
+* Tested with latest WordPress version 6.4
+* Tested with latest WooCommerce version 8.2.2
+* Fixed Bug
+* Update wp,wc and php version info
+
+= 1.1.1 =
+* Tested with latest WordPress version 6.3
+* Tested with latest WooCommerce version 8.0.0
+* Fixed Bug
+* Update wp,wc and php version info
+
+= 1.0.4 =
+* Fixed Bug
+* Update wp,wc and php version info
+
+= 1.0.1 =
+* Fixed FAQ title issue
+* Update wp,wc and php version info
+
 = 1.0.0 =
 * Just Start First version.
