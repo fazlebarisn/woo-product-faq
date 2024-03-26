@@ -14,6 +14,7 @@ class ProductDataTab{
     /**
      * Add new tab in product page
      * @return array $tabs
+     * @since 1.0.0
      * @author Fazle Bari <fazlebarisn@gmail.com>
      */
     public function faq_product_edit_tab( $product_data_tab ){
@@ -35,6 +36,7 @@ class ProductDataTab{
 
     /**
      * Render the question and answer section
+     * @since 1.0.0
      * @author Fazle Bari <fazlebarisn@gmail.com>
      */
     public function faq_product_tab_options(){
@@ -53,7 +55,6 @@ class ProductDataTab{
                 </div>
                 <button type="button" class="faq-add-question button button-primary">Add New FAQ</button>
             </div>
-            
         <?php 
     }
 
