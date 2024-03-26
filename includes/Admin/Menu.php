@@ -3,8 +3,7 @@
 namespace Woo\Faq\Admin;
 class Menu{
 
-    public function __construct()
-    {
+    public function __construct(){
         // add a menu page in dashboard
         add_action( 'admin_menu' , [ $this , 'adminMenu'] );
         // add exta links to the plugin
