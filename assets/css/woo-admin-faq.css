@@ -6,3 +6,7 @@ button.faq-add-question.button.button-primary{
     /* background: red!important; */
     border-bottom: 2px solid #eee;
 }
+
+.option-group-wrapper p.faq-note span {
+    color: red;
+}

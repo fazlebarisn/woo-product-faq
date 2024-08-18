@@ -4,8 +4,7 @@ namespace Woo\Faq\Admin;
 
 class ProductDataTab{
 
-    public function __construct()
-    {
+    public function __construct(){
         add_filter( 'woocommerce_product_data_tabs' , [ $this , 'faq_product_edit_tab'] );
         add_filter( 'woocommerce_product_data_panels' , [ $this , 'faq_product_tab_options'] );
         add_action( 'faq_woocommerce_product_options' , [ $this , 'faq_add_field_in_panel'] );
@@ -13,8 +12,10 @@ class ProductDataTab{
     }
 
     /**
-     * add new tab in product page
-     * we will save data with this
+     * Add new tab in product page
+     * @return array $tabs
+     * @since 1.0.0
+     * @author Fazle Bari <fazlebarisn@gmail.com>
      */
     public function faq_product_edit_tab( $product_data_tab ){
 
@@ -33,7 +34,11 @@ class ProductDataTab{
       
     }
 
-    // add function for input field
+    /**
+     * Render the question and answer section
+     * @since 1.0.0
+     * @author Fazle Bari <fazlebarisn@gmail.com>
+     */
     public function faq_product_tab_options(){
         ?>
             <div  id="frequently_asked_questions" class="panel woocommerce_options_panel">
@@ -41,10 +46,15 @@ class ProductDataTab{
                     <div class="options_group">
                         <?php do_action( 'faq_woocommerce_product_options' ); ?>
                     </div>
+                    <?php
+                    $product_faq = get_option('product_faq');
+                    if( !$product_faq || 'disable' == $product_faq ) :
+                    ?>
+                    <p class="faq-note"><span>Importent note: </span>Please Enable 'Product Faq' from the setting page. ( Deshboard -> Product Faq )</p>
+                    <?php endif; ?>
                 </div>
                 <button type="button" class="faq-add-question button button-primary">Add New FAQ</button>
             </div>
-            
         <?php 
     }
 
