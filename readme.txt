@@ -2,7 +2,7 @@
 Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, woocommerce, faq
 Requires at least: 6.0
-Tested up to: 6.4
+Tested up to: 6.6.1
 WC tested up to: 8.2.2
 Requires PHP: 7.3
 Stable tag: 1.1.2
@@ -51,6 +51,12 @@ You can design your faq section
 
 
 == Changelog ==
+
+= 1.1.2 =
+* Tested with latest WordPress version 6.6.1
+* Tested with latest WooCommerce version 9.1.4
+* Fixed Bug
+* Update wp,wc and php version info
 
 = 1.1.2 =
 * Add support WooCommerce High-performance order storage
