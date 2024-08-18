@@ -1,11 +1,11 @@
 === Product FAQ for WooCommerce ===
 Contributors: fazlebari
-Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, woocommerce, faq
+Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, faq
 Requires at least: 6.0
 Tested up to: 6.6.1
 WC tested up to: 8.2.2
 Requires PHP: 7.3
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
