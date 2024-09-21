@@ -2,10 +2,10 @@
 Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page, faq
 Requires at least: 6.0
-Tested up to: 6.6.1
-WC tested up to: 8.2.2
+Tested up to: 6.6.2
+WC tested up to: 9.3.2
 Requires PHP: 7.3
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -51,6 +51,17 @@ You can design your faq section
 
 
 == Changelog ==
+
+= 1.1.4 =
+* Fixed question saving issue.
+* Add option to change Question Font Color.
+* Add option to change Answer Font Color.
+* Add option to change Question Font Size.
+* Add option to change Answer Font Size.
+* Tested with latest WordPress version 6.6.2
+* Tested with latest WooCommerce version 9.3.2
+* Fixed Bug
+* Update wp,wc and php version info
 
 = 1.1.2 =
 * Tested with latest WordPress version 6.6.1

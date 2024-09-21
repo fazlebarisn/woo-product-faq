@@ -71,9 +71,9 @@ class Menu{
         add_settings_field('woofaq-faq-position', __('Faq Position', 'product-faq-for-woocommerce'), [$this, 'faqPosition'], 'woo_sfaq', 'woofaq-product-faq-options');
         add_settings_field('woofaq-heading', __('Faq Heading', 'product-faq-for-woocommerce'), [$this, 'Heading'], 'woo_sfaq', 'woofaq-product-faq-options');
 
-        add_settings_field('woofaq-heading-color', __('Heading Color', 'product-faq-for-woocommerce'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-question-color', __('Question Color', 'product-faq-for-woocommerce'), [$this, 'QuestionColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-ans-color', __('Answer Color', 'product-faq-for-woocommerce'), [$this, 'AnswerColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-heading-color', __('Heading Font Color', 'product-faq-for-woocommerce'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-question-color', __('Question Font Color', 'product-faq-for-woocommerce'), [$this, 'QuestionColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-ans-color', __('Answer Font Color', 'product-faq-for-woocommerce'), [$this, 'AnswerColor'], 'woo_sfaq', 'woofaq-product-faq-style');
         add_settings_field('woofaq-heading-font-size', __('Heading Font Size', 'product-faq-for-woocommerce'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
         add_settings_field('woofaq-question-font-size', __('Question Font Size', 'product-faq-for-woocommerce'), [$this, 'QuestionFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
         add_settings_field('woofaq-ans-font-size', __('Answer Font Size', 'product-faq-for-woocommerce'), [$this, 'AnswerFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
