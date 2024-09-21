@@ -110,9 +110,11 @@ class ProductDataTab{
     function faq_save_field_data( $post_id ){
 
         $_data = $_POST['faq'] ?? [];
+
+        
         if( ! is_array( $_data ) ) return;
         $sanitize_data = [];
-        
+        // dd($_data); die;
         foreach( $_data as $key => $data ){
 
             $each_data = isset( $data )  && is_array( $data ) ? $data : false;
