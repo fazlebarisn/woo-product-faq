@@ -48,8 +48,14 @@ class FaqHtml{
         // Style
         $faq_heading = esc_attr( get_option('faq_heading') );
         $faq_heading_color = esc_attr( get_option('faq_heading_color') );
+        $faq_question_color = esc_attr( get_option('faq_question_color') );
+        $faq_ans_color = esc_attr( get_option('faq_ans_color') );
         $faq_heading_font_size = esc_attr( get_option('faq_heading_font_size') );
+        $faq_question_font_size = esc_attr( get_option('faq_question_font_size') );
+        $faq_ans_font_size = esc_attr( get_option('faq_ans_font_size') );
         $faq_heading_style = 'color:'.$faq_heading_color.';' . 'font-size:'.$faq_heading_font_size;
+        $faq_question_style = 'color:'.$faq_question_color.';' . 'font-size:'.$faq_question_font_size;
+        $faq_ans_style = 'color:'.$faq_ans_color.';' . 'font-size:'.$faq_ans_font_size;
         //if( !empty($faqs) ): 
         ?>
             <div class="container">
@@ -68,9 +74,9 @@ class FaqHtml{
                         ?>
                         <div class="accordion">
                             <div class="accordion-item">
-                                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"><?php echo esc_html( $faqs['question'][$key] ?? '' ); ?></span><span class="icon" aria-hidden="true"></span></button>
+                                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title" style="<?php echo esc_attr($faq_question_style); ?>"><?php echo esc_html( $faqs['question'][$key] ?? '' ); ?></span><span class="icon" aria-hidden="true"></span></button>
                                 <div class="accordion-content">
-                                    <p><?php echo esc_html( $faqs['answer'][$key] ?? '' ) ?></p>
+                                    <p style="<?php echo esc_attr($faq_ans_style); ?>"><?php echo esc_html( $faqs['answer'][$key] ?? '' ) ?></p>
                                 </div>
                             </div>
                         </div>

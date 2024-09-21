@@ -54,7 +54,11 @@ class Menu{
         register_setting('woofaq-settings-group', 'product_faq_position');
         register_setting('woofaq-settings-group', 'faq_heading', [$this, 'sanitizeFaqHeading']);
         register_setting('woofaq-settings-group', 'faq_heading_color');
+        register_setting('woofaq-settings-group', 'faq_question_color');
+        register_setting('woofaq-settings-group', 'faq_ans_color');
         register_setting('woofaq-settings-group', 'faq_heading_font_size', [$this, 'sanitizeFaqFontSize']);
+        register_setting('woofaq-settings-group', 'faq_question_font_size', [$this, 'sanitizeFaqFontSize']);
+        register_setting('woofaq-settings-group', 'faq_ans_font_size', [$this, 'sanitizeFaqFontSize']);
 
         //add section
         add_settings_section('woofaq-product-faq-options', __('Product Faq Options', 'product-faq-for-woocommerce'),[$this, 'productFaqOptions'],'woo_sfaq');
@@ -68,7 +72,11 @@ class Menu{
         add_settings_field('woofaq-heading', __('Faq Heading', 'product-faq-for-woocommerce'), [$this, 'Heading'], 'woo_sfaq', 'woofaq-product-faq-options');
 
         add_settings_field('woofaq-heading-color', __('Heading Color', 'product-faq-for-woocommerce'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-question-color', __('Question Color', 'product-faq-for-woocommerce'), [$this, 'QuestionColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-ans-color', __('Answer Color', 'product-faq-for-woocommerce'), [$this, 'AnswerColor'], 'woo_sfaq', 'woofaq-product-faq-style');
         add_settings_field('woofaq-heading-font-size', __('Heading Font Size', 'product-faq-for-woocommerce'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-question-font-size', __('Question Font Size', 'product-faq-for-woocommerce'), [$this, 'QuestionFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
+        add_settings_field('woofaq-ans-font-size', __('Answer Font Size', 'product-faq-for-woocommerce'), [$this, 'AnswerFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
     }
 
     /**
@@ -123,7 +131,7 @@ class Menu{
      * @author Fazle Bari <fazlebarisn@gmail.com> 
      */
     public function faq_option_data( $key ){
-        $value =get_option($key);
+        $value = get_option($key);
         return $value;
     }
 
@@ -182,7 +190,7 @@ class Menu{
     }
 
     /**
-     * dDisplay heading color input field
+     * Display heading color input field
      * 
      * @return void
      * @since 1.0.0
@@ -196,7 +204,34 @@ class Menu{
     }
 
     /**
-     * Display heading input field
+     * Display question color input field
+     * 
+     * @return void
+     * @since 1.1.4
+     * @author Fazle Bari <fazlebarisn@gmail.com> 
+     */
+    public function QuestionColor(){
+        $faq_question_color = get_option('faq_question_color');
+        ?>
+            <input type="color" name="faq_question_color" value="<?php echo esc_attr( $faq_question_color ); ?>" />
+        <?php
+    }
+    /**
+     * Display answer color input field
+     * 
+     * @return void
+     * @since 1.1.4
+     * @author Fazle Bari <fazlebarisn@gmail.com> 
+     */
+    public function AnswerColor(){
+        $faq_ans_color = get_option('faq_ans_color');
+        ?>
+            <input type="color" name="faq_ans_color" value="<?php echo esc_attr( $faq_ans_color ); ?>" />
+        <?php
+    }
+
+    /**
+     * Display heading font size input field
      * 
      * @return void
      * @since 1.0.0
@@ -206,6 +241,34 @@ class Menu{
         $faq_heading_font_size = get_option('faq_heading_font_size');
         ?>
             <input type="text" name="faq_heading_font_size" value="<?php echo esc_attr( $faq_heading_font_size ); ?>" placeholder="Example: 45px" />
+        <?php
+    }
+
+    /**
+     * Display question font size input field
+     * 
+     * @return void
+     * @since 1.1.4
+     * @author Fazle Bari <fazlebarisn@gmail.com> 
+     */
+    public function QuestionFontSize(){
+        $faq_question_font_size = get_option('faq_question_font_size');
+        ?>
+            <input type="text" name="faq_question_font_size" value="<?php echo esc_attr( $faq_question_font_size ); ?>" placeholder="Example: 45px" />
+        <?php
+    }
+
+    /**
+     * Display answer font size input field
+     * 
+     * @return void
+     * @since 1.1.4
+     * @author Fazle Bari <fazlebarisn@gmail.com> 
+     */
+    public function AnswerFontSize(){
+        $faq_ans_font_size = get_option('faq_ans_font_size');
+        ?>
+            <input type="text" name="faq_ans_font_size" value="<?php echo esc_attr( $faq_ans_font_size ); ?>" placeholder="Example: 45px" />
         <?php
     }
 }
