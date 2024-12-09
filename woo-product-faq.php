@@ -19,20 +19,9 @@
 
 defined('ABSPATH') or die('Nice Try!');
 
-/**
- * Only for developer
- * @author Fazle Bari <fazlebarisn@gmail.com>
- */
-if( ! function_exists('dd') ){
-	function dd( ...$vals){
-		if( ! empty($vals) && is_array($vals) ){
-			foreach($vals as $val ){
-				echo "<pre>";
-				var_dump($val);
-				echo "</pre>";
-			}
-		}
-	}
+// Include functions.php
+if( file_exists( dirname(__FILE__) . '/functions.php') ){
+    require_once dirname(__FILE__) . '/functions.php';
 }
 
 // Include autoload.php
@@ -43,13 +32,12 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
 /**
  * The main class
  */
-
  final class WooFaq{
 
     /**
      * defien plugin version
      */
-    const version = "1.1.2";
+    const version = "1.1.5";
 
     /**
      * class constructor
@@ -156,5 +144,4 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
  // kick-off the plugin
  wooFaq();
 
- //var_dump( $installed );
  
