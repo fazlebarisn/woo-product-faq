@@ -34,10 +34,6 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
     echo '<div class="notice notice-success is-dismissible"><p>FAQ groups saved successfully!</p></div>';
 }
 
-// Get saved data
-
-// $saved_data = get_option('woo_afaq_global_groups', []);
-// dd($saved_data); // Debugging line, remove in production
 ?>
 
 <div class="wrap">

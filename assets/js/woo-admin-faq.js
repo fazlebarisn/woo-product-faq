@@ -36,13 +36,26 @@
     let groupIndex = 0;
 
     // Add FAQ Group
+    const MAX_GROUPS_FREE = 2;
+
     $("#fbs-add-faq-group").on("click", function () {
-      const template = $("#fbs-faq-group-template")
-        .html()
-        .replace(/_INDEX_/g, groupIndex);
-      $("#faq-groups-container").append(template);
-      groupIndex++;
+      const currentGroups = $("#faq-groups-container .fbs-faq-archive-group").length;
+    
+      if (currentGroups >= MAX_GROUPS_FREE) {
+        alert("Upgrade to the Pro version to add more than 2 FAQ groups.");
+        return;
+      }
+    
+      const groupIndex = currentGroups;
+      let groupHtml = $("#fbs-faq-group-template").html().replace(/_INDEX_/g, groupIndex);
+      $("#faq-groups-container").append(groupHtml);
+    
+      // Disable the add group button if max reached
+      if (groupIndex + 1 >= MAX_GROUPS_FREE) {
+        $(this).prop("disabled", true).css("opacity", 0.5);
+      }
     });
+    
 
     // Remove FAQ Group
     $("#faq-groups-container").on(
@@ -54,29 +67,36 @@
     );
 
     // Add FAQ Item
+    const MAX_FAQS_FREE = 3;
+
     $("#faq-groups-container").on(
       "click",
       ".fsb-archive-add-faq-item",
       function () {
         const groupEl = $(this).closest(".fbs-faq-archive-group");
-        const groupIndex = groupEl.index(); // you might already be using this
-
-        // Find current FAQ count in this group
         const currentFaqs = groupEl.find(".fbs-archive-faq-item").length;
+    
+        if (currentFaqs >= MAX_FAQS_FREE) {
+          alert("Upgrade to the Pro version to add more than 3 FAQs per group.");
+          return;
+        }
+    
+        const groupIndex = groupEl.index();
         const faqIndex = currentFaqs;
-
-        // Get the template
         let faqTemplate = $("#fbs-archive-faq-item-template").html();
-
-        // Replace placeholders
         faqTemplate = faqTemplate
           .replace(/_GROUP_INDEX_/g, groupIndex)
           .replace(/_FAQ_INDEX_/g, faqIndex);
-
-        // Append to group
+    
         groupEl.find(".fbs-archive-faq-items").append(faqTemplate);
+    
+        // Disable the button if max reached
+        if (faqIndex + 1 >= MAX_FAQS_FREE) {
+          $(this).prop("disabled", true).css("opacity", 0.5);
+        }
       }
     );
+    
 
     // Remove FAQ Item
     $("#faq-groups-container").on(
@@ -86,6 +106,15 @@
         $(this).closest(".fbs-archive-faq-item").remove();
       }
     );
+
+    function showUpgradeNotice(message) {
+      const upgradeHTML = `
+        <div class="notice notice-warning" style="margin-top:10px;">
+          <p>${message} <a href="https://yourplugin.com/pro" target="_blank">Upgrade to Pro</a></p>
+        </div>`;
+      $(".wrap .fbs-product-archive-faq").append(upgradeHTML);
+    }
+    
 
     // Show/hide archive term row
     $("#faq-groups-container").on("change", "select.archive-type", function () {
