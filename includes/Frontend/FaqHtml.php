@@ -163,5 +163,4 @@ class FaqHtml{
         <?php
         // endif;
     }
-
 }
