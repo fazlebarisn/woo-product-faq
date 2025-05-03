@@ -88,7 +88,7 @@ jQuery(document).ready(function($) {
         $(this).closest('.fbs-archive-faq-item').remove();
     });
 
-    // Show/hide archive term row based on archive type
+    // Show/hide archive term row
     $('#faq-groups-container').on('change', 'select.archive-type', function() {
         const selected = $(this).val();
         const $termRow = $(this).closest('table').find('.archive-term-row');
@@ -98,6 +98,13 @@ jQuery(document).ready(function($) {
             $termRow.hide();
         }
     });
+
+    // 🚀 Show one FAQ group and one FAQ item by default
+    $('#fbs-add-faq-group').trigger('click');
+    setTimeout(function() {
+        $('#faq-groups-container .fsb-archive-add-faq-item').first().trigger('click');
+    }, 100);
 });
+
 
 </script>
