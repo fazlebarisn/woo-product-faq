@@ -2,7 +2,7 @@
     <div class="fbs-product-archive-faq">
         <h1>Settings for Product Archive FAQ</h1>
         <div id="faq-groups-container"></div>
-        <p><button type="button" class="button button-primary" id="fbs-add-faq-group">Add FAQ Group</button></p>
+        <p><button type="button" class="button" id="fbs-add-faq-group">Add FAQ Group</button></p>
         <hr>
         <p><button type="submit" class="button button-primary">Save Settings</button></p>
     </div>
@@ -10,7 +10,7 @@
 
 <!-- Template for FAQ Group -->
 <script type="text/html" id="fbs-faq-group-template">
-    <div class="fbs-faq-archive-group" style="margin-bottom: 30px; padding: 15px; border: 2px solid #ccd0d4; background: #f8f9fa;">
+    <div class="fbs-faq-archive-group" style="margin-bottom: 30px; padding: 15px 15px 25px 15px; border: 2px solid #ccd0d4; background: #f8f9fa;">
         <h2>FAQ Group</h2>
         <!-- Archive Selector -->
         <table class="form-table">
@@ -37,13 +37,13 @@
         <div class="fbs-archive-faq-items"></div>
         <p><button type="button" class="button fsb-archive-add-faq-item">Add New FAQ</button></p>
 
-        <button type="button" class="button fbs-archive-remove-faq-group" style="margin-top: 10px;">Remove Group</button>
+        <button type="button" class="button fbs-archive-remove-faq-group" style="margin-top: 10px; float:right; background:#fff; color:red; border-color:red;">Remove Group</button>
     </div>
 </script>
 
 <!-- Template for single Q&A -->
 <script type="text/html" id="fbs-archive-faq-item-template">
-    <div class="fbs-archive-faq-item" style="margin-bottom: 15px; padding: 10px; border: 1px solid #ddd; background: #fff;">
+    <div class="fbs-archive-faq-item" style="margin-bottom: 30px; padding:10px 10px 15px 10px; border: 1px solid #ddd; background: #fff;">
         <p>
             <label>Question<br>
                 <input type="text" name="faq_groups[_GROUP_INDEX_][questions][]" class="regular-text" />
@@ -54,6 +54,6 @@
                 <textarea name="faq_groups[_GROUP_INDEX_][answers][]" rows="3" class="large-text"></textarea>
             </label>
         </p>
-        <button type="button" class="button fbs-archive-remove-faq-item">Remove FAQ</button>
+        <button type="button" style="float: right; background:#fff; color:red; border-color:red;" class="button fbs-archive-remove-faq-item">Remove FAQ</button>
     </div>
 </script>

@@ -10,16 +10,3 @@ button.faq-add-question.button.button-primary {
 .option-group-wrapper p.faq-note span {
   color: red;
 }
-
-.fbs-faq-archive-group {
-  margin-bottom: 30px;
-  padding: 15px;
-  border: 2px solid #ccd0d4;
-  background: #f8f9fa;
-}
-#fbs-archive-faq-item-template .fbs-archive-faq-item {
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  background: #fff;
-}
