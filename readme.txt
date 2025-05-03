@@ -2,17 +2,17 @@
 Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page
 Requires at least: 6.0
-Tested up to: 6.7.1
-WC tested up to: 9.4.3
+Tested up to: 6.9.1
+WC tested up to: 9.8.2
 Requires PHP: 7.3
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Product FAQ for WooCommerce helps you to add frequently asked questions on single product page.
 
 == Description ==
-Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered. It will help them to understand to product better.
+The Product FAQ for WooCommerce plugin helps you add frequently asked questions to a single product page. Your customers can see some common questions answered, which will help them understand the product better.
 
 
 **[Visit example site](https://chitabd.com/shop)**
