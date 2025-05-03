@@ -9,20 +9,30 @@ Stable tag: 1.1.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Product FAQ for WooCommerce helps you to add frequently asked questions on single product page.
+Boost customer confidence and reduce support requests by adding FAQs directly to your WooCommerce product pages.
 
 == Description ==
-The Product FAQ for WooCommerce plugin helps you add frequently asked questions to a single product page. Your customers can see some common questions answered, which will help them understand the product better.
 
+**Boost customer confidence and reduce support requests by adding FAQs directly to your WooCommerce product pages.**
 
-**[Visit example site](https://chitabd.com/shop)**
+The **Product FAQ for WooCommerce** plugin lets you easily create and display Frequently Asked Questions (FAQs) for each product on your WooCommerce store. Help your customers make informed decisions by answering common queries before they even ask.
 
-**Demo Product list**
+Whether you're selling physical products, digital downloads, or services, this plugin helps improve the customer experience, increase conversions, and reduce pre-sale questions.
 
-[FAQ after add to cart button](https://www.chitabd.com/product/one-hot-cake) <br>FAQ is added after add to card button.<br>
-[FAQ after meta](https://www.chitabd.com/product/local-salty-country-ham) <br>FAQ is added after eeta<br>
-[FAQ after summary](https://www.chitabd.com/product/prawn-with-garlic-sauce) <br>FAQ is added after summary.<br>
-[FAQ after single product](https://www.chitabd.com/product/vegetables) <br>FAQ is added after single product.<br>
+= ✨ Key Features =
+* Add FAQs to individual WooCommerce products.
+* Organize FAQs into groups for better readability.
+* Customize the FAQ section title, colors, font size, and position.
+* Easy-to-use interface for managing questions and answers.
+* Lightweight and fully compatible with most themes.
+
+= 🚀 Pro Features (Upgrade to unlock) =
+* Add FAQs based on categories, tags, or custom product taxonomies.
+* Display FAQs on archive pages or filtered views.
+* Create unlimited FAQ groups and items (free version includes limited entries).
+* Priority support and updates.
+
+Improve product clarity and build trust with your customers using Product FAQ for WooCommerce — the smarter way to answer common questions!
 
 
 <h2>Our main features</h2>
@@ -51,6 +61,10 @@ You can design your faq section
 
 
 == Changelog ==
+= 1.1.6 =
+* Tested with latest WordPress version 6.9.1
+* Tested with latest WooCommerce version 9.8.2
+* Add option to bulk questions/answers based on trem
 
 = 1.1.5 =
 * Tested with latest WordPress version 6.7.1

@@ -10,3 +10,14 @@ button.faq-add-question.button.button-primary {
 .option-group-wrapper p.faq-note span {
   color: red;
 }
+
+/* button.button.fsb-archive-add-faq-item.fbs-upgrade-button */
+button#fbs-add-faq-group,
+#faq-groups-container button.button.fsb-archive-add-faq-item.fbs-upgrade-button{
+  background-color: #ff6a00 !important;
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(255, 106, 0, 0.5);
+}

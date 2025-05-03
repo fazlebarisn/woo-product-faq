@@ -32,30 +32,35 @@
     });
 
     // Archive FAQ code start here
-    // Initialize the FAQ groups container
-    let groupIndex = 0;
 
     // Add FAQ Group
     const MAX_GROUPS_FREE = 2;
 
     $("#fbs-add-faq-group").on("click", function () {
-      const currentGroups = $("#faq-groups-container .fbs-faq-archive-group").length;
-    
+      const currentGroups = $(
+        "#faq-groups-container .fbs-faq-archive-group"
+      ).length;
+
       if (currentGroups >= MAX_GROUPS_FREE) {
         alert("Upgrade to the Pro version to add more than 2 FAQ groups.");
         return;
       }
-    
+
       const groupIndex = currentGroups;
-      let groupHtml = $("#fbs-faq-group-template").html().replace(/_INDEX_/g, groupIndex);
+      let groupHtml = $("#fbs-faq-group-template")
+        .html()
+        .replace(/_INDEX_/g, groupIndex);
       $("#faq-groups-container").append(groupHtml);
-    
+
       // Disable the add group button if max reached
       if (groupIndex + 1 >= MAX_GROUPS_FREE) {
-        $(this).prop("disabled", true).css("opacity", 0.5);
+        $("#fbs-add-faq-group")
+          .prop("disabled", true)
+          .css("opacity", 1)
+          .text("Upgrade")
+          .addClass("fbs-upgrade-button");
       }
     });
-    
 
     // Remove FAQ Group
     $("#faq-groups-container").on(
@@ -63,6 +68,17 @@
       ".fbs-archive-remove-faq-group",
       function () {
         $(this).closest(".fbs-faq-archive-group").remove();
+
+        const currentGroups = $(
+          "#faq-groups-container .fbs-faq-archive-group"
+        ).length;
+
+        if (currentGroups < MAX_GROUPS_FREE) {
+          $("#fbs-add-faq-group")
+            .prop("disabled", false)
+            .text("Add FAQ Group")
+            .removeClass("fbs-upgrade-button");
+        }
       }
     );
 
@@ -75,35 +91,51 @@
       function () {
         const groupEl = $(this).closest(".fbs-faq-archive-group");
         const currentFaqs = groupEl.find(".fbs-archive-faq-item").length;
-    
+
         if (currentFaqs >= MAX_FAQS_FREE) {
-          alert("Upgrade to the Pro version to add more than 3 FAQs per group.");
+          alert(
+            "Upgrade to the Pro version to add more than 3 FAQs per group."
+          );
           return;
         }
-    
+
         const groupIndex = groupEl.index();
         const faqIndex = currentFaqs;
         let faqTemplate = $("#fbs-archive-faq-item-template").html();
         faqTemplate = faqTemplate
           .replace(/_GROUP_INDEX_/g, groupIndex)
           .replace(/_FAQ_INDEX_/g, faqIndex);
-    
+
         groupEl.find(".fbs-archive-faq-items").append(faqTemplate);
-    
+
         // Disable the button if max reached
         if (faqIndex + 1 >= MAX_FAQS_FREE) {
-          $(this).prop("disabled", true).css("opacity", 0.5);
+          groupEl
+            .find(".fsb-archive-add-faq-item")
+            .prop("disabled", true)
+            .css("opacity", 1)
+            .text("Upgrade")
+            .addClass("fbs-upgrade-button");
         }
       }
     );
-    
 
     // Remove FAQ Item
     $("#faq-groups-container").on(
       "click",
       ".fbs-archive-remove-faq-item",
       function () {
+        const groupEl = $(this).closest(".fbs-faq-archive-group");
         $(this).closest(".fbs-archive-faq-item").remove();
+
+        const currentFaqs = groupEl.find(".fbs-archive-faq-item").length;
+
+        if (currentFaqs < MAX_FAQS_FREE) {
+          groupEl
+            .prop("disabled", false)
+            .text("Add FAQ Item")
+            .removeClass("fbs-upgrade-button");
+        }
       }
     );
 
@@ -114,7 +146,11 @@
         </div>`;
       $(".wrap .fbs-product-archive-faq").append(upgradeHTML);
     }
-    
+
+    $(document).on("click", ".fbs-upgrade-button", function (e) {
+      e.preventDefault();
+      window.open("https://tarunnerswapno.org/", "_blank");
+    });
 
     // Show/hide archive term row
     $("#faq-groups-container").on("change", "select.archive-type", function () {

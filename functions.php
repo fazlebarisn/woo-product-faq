@@ -45,5 +45,3 @@ add_action('wp_ajax_faq_term_search', function () {
 
     wp_send_json($formatted);
 });
-$faq_groups = get_option('woo_afaq_global_groups', []);
-// dd($faq_groups);
