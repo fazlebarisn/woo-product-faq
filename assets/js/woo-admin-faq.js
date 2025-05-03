@@ -58,15 +58,23 @@
       "click",
       ".fsb-archive-add-faq-item",
       function () {
-        const $group = $(this).closest(".fbs-faq-archive-group");
-        const groupIndex = $group
-          .find("select.archive-type")
-          .attr("name")
-          .match(/\d+/)[0];
-        const template = $("#fbs-archive-faq-item-template")
-          .html()
-          .replace(/_GROUP_INDEX_/g, groupIndex);
-        $group.find(".fbs-archive-faq-items").append(template);
+        const groupEl = $(this).closest(".fbs-faq-archive-group");
+        const groupIndex = groupEl.index(); // you might already be using this
+
+        // Find current FAQ count in this group
+        const currentFaqs = groupEl.find(".fbs-archive-faq-item").length;
+        const faqIndex = currentFaqs;
+
+        // Get the template
+        let faqTemplate = $("#fbs-archive-faq-item-template").html();
+
+        // Replace placeholders
+        faqTemplate = faqTemplate
+          .replace(/_GROUP_INDEX_/g, groupIndex)
+          .replace(/_FAQ_INDEX_/g, faqIndex);
+
+        // Append to group
+        groupEl.find(".fbs-archive-faq-items").append(faqTemplate);
       }
     );
 
@@ -91,11 +99,85 @@
     });
 
     // 🚀 Show one FAQ group and one FAQ item by default
-    $("#fbs-add-faq-group").trigger("click");
-    setTimeout(function () {
-      $("#faq-groups-container .fsb-archive-add-faq-item")
-        .first()
-        .trigger("click");
-    }, 100);
+    // $("#fbs-add-faq-group").trigger("click");
+    // setTimeout(function () {
+    //   $("#faq-groups-container .fsb-archive-add-faq-item")
+    //     .first()
+    //     .trigger("click");
+    // }, 100);
+
+    // Delegate input event on term field
+    $("#faq-groups-container").on("focus", ".archive-term", function () {
+      const $input = $(this);
+      const $group = $input.closest(".fbs-faq-archive-group");
+      const $select = $group.find(".archive-type");
+      const taxonomy = $select.val();
+
+      if (!taxonomy) return;
+
+      $input.autocomplete({
+        source: function (request, response) {
+          if (request.term.length < 3) return;
+
+          $.getJSON(
+            faqAjax.ajax_url,
+            {
+              action: "faq_term_search",
+              nonce: faqAjax.nonce,
+              taxonomy: taxonomy,
+              term: request.term,
+            },
+            function (data) {
+              response(data);
+            }
+          );
+        },
+        minLength: 3,
+        select: function (event, ui) {
+          event.preventDefault();
+          $input.val("");
+
+          const $selectedTerms = $group.find(".selected-terms");
+
+          if (
+            $selectedTerms.find('input[value="' + ui.item.value + '"]').length
+          ) {
+            return;
+          }
+
+          const selectedHtml = `
+                      <span class="term-pill" style="display:inline-block; margin:3px; padding:3px 8px; background:#f1f1f1; border:1px solid #ccc; border-radius:20px;">
+                          ${ui.item.label}
+                          <a href="#" class="remove-term" style="margin-left:5px; color:red;">&times;</a>
+                          <input type="hidden" name="faq_groups[${$group.index()}][archive_terms][]" value="${
+            ui.item.value
+          }">
+                      </span>
+                  `;
+          $selectedTerms.append(selectedHtml);
+        },
+      });
+    });
+
+    // Remove selected term
+    $("#faq-groups-container").on("click", ".remove-term", function (e) {
+      e.preventDefault();
+      $(this).closest(".term-pill").remove();
+    });
+
+    // Show/hide archive term row + reset inputs
+    $("#faq-groups-container").on("change", "select.archive-type", function () {
+      const $group = $(this).closest(".fbs-faq-archive-group");
+      const selected = $(this).val();
+      const $termRow = $group.find(".archive-term-row");
+
+      if (selected === "product_cat" || selected === "product_tag") {
+        $termRow.show();
+      } else {
+        $termRow.hide();
+        $termRow.find(".archive-term").val("");
+        $termRow.find(".selected-terms").empty();
+      }
+    });
   });
 })(jQuery);
