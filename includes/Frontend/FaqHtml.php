@@ -39,11 +39,11 @@ class FaqHtml{
 
         $faqs = get_post_meta($product_id,'faq',true);
 
-        if( !isset($faqs['question']) ){
-            return;
-        }
+        // if( !isset($faqs['question']) ){
+        //     return;
+        // }
          
-        if( in_array(!null, $faqs['question']) ) :
+        // if( in_array(!null, $faqs['question']) ) :
 
         // Style
         $faq_heading = esc_attr( get_option('faq_heading') );
@@ -68,22 +68,82 @@ class FaqHtml{
                         }
                     ?>
                 </h2>
-                <?php if( !empty($faqs) ): 
-                    foreach($faqs['question'] as $key=>$faq ){
-                    //echo $faq;
+                <?php
+                
+                if (!empty($faqs) && !empty($faqs['question'])) {
+                    // Product-specific FAQs
+                    foreach ($faqs['question'] as $key => $faq_question) {
+                        $faq_answer = $faqs['answer'][$key] ?? '';
                         ?>
                         <div class="accordion">
                             <div class="accordion-item">
-                                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title" style="<?php echo esc_attr($faq_question_style); ?>"><?php echo esc_html( $faqs['question'][$key] ?? '' ); ?></span><span class="icon" aria-hidden="true"></span></button>
+                                <button aria-expanded="false">
+                                    <span class="accordion-title" style="<?php echo esc_attr($faq_question_style); ?>">
+                                        <?php echo esc_html($faq_question); ?>
+                                    </span>
+                                    <span class="icon" aria-hidden="true"></span>
+                                </button>
                                 <div class="accordion-content">
-                                    <p style="<?php echo esc_attr($faq_ans_style); ?>"><?php echo esc_html( $faqs['answer'][$key] ?? '' ) ?></p>
+                                    <p style="<?php echo esc_attr($faq_ans_style); ?>">
+                                        <?php echo esc_html($faq_answer); ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                    <?php } endif; ?>
+                        <?php
+                    }
+                } else {
+                    // No product-specific FAQs, fallback to global groups
+                    $global_groups = get_option('woo_afaq_global_groups', []);
+
+                    $product_term_ids = [];
+
+                    $taxonomies = get_object_taxonomies('product'); // or get_post_type($product_id)
+
+                    foreach ($taxonomies as $taxonomy) {
+                        $terms = wp_get_post_terms($product_id, $taxonomy, ['fields' => 'ids']);
+                        if (!is_wp_error($terms)) {
+                            $product_term_ids = array_merge($product_term_ids, $terms);
+                        }
+                    }
+                    $product_term_ids = array_unique($product_term_ids);
+                    if (!empty($global_groups) && !empty($product_term_ids)) {
+                        foreach ($global_groups as $group) {
+                            $archive_type = $group['archive_type']; // taxonomy
+                            $archive_terms = $group['archive_terms'] ?? [];
+                
+                            // Check if product has matching terms in this taxonomy
+                            $intersect = array_intersect($product_term_ids, $archive_terms);
+                            if (!empty($intersect)) {
+                                // Match found, render these FAQs
+                                $faqs = $group['faqs'] ?? [];
+                                foreach ($faqs as $faq) {
+                                    ?>
+                                    <div class="accordion">
+                                        <div class="accordion-item">
+                                            <button aria-expanded="false">
+                                                <span class="accordion-title" style="<?php echo esc_attr($faq_question_style); ?>">
+                                                    <?php echo esc_html($faq['question'] ?? ''); ?>
+                                                </span>
+                                                <span class="icon" aria-hidden="true"></span>
+                                            </button>
+                                            <div class="accordion-content">
+                                                <p style="<?php echo esc_attr($faq_ans_style); ?>">
+                                                    <?php echo esc_html($faq['answer'] ?? ''); ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                        }
+                    }
+                }
+                ?>
             </div>
         <?php
-        endif;
+        // endif;
     }
 
 }
