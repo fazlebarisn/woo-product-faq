@@ -38,10 +38,16 @@ class FaqHtml{
         $product_id = get_the_ID();
 
         $faqs = get_post_meta($product_id,'faq',true);
+        $global_groups = get_option('woo_afaq_global_groups', []);
 
-        // if( !isset($faqs['question']) ){
-        //     return;
-        // }
+        // Clean checks
+        $has_product_faqs = !empty($faqs['question']);
+        $has_global_faqs = !empty($global_groups);
+
+        // If both are empty, exit early
+        if (!$has_product_faqs && !$has_global_faqs) {
+            return;
+        }
          
         // if( in_array(!null, $faqs['question']) ) :
 
@@ -59,18 +65,19 @@ class FaqHtml{
         //if( !empty($faqs) ): 
         ?>
             <div class="container">
-                <h2 style="<?php echo esc_attr($faq_heading_style); ?>">
-                    <?php 
-                        if(!empty($faq_heading)){
-                            echo esc_html($faq_heading);
-                        }else{
-                            echo esc_html__('Frequently Asked Questions' , 'product-faq-for-woocommerce');
-                        }
-                    ?>
-                </h2>
                 <?php
-                
                 if (!empty($faqs) && !empty($faqs['question'])) {
+                    ?>
+                    <h2 style="<?php echo esc_attr($faq_heading_style); ?>">
+                        <?php 
+                            if(!empty($faq_heading)){
+                                echo esc_html($faq_heading);
+                            }else{
+                                echo esc_html__('Frequently Asked Questions' , 'product-faq-for-woocommerce');
+                            }
+                        ?>
+                    </h2>
+                    <?php
                     // Product-specific FAQs
                     foreach ($faqs['question'] as $key => $faq_question) {
                         $faq_answer = $faqs['answer'][$key] ?? '';
@@ -108,17 +115,28 @@ class FaqHtml{
                     }
                     $product_term_ids = array_unique($product_term_ids);
                     if (!empty($global_groups) && !empty($product_term_ids)) {
+ 
                         foreach ($global_groups as $group) {
-                            $archive_type = $group['archive_type']; // taxonomy
                             $archive_terms = $group['archive_terms'] ?? [];
                 
                             // Check if product has matching terms in this taxonomy
                             $intersect = array_intersect($product_term_ids, $archive_terms);
                             if (!empty($intersect)) {
+                                ?>
+                                <h2 style="<?php echo esc_attr($faq_heading_style); ?>">
+                                    <?php 
+                                        if(!empty($faq_heading)){
+                                            echo esc_html($faq_heading);
+                                        }else{
+                                            echo esc_html__('Frequently Asked Questions' , 'product-faq-for-woocommerce');
+                                        }
+                                    ?>
+                                </h2>
+                                <?php
                                 // Match found, render these FAQs
                                 $faqs = $group['faqs'] ?? [];
                                 foreach ($faqs as $faq) {
-                                    ?>
+                                    ?>                                  
                                     <div class="accordion">
                                         <div class="accordion-item">
                                             <button aria-expanded="false">
