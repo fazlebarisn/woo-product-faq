@@ -36,7 +36,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 
 // Get saved data
 
-$saved_data = get_option('woo_afaq_global_groups', []);
+// $saved_data = get_option('woo_afaq_global_groups', []);
 // dd($saved_data); // Debugging line, remove in production
 ?>
 
@@ -100,54 +100,76 @@ $saved_data = get_option('woo_afaq_global_groups', []);
     </div>
 </script>
 
-<?php if (!empty($saved_data)) : ?>
-<script>
-    jQuery(document).ready(function ($) {
-        const groupTemplate = $('#fbs-faq-group-template').html();
-        const faqTemplate = $('#fbs-archive-faq-item-template').html();
-        
+<?php
+$saved_data = get_option('woo_afaq_global_groups', []);
 
-        const savedGroups = <?php echo json_encode($saved_data); ?>;
+if (!empty($saved_data)) {
+    // Add term names to each group before sending to JS
+    foreach ($saved_data as $g_index => &$group) {
+        $archive_type = $group['archive_type'] ?? '';
+        $term_names = [];
 
-        $.each(savedGroups, function (gIndex, group) {
-            let groupHtml = groupTemplate.replace(/_INDEX_/g, gIndex);
-            const $group = $(groupHtml);
-
-            // Set archive type
-            $group.find('select.archive-type').val(group.archive_type);
-
-            // Show term row
-            $group.find('.archive-term-row').show();
-
-            // Populate selected terms
-            const selectedContainer = $group.find('.selected-terms');
-            const termNames = group.term_names || {}; // Optional backup
-            if (Array.isArray(group.archive_terms)) {
-                group.archive_terms.forEach(function (termId) {
-                    const termName = termNames[termId] || 'Term #' + termId;
-                    const termHtml = `<div class="selected-term" data-id="${termId}">
-                        ${termName} <input type="hidden" name="faq_groups[${gIndex}][archive_terms][]" value="${termId}">
-                    </div>`;
-                    selectedContainer.append(termHtml);
-                });
+        if (!empty($group['archive_terms']) && taxonomy_exists($archive_type)) {
+            foreach ($group['archive_terms'] as $term_id) {
+                $term = get_term($term_id, $archive_type);
+                if ($term && !is_wp_error($term)) {
+                    $term_names[$term_id] = $term->name;
+                }
             }
+        }
 
-            // Add FAQs
-            const faqs = group.faqs || [];
-            const $faqContainer = $group.find('.fbs-archive-faq-items');
-            $.each(faqs, function (faqIndex, faq) {
-                let faqHtml = faqTemplate
-                    .replace(/_GROUP_INDEX_/g, gIndex)
-                    .replace(/_FAQ_INDEX_/g, faqIndex);
+        $group['term_names'] = $term_names;
+    }
+    unset($group); // Break reference
+    ?>
 
-                const $faq = $(faqHtml);
-                $faq.find('input[name$="[question]"]').val(faq.question);
-                $faq.find('textarea[name$="[answer]"]').val(faq.answer);
-                $faqContainer.append($faq);
+    <script>
+        jQuery(document).ready(function ($) {
+            const groupTemplate = $('#fbs-faq-group-template').html();
+            const faqTemplate = $('#fbs-archive-faq-item-template').html();
+
+            const savedGroups = <?php echo json_encode($saved_data); ?>;
+
+            $.each(savedGroups, function (gIndex, group) {
+                let groupHtml = groupTemplate.replace(/_INDEX_/g, gIndex);
+                const $group = $(groupHtml);
+
+                // Set archive type
+                $group.find('select.archive-type').val(group.archive_type);
+                $group.find('.archive-term-row').show();
+
+                // Populate selected terms with name
+                const selectedContainer = $group.find('.selected-terms');
+                const termNames = group.term_names || {};
+                if (Array.isArray(group.archive_terms)) {
+                    group.archive_terms.forEach(function (termId) {
+                        const termName = termNames[termId] || 'Term #' + termId;
+                        const termHtml = `<span class="term-pill" style="display:inline-block; margin:3px; padding:3px 8px; background:#f1f1f1; border:1px solid #ccc; border-radius:20px;" data-id="${termId}">
+                            ${termName}
+                            <a href="#" class="remove-term" style="margin-left:5px; color:red;">×</a>
+                            <input type="hidden" name="faq_groups[${gIndex}][archive_terms][]" value="${termId}">
+                        </span>`;
+
+                        selectedContainer.append(termHtml);
+                    });
+                }
+
+                // Add FAQs
+                const faqs = group.faqs || [];
+                const $faqContainer = $group.find('.fbs-archive-faq-items');
+                $.each(faqs, function (faqIndex, faq) {
+                    let faqHtml = faqTemplate
+                        .replace(/_GROUP_INDEX_/g, gIndex)
+                        .replace(/_FAQ_INDEX_/g, faqIndex);
+
+                    const $faq = $(faqHtml);
+                    $faq.find('input[name$="[question]"]').val(faq.question);
+                    $faq.find('textarea[name$="[answer]"]').val(faq.answer);
+                    $faqContainer.append($faq);
+                });
+
+                $('#faq-groups-container').append($group);
             });
-
-            $('#faq-groups-container').append($group);
         });
-    });
-</script>
-<?php endif; ?>
+    </script>
+<?php } ?>
