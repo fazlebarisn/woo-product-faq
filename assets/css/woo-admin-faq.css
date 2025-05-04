@@ -12,7 +12,7 @@ button.faq-add-question.button.button-primary {
 }
 
 /* button.button.fsb-archive-add-faq-item.fbs-upgrade-button */
-button#fbs-add-faq-group,
+.fbs-product-archive-faq form button.button.fbs-upgrade-button,
 #faq-groups-container button.button.fsb-archive-add-faq-item.fbs-upgrade-button{
   background-color: #ff6a00 !important;
   color: white !important;

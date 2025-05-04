@@ -51,7 +51,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 
 <!-- Templates -->
 <script type="text/html" id="fbs-faq-group-template">
-    <div class="fbs-faq-archive-group" style="margin-bottom: 30px; padding: 15px 15px 25px 15px; border: 2px solid #ccd0d4; background: #f8f9fa;">
+    <div class="fbs-faq-archive-group" style="margin-bottom: 30px; padding: 0px 15px 25px 15px; border: 2px solid #ccd0d4; background: #f8f9fa;">
         <h2>FAQ Group</h2>
         <table class="form-table">
             <tr>
@@ -81,7 +81,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 </script>
 
 <script type="text/html" id="fbs-archive-faq-item-template">
-    <div class="fbs-archive-faq-item" style="margin-bottom: 30px; padding:10px 10px 15px 10px; border: 1px solid #ddd; background: #fff;">
+    <div class="fbs-archive-faq-item" style="margin-bottom: 30px; padding:0px 10px 15px 10px; border: 1px solid #ddd; background: #fff;">
         <p>
             <label>Question<br>
                 <input type="text" name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][question]" class="regular-text" />
