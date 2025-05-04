@@ -19,8 +19,14 @@ The **Product FAQ for WooCommerce** plugin lets you easily create and display Fr
 
 Whether you're selling physical products, digital downloads, or services, this plugin helps improve the customer experience, increase conversions, and reduce pre-sale questions.
 
+= How to add FAQ =
+**individual product: ** Go to 'Product data' section on the product edit page. Click on FAQ tab.
+**Bulk Entry: ** Look for 'Bulk FAQ' menu under 'Product FAQ'on the WordPress dashboard.
+
 = ✨ Key Features =
+* Create FAQ groups and items and add bulk FAQ by categories.
 * Add FAQs to individual WooCommerce products.
+* Change dispaly position on single product page.
 * Organize FAQs into groups for better readability.
 * Customize the FAQ section title, colors, font size, and position.
 * Easy-to-use interface for managing questions and answers.
@@ -55,9 +61,11 @@ You can design your faq section
 
 == Screenshots ==
 
-1. Plugin menu position
-2. Faq settings
-3. Faq output in single product page
+1. FAQ basic settings.
+2. FAQ position.
+3. Add bulk FAQ.
+4. Add FAQ for single product.
+5. Faq output in single product page
 
 
 == Changelog ==
