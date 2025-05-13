@@ -1,23 +1,12 @@
 /* @import url('https://fonts.googleapis.com/css?family=Hind:300,400&display=swap'); */
-* {
-  box-sizing: border-box;
-}
-*::before, *::after {
-  box-sizing: border-box;
-}
 
-.container {
-  margin: 0 auto;
-  padding: 4rem;
-  width: 48rem;
-}
-.accordion .accordion-item {
+.single-product .accordion .accordion-item {
   border-bottom: 1px solid #e5e5e5;
 }
-.accordion .accordion-item button[aria-expanded='true'] {
+.single-product .accordion .accordion-item button[aria-expanded='true'] {
   border-bottom: 1px solid #03b5d2;
 }
-.accordion button {
+.single-product .accordion button {
   position: relative;
   display: block;
   text-align: left;
@@ -30,19 +19,19 @@
   background: none;
   outline: none;
 }
-.accordion button:hover, .accordion button:focus {
+.single-product .accordion button:hover, .accordion button:focus {
   cursor: pointer;
   color: #03b5d2;
 }
-.accordion button:hover::after, .accordion button:focus::after {
+.single-product .accordion button:hover::after, .accordion button:focus::after {
   cursor: pointer;
   color: #03b5d2;
   border: 1px solid #03b5d2;
 }
-.accordion button .accordion-title {
+.single-product .accordion button .accordion-title {
   padding: 1em 1.5em 1em 0;
 }
-.accordion button .icon {
+.single-product .accordion button .icon {
   display: inline-block;
   position: absolute;
   top: 18px;
@@ -52,7 +41,7 @@
   border: 1px solid;
   border-radius: 22px;
 }
-.accordion button .icon::before {
+.single-product .accordion button .icon::before {
   display: block;
   position: absolute;
   content: '';
@@ -62,7 +51,7 @@
   height: 2px;
   background: currentColor;
 }
-.accordion button .icon::after {
+.single-product .accordion button .icon::after {
   display: block;
   position: absolute;
   content: '';
@@ -72,26 +61,26 @@
   height: 10px;
   background: currentColor;
 }
-.accordion button[aria-expanded='true'] {
+.single-product .accordion button[aria-expanded='true'] {
   color: #03b5d2;
 }
-.accordion button[aria-expanded='true'] .icon::after {
+.single-product .accordion button[aria-expanded='true'] .icon::after {
   width: 0;
 }
-.accordion button[aria-expanded='true'] + .accordion-content {
+.single-product .accordion button[aria-expanded='true'] + .accordion-content {
   opacity: 1;
   max-height: 9em;
   transition: all 200ms linear;
   will-change: opacity, max-height;
 }
-.accordion .accordion-content {
+.single-product .accordion .accordion-content {
   opacity: 0;
   max-height: 0;
   overflow: hidden;
   transition: opacity 200ms linear, max-height 200ms linear;
   will-change: opacity, max-height;
 }
-.accordion .accordion-content p {
+.single-product .accordion .accordion-content p {
   font-size: 1rem;
   font-weight: 300;
   margin: 2em 0;

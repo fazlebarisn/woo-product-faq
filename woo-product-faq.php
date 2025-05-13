@@ -1,23 +1,30 @@
 <?php
 /**
 * Plugin Name: Product FAQ for WooCommerce
+* Requires Plugins: woocommerce
 * Plugin URI: https://github.com/fazlebarisn/woo-product-faq
 * Description: Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered.
-* Version: 1.0.1
+* Version: 1.1.7
 * Author: Fazle Bari
 * Author URI: https://www.chitabd.com/
 * Requires PHP: 7.2
-* Tested up to: 6.0.2
+* Tested up to: 6.8.1
 * WC requires at least: 3.0.0
-* WC tested up to: 	 6.9.2
+* WC tested up to: 	 9.8.5
 * Licence: GPL Or leater 
 * Text Domain: product-faq-for-woocommerce
-* Domain Path: /languages/
+* Domain Path: /i18n/languages/
 * @package woofaq
 */
 
 defined('ABSPATH') or die('Nice Try!');
 
+// Include functions.php
+if( file_exists( dirname(__FILE__) . '/functions.php') ){
+    require_once dirname(__FILE__) . '/functions.php';
+}
+
+// Include autoload.php
 if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
@@ -25,13 +32,12 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
 /**
  * The main class
  */
-
  final class WooFaq{
 
     /**
      * defien plugin version
      */
-    const version = "1.0.1";
+    const version = "1.1.7";
 
     /**
      * class constructor
@@ -40,10 +46,24 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
     {
         $this->defineConstants();
 
+        add_action( 'before_woocommerce_init', [$this, 'product_faq_hpos'] );
+
         register_activation_hook( __FILE__ , [ $this , 'activate'] );
 
         add_action( 'plugins_loaded' , [ $this , 'initPlugin'] );
     }
+
+    /**
+     * Declare compatibility with custom order tables for WooCommerce.
+     * Support WooCommerce High-performance order storage
+     * @since 1.1.2
+     * @author Fazle Bari <fazlebarisn@gmail.com>
+     */
+    public function product_faq_hpos(){
+		if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+		}
+	}
 
     /**
      * initilize a singileton 
@@ -124,5 +144,4 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
  // kick-off the plugin
  wooFaq();
 
- //var_dump( $installed );
  
