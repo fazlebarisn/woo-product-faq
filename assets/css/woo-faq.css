@@ -6,11 +6,11 @@
   box-sizing: border-box;
 }
 
-.single-product .container {
+/* .single-product .container {
   margin: 0 auto;
   padding: 4rem;
   width: 48rem;
-}
+} */
 .single-product .accordion .accordion-item {
   border-bottom: 1px solid #e5e5e5;
 }
