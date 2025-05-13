@@ -3,9 +3,9 @@ Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page
 Requires at least: 6.0
 Tested up to: 6.9.1
-WC tested up to: 9.8.2
+WC tested up to: 9.8.5
 Requires PHP: 7.3
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,6 +56,11 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 
 
 == Changelog ==
+= 1.1.6 =
+* Fixed single page design.
+* Tested with latest WooCommerce version 9.8.5
+* Add tow new page under the plugin menu for more information. 
+
 = 1.1.6 =
 * Tested with latest WordPress version 6.9.1
 * Tested with latest WooCommerce version 9.8.2
