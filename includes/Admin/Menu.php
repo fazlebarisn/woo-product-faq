@@ -30,6 +30,7 @@ class Menu{
     public function adminMenu(){
         add_menu_page( __('Product Faq' , 'product-faq-for-woocommerce' ) , __('Product FAQ' , 'product-faq-for-woocommerce') , 'manage_options' , 'woo_sfaq' , [$this , 'adminPage'] , 'dashicons-info' );
         add_submenu_page( 'woo_sfaq' , __('Product Archive' , 'product-faq-for-woocommerce') , __('Bulk FAQ' , 'product-faq-for-woocommerce') , 'manage_options' , 'woo_afaq' , [$this , 'productAtchivePage'] );
+        add_submenu_page( 'woo_sfaq' , __('Browse Our Plugins' , 'product-faq-for-woocommerce') , __('Our Plugins' , 'product-faq-for-woocommerce') , 'manage_options' , 'woo_pfaq' , [$this , 'ourPluginsPage'] );
     }
 
     /**
@@ -44,6 +45,9 @@ class Menu{
     }
     public function productAtchivePage(){
         require_once WOO_FAQ_PATH.'/pages/product-archive.php';
+    }
+    public function ourPluginsPage(){
+        require_once WOO_FAQ_PATH.'/pages/our-plugins.php';
     }
 
     /**
