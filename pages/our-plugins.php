@@ -2,7 +2,7 @@
 $faq_image = WOO_FAQ_ASSETS . '/img/product-faq.png';
 $group_product = WOO_FAQ_ASSETS . '/img/WPT-for-group-product.png';
 ?>
-<div class="wrap fbs-cart-plugins">
+<div class="wrap fbs-plugins">
 
     <section class="heading">
         <div>
