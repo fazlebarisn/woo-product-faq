@@ -24,7 +24,7 @@ button.faq-add-question.button.button-primary {
 
 /* Plugin page design */
 
-.wrap.fbs-cart-author section.heading, 
+.wrap.fbs-author section.heading, 
 .wrap.fbs-plugins section.heading {
   background: #b9e1eb;
   padding: 10px;
@@ -168,39 +168,39 @@ button.faq-add-question.button.button-primary {
 
 /* Plugin author css */
 
-.wrap.fbs-cart-author .container {
+.wrap.fbs-author .container {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.wrap.fbs-cart-author .author-info, .about-author, .contact-info {
+.wrap.fbs-author .author-info, .about-author, .contact-info {
   margin-bottom: 30px;
 }
 
-.wrap.fbs-cart-author .contact-info p {
+.wrap.fbs-author .contact-info p {
   margin-bottom: 10px;
 }
 
-.wrap.fbs-cart-author .contact-info a {
+.wrap.fbs-author .contact-info a {
   text-decoration: none;
   color: #007BFF;
 }
 
-.wrap.fbs-cart-author .about-author p {
+.wrap.fbs-author .about-author p {
   line-height: 1.6;
 }
 
-.wrap.fbs-cart-author .social-media ul {
+.wrap.fbs-author .social-media ul {
   list-style: none;
   padding: 0;
 }
 
-.wrap.fbs-cart-author .social-media li {
+.wrap.fbs-author .social-media li {
   display: inline-block;
   margin-right: 10px;
 }
 
-.wrap.fbs-cart-author .social-media a {
+.wrap.fbs-author .social-media a {
   text-decoration: none;
   color: #007BFF;
   border: 1px solid #007BFF;
@@ -209,7 +209,7 @@ button.faq-add-question.button.button-primary {
   transition: background-color 0.3s;
 }
 
-.wrap.fbs-cart-author .social-media a:hover {
+.wrap.fbs-author .social-media a:hover {
   background-color: #007BFF;
   color: #fff;
 } 
