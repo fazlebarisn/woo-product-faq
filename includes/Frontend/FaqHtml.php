@@ -66,7 +66,7 @@ class FaqHtml{
         ?>
             <div class="container">
                 <?php
-                if (!empty($faqs) && !empty($faqs['question'])) {
+                if (!empty($faqs)  && !empty($faqs['question'])) {
                     ?>
                     <h2 style="<?php echo esc_attr($faq_heading_style); ?>">
                         <?php 
@@ -102,7 +102,7 @@ class FaqHtml{
                 } else {
                     // No product-specific FAQs, fallback to global groups
                     $global_groups = get_option('woo_afaq_global_groups', []);
-
+                    // dd(global_groups);
                     $product_term_ids = [];
 
                     $taxonomies = get_object_taxonomies('product'); // or get_post_type($product_id)
@@ -117,11 +117,12 @@ class FaqHtml{
                     if (!empty($global_groups) && !empty($product_term_ids)) {
  
                         foreach ($global_groups as $group) {
+                            $faqs = $group['faqs'] ?? [];
                             $archive_terms = $group['archive_terms'] ?? [];
                 
                             // Check if product has matching terms in this taxonomy
                             $intersect = array_intersect($product_term_ids, $archive_terms);
-                            if (!empty($intersect)) {
+                            if (!empty($intersect) && !empty($faqs ) ) {
                                 ?>
                                 <h2 style="<?php echo esc_attr($faq_heading_style); ?>">
                                     <?php 
@@ -134,7 +135,6 @@ class FaqHtml{
                                 </h2>
                                 <?php
                                 // Match found, render these FAQs
-                                $faqs = $group['faqs'] ?? [];
                                 foreach ($faqs as $faq) {
                                     ?>                                  
                                     <div class="accordion">
