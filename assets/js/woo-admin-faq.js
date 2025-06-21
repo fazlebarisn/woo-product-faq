@@ -1,9 +1,20 @@
 (function ($) {
   $(document).ready(function () {
+    const isProActive = typeof wooFaqPro !== 'undefined' && wooFaqPro.is_pro;
+    const MAX_SINGLE_FAQS = isProActive ? Infinity : 4;
+    const MAX_GROUPS_FREE = isProActive ? Infinity : 2;
+    const MAX_FAQS_FREE = isProActive ? Infinity : 3;
+
     // Declare a global counter to track the number of FAQs
     var faqCounter = 1;
 
     $(document.body).on("click", ".faq-add-question", function () {
+      const currentFaqs = $("div.option-group-wrapper .options_group").length;
+      if (currentFaqs >= MAX_SINGLE_FAQS) {
+        alert("Upgrade to the Pro version to add more than 3 FAQs per product.");
+        return;
+      }
+
       var lastFaqNumber = $(
         "div.option-group-wrapper .options_group .faq-question-box"
       ).length;
@@ -32,11 +43,6 @@
     });
 
     // Archive FAQ code start here
-
-    const isProActive = typeof wooFaqPro !== 'undefined' && wooFaqPro.is_pro;
-    // console.log(wooFaqPro);
-    // Add FAQ Group
-    const MAX_GROUPS_FREE = isProActive ? Infinity : 2;
 
     $("#fbs-add-faq-group").on("click", function () {
       const currentGroups = $(
@@ -85,8 +91,6 @@
     );
 
     // Add FAQ Item
-    const MAX_FAQS_FREE = isProActive ? Infinity : 3;
-
     $("#faq-groups-container").on(
       "click",
       ".fsb-archive-add-faq-item",
