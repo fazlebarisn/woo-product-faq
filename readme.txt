@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 6.9.1
 WC tested up to: 9.8.5
 Requires PHP: 7.3
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -54,9 +54,14 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 4. Add FAQ for single product.
 5. Faq output in single product page
 
+== Changelog ==
+= 1.1.8 =
+* Fixed Remove Faq button issue.
+* Fixed Faq display issue on single product page. 
+* Tested with latest WooCommerce version.
 
 == Changelog ==
-= 1.1.6 =
+= 1.1.7 =
 * Fixed single page design.
 * Tested with latest WooCommerce version 9.8.5
 * Add tow new page under the plugin menu for more information. 
