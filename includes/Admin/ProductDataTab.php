@@ -46,9 +46,7 @@ class ProductDataTab
         ?>
         <div id="frequently_asked_questions" class="panel woocommerce_options_panel">
             <div class="option-group-wrapper">
-                <div class="options_group">
-                    <?php do_action('faq_woocommerce_product_options'); ?>
-                </div>
+                <?php do_action('faq_woocommerce_product_options'); ?>
                 <?php
                 $product_faq = get_option('product_faq');
                 if (!$product_faq || 'disable' == $product_faq) :
@@ -75,33 +73,29 @@ class ProductDataTab
         $args = array();
 
         foreach ($value['question'] as $key => $val) {
-
-            $args[] = array(
+            echo '<div class="options_group">';
+            woocommerce_wp_text_input([
                 'id'        => 'faq_' . $key,
                 'name'      => 'faq[question][' . $key . ']',
                 'label'     =>  'Question',
                 'class'     =>  'faq_input faq-question-box',
                 'type'      =>  'text',
                 'desc_tip'  =>  true,
-                //'description'=> 'Add 1st Question',
                 'data_type' => 'text',
                 'value'     =>  $value['question'][$key] ?? '',
-            );
-
-            $args[] = array(
+            ]);
+            woocommerce_wp_text_input([
                 'id'        => 'faq_ans_' . $key,
                 'name'      => 'faq[answer][' . $key . ']',
                 'label'     => 'Answer',
                 'class'     => 'faq_input',
                 'type'      => 'text',
                 'desc_tip'  => true,
-                //'description'=> 'Add 1st Answer',
                 'data_type' => 'text',
                 'value'     =>  $value['answer'][$key] ?? '',
-            );
-
-            // Add Remove button after each answer input
-            // echo '<button type="button" class="faq-remove-question" style="float:right; background:#fff; color:red; border-color:red; margin-top:5px;">Remove</button>';
+            ]);
+            // echo '<button type="button" class="faq-remove-question" style="float:right; background:#fff; color:#b32d2e; border-color:#b32d2e; margin-top:5px; padding:0; border-radius: 50%;"><span class="dashicons dashicons-no-alt"></span></button>';
+            echo '</div>';
         }
 
         $args = apply_filters('faq_field_args', $args);
