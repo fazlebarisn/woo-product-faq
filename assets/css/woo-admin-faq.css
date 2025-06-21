@@ -3,10 +3,10 @@ button.faq-add-question.button.button-primary {
   margin-top: 10px;
   margin-left: 15px;
 }
-#frequently_asked_questions .options_group p:nth-child(even) {
-  /* background: red!important; */
+/* #frequently_asked_questions .options_group p:nth-child(even) {
+  background: red!important;
   border-bottom: 2px solid #eee;
-}
+} */
 
 .option-group-wrapper p.faq-note span {
   color: red;

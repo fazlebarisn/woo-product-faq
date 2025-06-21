@@ -9,8 +9,18 @@
     var faqCounter = 1;
 
     $(document.body).on("click", ".faq-add-question", function () {
+      const $addBtn = $(this);
       const currentFaqs = $("div.option-group-wrapper .options_group").length;
       if (currentFaqs >= MAX_SINGLE_FAQS) {
+        $addBtn
+          .prop("disabled", true)
+          .text("Upgrade")
+          .css({
+            "background-color": "#ff9800",
+            "border-color": "#ff9800",
+            "color": "#fff"
+          })
+          .addClass("fbs-upgrade-button");
         alert("Upgrade to the Pro version to add more than 3 FAQs per product.");
         return;
       }
@@ -24,6 +34,7 @@
       // Use template literals for better readability
       var myElement = `
               <div class="options_group">
+                  <button type="button" class="faq-remove-question" style="float:right; background:#fff; color:#b32d2e; border-color:#b32d2e; margin-top:5px; padding:0; border-radius: 50%;"><span class="dashicons dashicons-no-alt"></span></button>
                   <p class="form-field faq_${faqNumber}_field">
                       <label for="faq_${faqNumber}">Question</label>
                       <input type="text" class="faq_input" name="faq[question][${faqNumber}]" id="faq_${faqNumber}" value="" placeholder="Add Question">
@@ -32,6 +43,7 @@
                       <label for="faq_ans_${faqNumber}">Answer</label>
                       <input type="text" class="faq_input" name="faq[answer][${faqNumber}]" id="faq_ans_${faqNumber}" value="" placeholder="Add Answer">
                   </p>
+                  
               </div>
           `;
 
@@ -40,6 +52,37 @@
 
       // Increment the counter for the next click
       faqCounter++;
+
+      // Restore the add button if under the limit (in case FAQs are removed)
+      if ($("div.option-group-wrapper .options_group").length < MAX_SINGLE_FAQS) {
+        $(".faq-add-question")
+          .prop("disabled", false)
+          .text("Add Question")
+          .css({
+            "background-color": "",
+            "border-color": "",
+            "color": ""
+          })
+          .removeClass("fbs-upgrade-button");
+      }
+    });
+
+    // If you have a remove FAQ handler for single product, add this logic there as well:
+    // After removing an FAQ, restore the add button if under the limit
+    $(document.body).on("click", ".faq-remove-question", function () {
+      $(this).closest(".options_group").remove();
+      // Restore the add button if under the limit
+      if ($("div.option-group-wrapper .options_group").length < MAX_SINGLE_FAQS) {
+        $(".faq-add-question")
+          .prop("disabled", false)
+          .text("Add Question")
+          .css({
+            "background-color": "",
+            "border-color": "",
+            "color": ""
+          })
+          .removeClass("fbs-upgrade-button");
+      }
     });
 
     // Archive FAQ code start here

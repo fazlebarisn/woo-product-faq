@@ -99,6 +99,9 @@ class ProductDataTab
                 'data_type' => 'text',
                 'value'     =>  $value['answer'][$key] ?? '',
             );
+
+            // Add Remove button after each answer input
+            // echo '<button type="button" class="faq-remove-question" style="float:right; background:#fff; color:red; border-color:red; margin-top:5px;">Remove</button>';
         }
 
         $args = apply_filters('faq_field_args', $args);
