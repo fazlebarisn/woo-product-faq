@@ -1,12 +1,25 @@
 (function ($) {
   $(document).ready(function () {
     const isProActive = typeof wooFaqPro !== 'undefined' && wooFaqPro.is_pro;
-    const MAX_SINGLE_FAQS = isProActive ? Infinity : 4;
+    const MAX_SINGLE_FAQS = isProActive ? Infinity : 3;
     const MAX_GROUPS_FREE = isProActive ? Infinity : 2;
     const MAX_FAQS_FREE = isProActive ? Infinity : 3;
 
     // Declare a global counter to track the number of FAQs
     var faqCounter = 1;
+    console.log($("div.option-group-wrapper .options_group").length);
+    // Disable the add button on page load if limit is reached
+    if ($("div.option-group-wrapper .options_group").length >= MAX_SINGLE_FAQS) {
+      $(".faq-add-question")
+        .prop("disabled", true)
+        .text("Upgrade")
+        .css({
+          "background-color": "#ff9800",
+          "border-color": "#ff9800",
+          "color": "#fff"
+        })
+        .addClass("fbs-upgrade-button");
+    }
 
     $(document.body).on("click", ".faq-add-question", function () {
       const $addBtn = $(this);
