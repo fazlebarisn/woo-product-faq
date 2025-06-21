@@ -10,6 +10,17 @@ class Menu{
         add_filter('plugin_action_links_'.WOO_FAQ_BASENAME, [$this, 'settingsLink']);
         // active custom settings
         add_action('admin_init', [$this, 'wooFaqSettings']);
+
+        add_action('load-toplevel_page_woo_sfaq', [$this, 'enqueueAssets']);
+    }
+
+    /**
+     * Enqueue assets for the settings page
+     * @since 1.1.9
+     */
+    public function enqueueAssets() {
+        wp_enqueue_style('woo-faq-admin-settings', WOO_FAQ_URL . '/assets/css/admin-settings.css', [], WOO_FAQ_VERSION);
+        wp_enqueue_script('woo-faq-admin-settings', WOO_FAQ_URL . '/assets/js/admin-settings.js', ['jquery'], WOO_FAQ_VERSION, true);
     }
 
     /**
@@ -42,6 +53,7 @@ class Menu{
      * @author Fazle Bari <fazlebarisn@gmail.com>
      */
     public function adminPage(){
+        $menu_instance = $this;
         require_once WOO_FAQ_PATH.'/pages/dashboard.php';
     }
     public function productAtchivePage(){
@@ -73,22 +85,22 @@ class Menu{
         register_setting('woofaq-settings-group', 'faq_ans_font_size', [$this, 'sanitizeFaqFontSize']);
 
         //add section
-        add_settings_section('woofaq-product-faq-options', __('Product Faq Options', 'product-faq-for-woocommerce'),[$this, 'productFaqOptions'],'woo_sfaq');
+        // add_settings_section('woofaq-product-faq-options', __('Product Faq Options', 'product-faq-for-woocommerce'),[$this, 'productFaqOptions'],'woo_sfaq');
 
         //add color section
-        add_settings_section('woofaq-product-faq-style', __('Product Faq Style', 'product-faq-for-woocommerce'),[$this, 'productFaqStyle'],'woo_sfaq');
+        // add_settings_section('woofaq-product-faq-style', __('Product Faq Style', 'product-faq-for-woocommerce'),[$this, 'productFaqStyle'],'woo_sfaq');
 
         //add settings fields
-        add_settings_field('woofaq-product-faq', __('Product Faq', 'product-faq-for-woocommerce'), [$this, 'ProductFaq'], 'woo_sfaq', 'woofaq-product-faq-options');
-        add_settings_field('woofaq-faq-position', __('Faq Position', 'product-faq-for-woocommerce'), [$this, 'faqPosition'], 'woo_sfaq', 'woofaq-product-faq-options');
-        add_settings_field('woofaq-heading', __('Faq Heading', 'product-faq-for-woocommerce'), [$this, 'Heading'], 'woo_sfaq', 'woofaq-product-faq-options');
+        // add_settings_field('woofaq-product-faq', __('Product Faq', 'product-faq-for-woocommerce'), [$this, 'ProductFaq'], 'woo_sfaq', 'woofaq-product-faq-options');
+        // add_settings_field('woofaq-faq-position', __('Faq Position', 'product-faq-for-woocommerce'), [$this, 'faqPosition'], 'woo_sfaq', 'woofaq-product-faq-options');
+        // add_settings_field('woofaq-heading', __('Faq Heading', 'product-faq-for-woocommerce'), [$this, 'Heading'], 'woo_sfaq', 'woofaq-product-faq-options');
 
-        add_settings_field('woofaq-heading-color', __('Heading Font Color', 'product-faq-for-woocommerce'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-question-color', __('Question Font Color', 'product-faq-for-woocommerce'), [$this, 'QuestionColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-ans-color', __('Answer Font Color', 'product-faq-for-woocommerce'), [$this, 'AnswerColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-heading-font-size', __('Heading Font Size', 'product-faq-for-woocommerce'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-question-font-size', __('Question Font Size', 'product-faq-for-woocommerce'), [$this, 'QuestionFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
-        add_settings_field('woofaq-ans-font-size', __('Answer Font Size', 'product-faq-for-woocommerce'), [$this, 'AnswerFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
+        // add_settings_field('woofaq-heading-color', __('Heading Font Color', 'product-faq-for-woocommerce'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        // add_settings_field('woofaq-question-color', __('Question Font Color', 'product-faq-for-woocommerce'), [$this, 'QuestionColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        // add_settings_field('woofaq-ans-color', __('Answer Font Color', 'product-faq-for-woocommerce'), [$this, 'AnswerColor'], 'woo_sfaq', 'woofaq-product-faq-style');
+        // add_settings_field('woofaq-heading-font-size', __('Heading Font Size', 'product-faq-for-woocommerce'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
+        // add_settings_field('woofaq-question-font-size', __('Question Font Size', 'product-faq-for-woocommerce'), [$this, 'QuestionFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
+        // add_settings_field('woofaq-ans-font-size', __('Answer Font Size', 'product-faq-for-woocommerce'), [$this, 'AnswerFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
     }
 
     /**

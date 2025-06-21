@@ -1,0 +1,87 @@
+.fbs-faq-admin .woo-faq-settings-wrap {
+    display: flex;
+    margin-top: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    height: 600px;
+    min-height: 400px;
+    max-height: 80vh;
+}
+
+.fbs-faq-admin .woo-faq-settings-nav {
+    width: 180px;
+    border-right: 1px solid #ddd;
+}
+
+.fbs-faq-admin .woo-faq-settings-nav .nav-tab {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background: #f9f9f9;
+    border: none;
+    /* border-bottom: 1px solid #ddd; */
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    color: #2271b1;
+    margin-left: 0;
+}
+
+.fbs-faq-admin .woo-faq-settings-nav .nav-tab:last-child {
+    border-bottom: none;
+}
+
+.fbs-faq-admin .woo-faq-settings-nav .nav-tab.nav-tab-active {
+    background: #000;
+    color: #ffffff;
+    /* border-right: 1px solid #fff; */
+    margin-left: 0;
+    /* border-left: 1px solid #2271b1; */
+    font-weight: bold;
+    /* box-shadow: 0 2px 8px rgba(34,113,177,0.07); */
+    position: relative;
+    z-index: 2;
+}
+
+.fbs-faq-admin .woo-faq-settings-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+    max-height: 100%;
+}
+
+.fbs-faq-admin .woo-faq-settings-content .tab-content {
+    display: none;
+}
+
+.fbs-faq-admin .woo-faq-settings-content .tab-content.active {
+    display: block;
+}
+
+.fbs-faq-admin .woo-faq-settings-content h2 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.fbs-faq-admin .woo-faq-settings-content .form-table {
+    margin: 0;
+}
+
+.fbs-faq-admin .woo-faq-settings-content .form-table th,
+.fbs-faq-admin .woo-faq-settings-content .form-table td {
+    padding: 15px 10px;
+}
+
+.fbs-faq-admin .woo-faq-settings-content .form-table th {
+    width: 200px;
+}
+
+.fbs-faq-admin .woo-faq-settings-content .form-table select,
+.fbs-faq-admin .woo-faq-settings-content .form-table input[type="text"],
+.fbs-faq-admin .woo-faq-settings-content .form-table input[type="color"] {
+    width: 100%;
+    max-width: 350px;
+} 
