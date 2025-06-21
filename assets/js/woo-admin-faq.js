@@ -214,7 +214,7 @@
           const selectedHtml = `
                       <span class="term-pill" style="display:inline-block; margin:3px; padding:3px 8px; background:#f1f1f1; border:1px solid #ccc; border-radius:20px;">
                           ${ui.item.label}
-                          <a href="#" class="remove-term" style="margin-left:5px; color:red;">&times;</a>
+                          <a href="#" class="remove-term" style="margin-left:5px; color:red; text-decoration:none;">&times;</a>
                           <input type="hidden" name="faq_groups[${$group.index()}][archive_terms][]" value="${
             ui.item.value
           }">

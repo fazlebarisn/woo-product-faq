@@ -142,7 +142,7 @@ if (!empty($saved_data)) {
                         const termName = termNames[termId] || 'Term #' + termId;
                         const termHtml = `<span class="term-pill" style="display:inline-block; margin:3px; padding:3px 8px; background:#f1f1f1; border:1px solid #ccc; border-radius:20px;" data-id="${termId}">
                             ${termName}
-                            <a href="#" class="remove-term" style="margin-left:5px; color:red;">×</a>
+                            <a href="#" class="remove-term" style="margin-left:5px; color:red; text-decoration:none;">×</a>
                             <input type="hidden" name="faq_groups[${gIndex}][archive_terms][]" value="${termId}">
                         </span>`;
 
