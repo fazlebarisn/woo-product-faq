@@ -33,8 +33,10 @@
 
     // Archive FAQ code start here
 
+    const isProActive = typeof wooFaqPro !== 'undefined' && wooFaqPro.is_pro;
+    // console.log(wooFaqPro);
     // Add FAQ Group
-    const MAX_GROUPS_FREE = 2;
+    const MAX_GROUPS_FREE = isProActive ? Infinity : 2;
 
     $("#fbs-add-faq-group").on("click", function () {
       const currentGroups = $(
@@ -83,7 +85,7 @@
     );
 
     // Add FAQ Item
-    const MAX_FAQS_FREE = 3;
+    const MAX_FAQS_FREE = isProActive ? Infinity : 3;
 
     $("#faq-groups-container").on(
       "click",
