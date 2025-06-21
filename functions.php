@@ -19,6 +19,10 @@ if (!function_exists('dd')) {
     }
 }
 
+/**
+ * Search taxonomy
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ */
 add_action('wp_ajax_faq_term_search', function () {
     check_ajax_referer('faq_nonce', 'nonce');
 
