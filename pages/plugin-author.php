@@ -26,7 +26,7 @@
             <div class="social-media">
                 <h2>Connect on Social Media</h2>
                 <ul>
-                    <li><a href="https://twitter.com/FazleB" target="_blank">Twitter</a></li>
+                    <!-- <li><a href="https://twitter.com/FazleB" target="_blank">Twitter</a></li> -->
                     <li><a href="https://web.facebook.com/fazle.sony" target="_blank">Facebook</a></li>
                     <li><a href="https://www.linkedin.com/in/fazle-bari/" target="_blank">LinkedIn</a></li>
                     <li><a href="https://github.com/fazlebarisn" target="_blank">GitHub</a></li>

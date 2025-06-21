@@ -132,6 +132,7 @@
 
         if (currentFaqs < MAX_FAQS_FREE) {
           groupEl
+            .find(".fsb-archive-add-faq-item")
             .prop("disabled", false)
             .text("Add FAQ Item")
             .removeClass("fbs-upgrade-button");
