@@ -3,9 +3,9 @@ Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page
 Requires at least: 6.0
 Tested up to: 6.9.1
-WC tested up to: 9.8.5
+WC tested up to: 9.9.5
 Requires PHP: 7.3
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,12 +49,16 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 == Screenshots ==
 
 1. FAQ basic settings.
-2. FAQ position.
+2. FAQ basic settings.
 3. Add bulk FAQ.
 4. Add FAQ for single product.
 5. Faq output in single product page
 
 == Changelog ==
+= 1.1.9 =
+* Redesign admin panel.
+* Tested with latest WooCommerce version.
+
 = 1.1.8 =
 * Fixed Remove Faq button issue.
 * Fixed Faq display issue on single product page. 
