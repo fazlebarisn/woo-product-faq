@@ -76,7 +76,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 
         <div class="fbs-archive-faq-items"></div>
         <p><button type="button" class="button fsb-archive-add-faq-item">Add New FAQ</button></p>
-        <button type="button" class="button fbs-archive-remove-faq-group">Remove Group</button>
+        <button type="button" class="button fbs-archive-remove-faq-group"><span class="dashicons dashicons-no-alt"></span></button>
     </div>
 </script>
 
