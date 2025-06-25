@@ -51,7 +51,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 
 <!-- Templates -->
 <script type="text/html" id="fbs-faq-group-template">
-    <div class="fbs-faq-archive-group" style="margin-bottom: 30px; padding: 0px 15px 25px 15px; border: 2px solid #ccd0d4; background: #f8f9fa;">
+    <div class="fbs-faq-archive-group">
         <h2>FAQ Group</h2>
         <table class="form-table">
             <tr>
@@ -68,7 +68,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
                 <th scope="row"><label>Term</label></th>
                 <td>
                     <input type="text" class="archive-term regular-text" name="" placeholder="Search..." />
-                    <div class="term-suggestions" style="margin-top:5px;"></div>
+                    <div class="term-suggestions"></div>
                     <div class="selected-terms"></div>
                 </td>
             </tr>
@@ -76,12 +76,12 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 
         <div class="fbs-archive-faq-items"></div>
         <p><button type="button" class="button fsb-archive-add-faq-item">Add New FAQ</button></p>
-        <button type="button" class="button fbs-archive-remove-faq-group" style="margin-top: 10px; float:right; background:#fff; color:red; border-color:red;">Remove Group</button>
+        <button type="button" class="button fbs-archive-remove-faq-group">Remove Group</button>
     </div>
 </script>
 
 <script type="text/html" id="fbs-archive-faq-item-template">
-    <div class="fbs-archive-faq-item" style="margin-bottom: 30px; padding:0px 10px 15px 10px; border: 1px solid #ddd; background: #fff;">
+    <div class="fbs-archive-faq-item">
         <p>
             <label>Question<br>
                 <input type="text" name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][question]" class="regular-text" />
@@ -92,7 +92,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
                 <textarea name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][answer]" rows="3" class="large-text"></textarea>
             </label>
         </p>
-        <button type="button" style="float: right; background:#fff; color:red; border-color:red;" class="button fbs-archive-remove-faq-item">Remove FAQ</button>
+        <button type="button" class="button fbs-archive-remove-faq-item">Remove FAQ</button>
     </div>
 </script>
 
