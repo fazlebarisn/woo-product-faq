@@ -288,7 +288,7 @@ button.faq-add-question.button.button-primary {
 .fbs-faq-archive-group select,
 .fbs-faq-archive-group input[type="text"] {
   width: 100%;
-  padding: 7px 10px;
+  padding: 2px 10px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   font-size: 15px;
@@ -334,7 +334,7 @@ button.faq-add-question.button.button-primary {
 }
 .fbs-archive-faq-item input[type="text"]:focus,
 .fbs-archive-faq-item textarea:focus {
-  border-color: #2271b1;
+  /* border-color: #2271b1; */
   outline: none;
 }
 .fbs-archive-faq-item textarea {
@@ -343,20 +343,29 @@ button.faq-add-question.button.button-primary {
 }
 
 .fbs-archive-faq-item button.fbs-archive-remove-faq-item {
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   background: #fff;
   color: #b32d2e;
   border: 1px solid #b32d2e;
   border-radius: 50%;
-  padding: 0 8px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.1em;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  transition: background 0.2s, color 0.2s;
+  font-weight: bold;
+  box-shadow: 0 1px 3px rgba(34,113,177,0.04);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  z-index: 2;
 }
 .fbs-archive-faq-item button.fbs-archive-remove-faq-item:hover {
   background: #b32d2e;
   color: #fff;
+  box-shadow: 0 2px 8px rgba(179,45,46,0.13);
 }
 
 .fbs-faq-archive-group .fbs-archive-remove-faq-group {
@@ -400,7 +409,7 @@ button.faq-add-question.button.button-primary {
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 8px 18px;
+  padding: 2px 10px;
   font-size: 15px;
   font-weight: 500;
   margin-top: 8px;

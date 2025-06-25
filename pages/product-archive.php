@@ -92,7 +92,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
                 <textarea name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][answer]" rows="3" class="large-text"></textarea>
             </label>
         </p>
-        <button type="button" class="button fbs-archive-remove-faq-item">Remove FAQ</button>
+        <button type="button" class="button fbs-archive-remove-faq-item"><span class="dashicons dashicons-no-alt"></span></button>
     </div>
 </script>
 
