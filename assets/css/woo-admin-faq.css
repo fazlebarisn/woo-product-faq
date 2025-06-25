@@ -234,7 +234,7 @@ button.faq-add-question.button.button-primary {
 
 /* Modern Product Archive FAQ Admin Design */
 .fbs-product-archive-faq {
-  background: #f6f8fa;
+  /* background: #f6f8fa; */
   padding: 30px 0 40px 0;
 }
 
@@ -334,7 +334,7 @@ button.faq-add-question.button.button-primary {
 }
 .fbs-archive-faq-item input[type="text"]:focus,
 .fbs-archive-faq-item textarea:focus {
-  /* border-color: #2271b1; */
+  border-color: #2271b1;
   outline: none;
 }
 .fbs-archive-faq-item textarea {
@@ -418,6 +418,7 @@ button.faq-add-question.button.button-primary {
 }
 .fbs-faq-archive-group .fsb-archive-add-faq-item:hover {
   background: #195a8c;
+  color: #ffffff;
 }
 
 .fbs-faq-archive-group .term-pill {
