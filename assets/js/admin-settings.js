@@ -11,8 +11,21 @@ jQuery(document).ready(function($) {
         $(this).addClass('nav-tab-active');
         var targetContent = $(this).data('target');
         $('#' + targetContent).addClass('active');
+
+        // Save active tab to localStorage
+        localStorage.setItem('wooFaqAdminActiveTab', targetContent);
     });
 
-    // Show the first tab by default
-    $('.woo-faq-settings-nav .nav-tab').first().trigger('click');
+    // Show the last active tab, or the first tab by default
+    var lastTab = localStorage.getItem('wooFaqAdminActiveTab');
+    if (lastTab && $('.woo-faq-settings-nav .nav-tab[data-target="' + lastTab + '"]').length) {
+        $('.woo-faq-settings-nav .nav-tab[data-target="' + lastTab + '"]').trigger('click');
+    } else {
+        $('.woo-faq-settings-nav .nav-tab').first().trigger('click');
+    }
+
+    // Initialize WordPress color picker
+    if ($.fn.wpColorPicker) {
+        $('.color-field').wpColorPicker();
+    }
 }); 

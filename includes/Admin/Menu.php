@@ -21,6 +21,8 @@ class Menu{
     public function enqueueAssets() {
         wp_enqueue_style('woo-faq-admin-settings', WOO_FAQ_URL . '/assets/css/admin-settings.css', [], WOO_FAQ_VERSION);
         wp_enqueue_script('woo-faq-admin-settings', WOO_FAQ_URL . '/assets/js/admin-settings.js', ['jquery'], WOO_FAQ_VERSION, true);
+        wp_enqueue_style('wp-color-picker');
+        wp_enqueue_script('wp-color-picker');
     }
 
     /**
@@ -83,24 +85,6 @@ class Menu{
         register_setting('woofaq-settings-group', 'faq_heading_font_size', [$this, 'sanitizeFaqFontSize']);
         register_setting('woofaq-settings-group', 'faq_question_font_size', [$this, 'sanitizeFaqFontSize']);
         register_setting('woofaq-settings-group', 'faq_ans_font_size', [$this, 'sanitizeFaqFontSize']);
-
-        //add section
-        // add_settings_section('woofaq-product-faq-options', __('Product Faq Options', 'product-faq-for-woocommerce'),[$this, 'productFaqOptions'],'woo_sfaq');
-
-        //add color section
-        // add_settings_section('woofaq-product-faq-style', __('Product Faq Style', 'product-faq-for-woocommerce'),[$this, 'productFaqStyle'],'woo_sfaq');
-
-        //add settings fields
-        // add_settings_field('woofaq-product-faq', __('Product Faq', 'product-faq-for-woocommerce'), [$this, 'ProductFaq'], 'woo_sfaq', 'woofaq-product-faq-options');
-        // add_settings_field('woofaq-faq-position', __('Faq Position', 'product-faq-for-woocommerce'), [$this, 'faqPosition'], 'woo_sfaq', 'woofaq-product-faq-options');
-        // add_settings_field('woofaq-heading', __('Faq Heading', 'product-faq-for-woocommerce'), [$this, 'Heading'], 'woo_sfaq', 'woofaq-product-faq-options');
-
-        // add_settings_field('woofaq-heading-color', __('Heading Font Color', 'product-faq-for-woocommerce'), [$this, 'HeadingColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        // add_settings_field('woofaq-question-color', __('Question Font Color', 'product-faq-for-woocommerce'), [$this, 'QuestionColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        // add_settings_field('woofaq-ans-color', __('Answer Font Color', 'product-faq-for-woocommerce'), [$this, 'AnswerColor'], 'woo_sfaq', 'woofaq-product-faq-style');
-        // add_settings_field('woofaq-heading-font-size', __('Heading Font Size', 'product-faq-for-woocommerce'), [$this, 'HeadingFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
-        // add_settings_field('woofaq-question-font-size', __('Question Font Size', 'product-faq-for-woocommerce'), [$this, 'QuestionFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
-        // add_settings_field('woofaq-ans-font-size', __('Answer Font Size', 'product-faq-for-woocommerce'), [$this, 'AnswerFontSize'], 'woo_sfaq', 'woofaq-product-faq-style');
     }
 
     /**
@@ -223,7 +207,7 @@ class Menu{
     public function HeadingColor(){
         $faq_heading_color = get_option('faq_heading_color');
         ?>
-            <input type="color" name="faq_heading_color" value="<?php echo esc_attr( $faq_heading_color ); ?>" />
+            <input type="text" class="color-field" name="faq_heading_color" value="<?php echo esc_attr( $faq_heading_color ); ?>" />
         <?php
     }
 
@@ -237,7 +221,7 @@ class Menu{
     public function QuestionColor(){
         $faq_question_color = get_option('faq_question_color');
         ?>
-            <input type="color" name="faq_question_color" value="<?php echo esc_attr( $faq_question_color ); ?>" />
+            <input type="text" class="color-field" name="faq_question_color" value="<?php echo esc_attr( $faq_question_color ); ?>" />
         <?php
     }
     /**
@@ -250,7 +234,7 @@ class Menu{
     public function AnswerColor(){
         $faq_ans_color = get_option('faq_ans_color');
         ?>
-            <input type="color" name="faq_ans_color" value="<?php echo esc_attr( $faq_ans_color ); ?>" />
+            <input type="text" class="color-field" name="faq_ans_color" value="<?php echo esc_attr( $faq_ans_color ); ?>" />
         <?php
     }
 
