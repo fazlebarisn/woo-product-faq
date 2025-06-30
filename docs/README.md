@@ -3,3 +3,9 @@ Product FAQ for WooCommerce - A WooCommerce Product Plugin to add FAQ. Product F
 
 # How to enable FAQ
 From dashboard navigate Product FAQ->General Settings->Product Faq select Enable and save. 
+
+# Faq Position
+From dashboard navigate Product FAQ->General Settings->Faq Position. From the dropdown you can select your FAQ display position.
+
+# Faq Heading
+From dashboard navigate Product FAQ->General Settings->Faq Heading. From here you can change FAQ heading. 
