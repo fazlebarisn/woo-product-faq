@@ -9,3 +9,12 @@ From dashboard navigate Product FAQ->General Settings->Faq Position. From the dr
 
 # Faq Heading
 From dashboard navigate Product FAQ->General Settings->Faq Heading. From here you can change FAQ heading. 
+
+# Design Settings
+From dashboard navigate Product FAQ->Design Settings. From here you can change FAQ design
+    * Heading Font Color
+    * Question Font Color
+    * Answer Font Color
+    * Heading Font Size
+    * Question Font Size
+    * Answer Font Size
