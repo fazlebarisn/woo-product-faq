@@ -168,4 +168,40 @@ if (!empty($saved_data)) {
             });
         });
     </script>
+
+    <script>
+    jQuery(document).ready(function($) {
+        $('form').on('submit', function(e) {
+            var hasError = false;
+            $('.fbs-faq-archive-group').each(function() {
+                var $group = $(this);
+                var archiveType = $group.find('select.archive-type').val();
+                var selectedTerms = $group.find('.selected-terms input[type="hidden"]');
+                if ((archiveType === 'product_cat' || archiveType === 'product_tag') && selectedTerms.length === 0) {
+                    hasError = true;
+                    // Show error message (only once per group)
+                    if ($group.find('.fbs-term-error').length === 0) {
+                        $group.find('.selected-terms').after('<div class="fbs-term-error">Please select at least one term.</div>');
+                    }
+                } else {
+                    $group.find('.fbs-term-error').remove();
+                }
+            });
+            if (hasError) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $('.fbs-term-error').first().offset().top - 100
+                }, 300);
+            }
+        });
+    });
+    </script>
+
+    <style>
+    .fbs-term-error {
+      color: #b32d2e;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    </style>
 <?php } ?>
