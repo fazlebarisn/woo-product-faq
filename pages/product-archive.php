@@ -52,6 +52,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 <!-- Templates -->
 <script type="text/html" id="fbs-faq-group-template">
     <div class="fbs-faq-archive-group">
+        <button type="button" class="button fbs-archive-remove-faq-group"><span class="dashicons dashicons-no-alt"></span></button>
         <h2>FAQ Group</h2>
         <table class="form-table">
             <tr>
@@ -76,12 +77,12 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 
         <div class="fbs-archive-faq-items"></div>
         <p><button type="button" class="button fsb-archive-add-faq-item">Add New FAQ</button></p>
-        <button type="button" class="button fbs-archive-remove-faq-group"><span class="dashicons dashicons-no-alt"></span></button>
     </div>
 </script>
 
 <script type="text/html" id="fbs-archive-faq-item-template">
     <div class="fbs-archive-faq-item">
+        <button type="button" class="button fbs-archive-remove-faq-item"><span class="dashicons dashicons-no-alt"></span></button>
         <p>
             <label>Question<br>
                 <input type="text" name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][question]" class="regular-text" />
@@ -92,7 +93,6 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
                 <textarea name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][answer]" rows="3" class="large-text"></textarea>
             </label>
         </p>
-        <button type="button" class="button fbs-archive-remove-faq-item"><span class="dashicons dashicons-no-alt"></span></button>
     </div>
 </script>
 
