@@ -42,7 +42,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
         <form method="post" action="">
             <?php wp_nonce_field('save_woo_afaq_data', 'woo_afaq_nonce'); ?>
             <div id="faq-groups-container"></div>
-            <p><button type="button" class="button" id="fbs-add-faq-group">Add FAQ Group</button></p>
+            <p><button type="button" class="button fbs-add-faq-group">Add FAQ Group</button></p>
             <hr>
             <input type="submit" name="save_woo_afaq" class="button button-primary" value="Save FAQs">
         </form>

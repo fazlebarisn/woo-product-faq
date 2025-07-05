@@ -10,30 +10,17 @@
     console.log($("div.option-group-wrapper .options_group").length);
     // Disable the add button on page load if limit is reached
     if ($("div.option-group-wrapper .options_group").length >= MAX_SINGLE_FAQS) {
-      $(".faq-add-question")
-        .prop("disabled", true)
-        .text("Upgrade")
-        .css({
-          "background-color": "#ff9800",
-          "border-color": "#ff9800",
-          "color": "#fff"
-        })
-        .addClass("fbs-upgrade-button");
+      const $btn = $(".faq-add-question");
+      const $newBtn = $('<a href="https://tarunnerswapno.org/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
+      $btn.replaceWith($newBtn);
     }
 
     $(document.body).on("click", ".faq-add-question", function () {
       const $addBtn = $(this);
       const currentFaqs = $("div.option-group-wrapper .options_group").length;
       if (currentFaqs >= MAX_SINGLE_FAQS) {
-        $addBtn
-          .prop("disabled", true)
-          .text("Upgrade")
-          .css({
-            "background-color": "#ff9800",
-            "border-color": "#ff9800",
-            "color": "#fff"
-          })
-          .addClass("fbs-upgrade-button");
+        const $newBtn = $('<a href="https://tarunnerswapno.org/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
+        $addBtn.replaceWith($newBtn);
         alert("Upgrade to the Pro version to add more than 3 FAQs per product.");
         return;
       }
@@ -68,39 +55,31 @@
 
       // Restore the add button if under the limit (in case FAQs are removed)
       if ($("div.option-group-wrapper .options_group").length < MAX_SINGLE_FAQS) {
-        $(".faq-add-question")
-          .prop("disabled", false)
-          .text("Add Question")
-          .css({
-            "background-color": "",
-            "border-color": "",
-            "color": ""
-          })
-          .removeClass("fbs-upgrade-button");
+        const $upgradeBtn = $(".fbs-upgrade-button");
+        if ($upgradeBtn.length) {
+          const $newBtn = $('<button type="button" class="button faq-add-question">Add Question</button>');
+          $upgradeBtn.replaceWith($newBtn);
+        }
       }
     });
 
     // If you have a remove FAQ handler for single product, add this logic there as well:
-    // After removing an FAQ, restore the add button if under the limit
-    $(document.body).on("click", ".faq-remove-question", function () {
-      $(this).closest(".options_group").remove();
-      // Restore the add button if under the limit
-      if ($("div.option-group-wrapper .options_group").length < MAX_SINGLE_FAQS) {
-        $(".faq-add-question")
-          .prop("disabled", false)
-          .text("Add Question")
-          .css({
-            "background-color": "",
-            "border-color": "",
-            "color": ""
-          })
-          .removeClass("fbs-upgrade-button");
-      }
-    });
+          // After removing an FAQ, restore the add button if under the limit
+      $(document.body).on("click", ".faq-remove-question", function () {
+        $(this).closest(".options_group").remove();
+        // Restore the add button if under the limit
+        if ($("div.option-group-wrapper .options_group").length < MAX_SINGLE_FAQS) {
+          const $upgradeBtn = $(".fbs-upgrade-button");
+          if ($upgradeBtn.length) {
+            const $newBtn = $('<button type="button" class="button faq-add-question">Add Question</button>');
+            $upgradeBtn.replaceWith($newBtn);
+          }
+        }
+      });
 
     // Archive FAQ code start here
 
-    $("#fbs-add-faq-group").on("click", function () {
+    $(document.body).on("click", ".fbs-add-faq-group", function () {
       const currentGroups = $(
         "#faq-groups-container .fbs-faq-archive-group"
       ).length;
@@ -118,11 +97,9 @@
 
       // Disable the add group button if max reached
       if (groupIndex + 1 >= MAX_GROUPS_FREE) {
-        $("#fbs-add-faq-group")
-          .prop("disabled", true)
-          .css("opacity", 1)
-          .text("Upgrade")
-          .addClass("fbs-upgrade-button");
+        const $btn = $(".fbs-add-faq-group");
+        const $newBtn = $('<a href="https://tarunnerswapno.org/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
+        $btn.replaceWith($newBtn);
       }
     });
 
@@ -138,10 +115,11 @@
         ).length;
 
         if (currentGroups < MAX_GROUPS_FREE) {
-          $("#fbs-add-faq-group")
-            .prop("disabled", false)
-            .text("Add FAQ Group")
-            .removeClass("fbs-upgrade-button");
+          const $upgradeBtn = $(".fbs-upgrade-button");
+          if ($upgradeBtn.length) {
+            const $newBtn = $('<button type="button" class="button fbs-add-faq-group">Add FAQ Group</button>');
+            $upgradeBtn.replaceWith($newBtn);
+          }
         }
       }
     );
@@ -172,12 +150,9 @@
 
         // Disable the button if max reached
         if (faqIndex + 1 >= MAX_FAQS_FREE) {
-          groupEl
-            .find(".fsb-archive-add-faq-item")
-            .prop("disabled", true)
-            .css("opacity", 1)
-            .text("Upgrade")
-            .addClass("fbs-upgrade-button");
+          const $btn = groupEl.find(".fsb-archive-add-faq-item");
+          const $newBtn = $('<a href="https://tarunnerswapno.org/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
+          $btn.replaceWith($newBtn);
         }
       }
     );
@@ -193,11 +168,11 @@
         const currentFaqs = groupEl.find(".fbs-archive-faq-item").length;
 
         if (currentFaqs < MAX_FAQS_FREE) {
-          groupEl
-            .find(".fsb-archive-add-faq-item")
-            .prop("disabled", false)
-            .text("Add FAQ Item")
-            .removeClass("fbs-upgrade-button");
+          const $upgradeBtn = groupEl.find(".fbs-upgrade-button");
+          if ($upgradeBtn.length) {
+            const $newBtn = $('<button type="button" class="button fsb-archive-add-faq-item">Add New FAQ</button>');
+            $upgradeBtn.replaceWith($newBtn);
+          }
         }
       }
     );
@@ -210,8 +185,9 @@
       $(".wrap .fbs-product-archive-faq").append(upgradeHTML);
     }
 
-    $(document).on("click", ".fbs-upgrade-button", function (e) {
+    $(document.body).on("click", ".fbs-upgrade-button", function (e) {
       e.preventDefault();
+      e.stopPropagation();
       window.open("https://tarunnerswapno.org/", "_blank");
     });
 
