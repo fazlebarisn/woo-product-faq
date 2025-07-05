@@ -11,7 +11,7 @@
     // Disable the add button on page load if limit is reached
     if ($("div.option-group-wrapper .options_group").length >= MAX_SINGLE_FAQS) {
       const $btn = $(".faq-add-question");
-      const $newBtn = $('<a href="https://tarunnerswapno.org/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
+      const $newBtn = $('<a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
       $btn.replaceWith($newBtn);
     }
 
@@ -19,7 +19,7 @@
       const $addBtn = $(this);
       const currentFaqs = $("div.option-group-wrapper .options_group").length;
       if (currentFaqs >= MAX_SINGLE_FAQS) {
-        const $newBtn = $('<a href="https://tarunnerswapno.org/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
+        const $newBtn = $('<a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
         $addBtn.replaceWith($newBtn);
         alert("Upgrade to the Pro version to add more than 3 FAQs per product.");
         return;
@@ -98,7 +98,7 @@
       // Disable the add group button if max reached
       if (groupIndex + 1 >= MAX_GROUPS_FREE) {
         const $btn = $(".fbs-add-faq-group");
-        const $newBtn = $('<a href="https://tarunnerswapno.org/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
+        const $newBtn = $('<a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
         $btn.replaceWith($newBtn);
       }
     });
@@ -151,7 +151,7 @@
         // Disable the button if max reached
         if (faqIndex + 1 >= MAX_FAQS_FREE) {
           const $btn = groupEl.find(".fsb-archive-add-faq-item");
-          const $newBtn = $('<a href="https://tarunnerswapno.org/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
+          const $newBtn = $('<a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" class="button fbs-upgrade-button" style="background-color: #ff9800; border-color: #ff9800; color: #fff;">Upgrade</a>');
           $btn.replaceWith($newBtn);
         }
       }
@@ -177,18 +177,10 @@
       }
     );
 
-    function showUpgradeNotice(message) {
-      const upgradeHTML = `
-        <div class="notice notice-warning" style="margin-top:10px;">
-          <p>${message} <a href="https://yourplugin.com/pro" target="_blank">Upgrade to Pro</a></p>
-        </div>`;
-      $(".wrap .fbs-product-archive-faq").append(upgradeHTML);
-    }
-
     $(document.body).on("click", ".fbs-upgrade-button", function (e) {
       e.preventDefault();
       e.stopPropagation();
-      window.open("https://tarunnerswapno.org/", "_blank");
+      window.open("https://wpbay.com/product/product-faq-for-woocommerce-pro/", "_blank");
     });
 
     // Show/hide archive term row
@@ -201,14 +193,6 @@
         $termRow.hide();
       }
     });
-
-    // 🚀 Show one FAQ group and one FAQ item by default
-    // $("#fbs-add-faq-group").trigger("click");
-    // setTimeout(function () {
-    //   $("#faq-groups-container .fsb-archive-add-faq-item")
-    //     .first()
-    //     .trigger("click");
-    // }, 100);
 
     // Delegate input event on term field
     $("#faq-groups-container").on("focus", ".archive-term", function () {

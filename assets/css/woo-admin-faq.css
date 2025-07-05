@@ -3,10 +3,6 @@ button.faq-add-question.button.button-primary {
   margin-top: 10px;
   margin-left: 15px;
 }
-/* #frequently_asked_questions .options_group p:nth-child(even) {
-  background: red!important;
-  border-bottom: 2px solid #eee;
-} */
 
 .option-group-wrapper p.faq-note span {
   color: red;
@@ -232,12 +228,6 @@ button.faq-add-question.button.button-primary {
   margin-bottom: 5px;
 }
 
-/* Modern Product Archive FAQ Admin Design */
-.fbs-product-archive-faq {
-  /* background: #f6f8fa; */
-  padding: 30px 0 40px 0;
-}
-
 .fbs-product-archive-faq h1 {
   font-size: 2rem;
   margin-bottom: 30px;
@@ -246,6 +236,7 @@ button.faq-add-question.button.button-primary {
 
 #faq-groups-container {
   display: block;
+  overflow: hidden;
 }
 
 .fbs-faq-archive-group {
