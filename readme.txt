@@ -56,6 +56,9 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 
 == Changelog ==
 = 1.2.0 =
+* Reupload asset folder
+
+= 1.2.0 =
 * Fix faq group gutton issue.
 
 = 1.2.0 =
