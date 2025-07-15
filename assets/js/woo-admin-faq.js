@@ -7,7 +7,6 @@
 
     // Declare a global counter to track the number of FAQs
     var faqCounter = 1;
-    console.log($("div.option-group-wrapper .options_group").length);
     // Disable the add button on page load if limit is reached
     if ($("div.option-group-wrapper .options_group").length >= MAX_SINGLE_FAQS) {
       const $btn = $(".faq-add-question");
