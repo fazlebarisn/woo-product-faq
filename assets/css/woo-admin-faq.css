@@ -240,7 +240,7 @@ button.faq-add-question.button.button-primary {
 }
 
 .fbs-faq-archive-group {
-  width: 100%;
+  width: 98%;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(34,113,177,0.07), 0 1.5px 4px rgba(0,0,0,0.04);
@@ -252,8 +252,8 @@ button.faq-add-question.button.button-primary {
 
 .fbs-faq-archive-group .fbs-archive-remove-faq-group {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 5px;
+  right: 35px;
   background: #fff;
   color: #b32d2e;
   border: 1px solid #b32d2e;
