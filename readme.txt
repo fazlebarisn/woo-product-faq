@@ -2,10 +2,10 @@
 Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page
 Requires at least: 6.0
-Tested up to: 6.9.1
-WC tested up to: 9.9.5
+Tested up to: 6.8.2
+WC tested up to: 10.0.4
 Requires PHP: 7.3
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
