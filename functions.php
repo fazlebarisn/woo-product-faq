@@ -14,7 +14,7 @@ if (!function_exists('dd')) {
                 echo "</pre>";
             }
             $output = ob_get_clean(); // Get the buffered output and clear the buffer
-            echo $output; // Output the buffered content
+            echo esc_html($output); // Output the buffered content
         }
     }
 }
