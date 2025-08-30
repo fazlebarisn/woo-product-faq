@@ -78,13 +78,13 @@ class Menu{
         // register sections
         register_setting('woofaq-settings-group', 'product_faq');
         register_setting('woofaq-settings-group', 'product_faq_position');
-        register_setting('woofaq-settings-group', 'faq_heading', [$this, 'sanitizeFaqHeading']);
-        register_setting('woofaq-settings-group', 'faq_heading_color');
-        register_setting('woofaq-settings-group', 'faq_question_color');
-        register_setting('woofaq-settings-group', 'faq_ans_color');
-        register_setting('woofaq-settings-group', 'faq_heading_font_size', [$this, 'sanitizeFaqFontSize']);
-        register_setting('woofaq-settings-group', 'faq_question_font_size', [$this, 'sanitizeFaqFontSize']);
-        register_setting('woofaq-settings-group', 'faq_ans_font_size', [$this, 'sanitizeFaqFontSize']);
+        register_setting('woofaq-settings-group', 'faq_heading', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'faq_heading_color', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'faq_question_color', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'faq_ans_color', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'faq_heading_font_size', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'faq_question_font_size', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'faq_ans_font_size', [$this, 'sanitizeTextField']);
     }
 
     /**
@@ -115,19 +115,8 @@ class Menu{
      * @since 1.0.0
      * @author Fazle Bari <fazlebarisn@gmail.com> 
      */
-    public function sanitizeFaqHeading($input){
-        $output = sanitize_text_field($input);
-        return $output;
-    }
-    /**
-     * Sanitize font size data data before input
-     * 
-     * @return void
-     * @since 1.0.0
-     * @author Fazle Bari <fazlebarisn@gmail.com> 
-     */
-    public function sanitizeFaqFontSize($input){
-        $output = sanitize_text_field($input);
+    public function sanitizeTextField($input){
+        $output = sanitize_text_field(wp_unslash($input));
         return $output;
     }
 
