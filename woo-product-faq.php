@@ -4,14 +4,15 @@
 * Requires Plugins:     woocommerce
 * Plugin URI:           https://github.com/fazlebarisn/woo-product-faq
 * Description:          Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered.
-* Version:              1.2.3
+* Version:              1.2.4
 * Author:               Fazle Bari
 * Author URI:           https://github.com/fazlebarisn
-* Requires PHP:         7.2
-* Tested up to:         6.8.2
-* WC requires at least: 3.0.0
-* WC tested up to: 	    10.0.4
-* Licence:              GPL Or leater 
+* Requires PHP:         7.3
+* Tested up to:         6.8
+* WC requires at least: 5.0
+* WC tested up to: 	    10.1
+* License:              GPL v2 or later
+* License URI:          https://www.gnu.org/licenses/gpl-2.0.html
 * Text Domain:          product-faq-for-woocommerce
 * Domain Path:          /i18n/languages/
 * @package              woofaq
@@ -37,7 +38,7 @@ if( file_exists( dirname(__FILE__) . '/vendor/autoload.php') ){
     /**
      * defien plugin version
      */
-    const version = "1.2.3";
+    const version = "1.2.4";
 
     /**
      * class constructor
