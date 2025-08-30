@@ -26,8 +26,8 @@ if (!function_exists('dd')) {
 add_action('wp_ajax_faq_term_search', function () {
     check_ajax_referer('faq_nonce', 'nonce');
 
-    $term = sanitize_text_field($_GET['term']);
-    $taxonomy = sanitize_text_field($_GET['taxonomy']);
+    $term     = isset($_GET['term']) ? sanitize_text_field(wp_unslash($_GET['term'])) : '';
+    $taxonomy = isset($_GET['taxonomy']) ? sanitize_text_field(wp_unslash($_GET['taxonomy'])) : '';
 
     if (!in_array($taxonomy, ['product_cat', 'product_tag'])) {
         wp_send_json([]);

@@ -108,7 +108,7 @@ class ProductDataTab
     // save data
     function faq_save_field_data($post_id)
     {
-        $_data = $_POST['faq'] ?? [];
+        $_data = isset($_POST['faq']) ? sanitize_text_field(wp_unslash($_POST['faq'])) : '';
 
         if (! is_array($_data)) return;
         $sanitize_data = [];

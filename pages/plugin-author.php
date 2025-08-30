@@ -1,3 +1,6 @@
+<?php
+defined('ABSPATH') or die('Nice Try!');
+?>
 <div class="wrap fbs-author">
 
     <section class="heading">

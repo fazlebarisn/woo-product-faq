@@ -1,6 +1,8 @@
 <?php
+defined('ABSPATH') or die('Nice Try!');
+
 if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 'woo_afaq_nonce')) {
-    $raw_faq_groups = $_POST['faq_groups'] ?? [];
+    $raw_faq_groups = isset($_POST['faq_groups']) ? sanitize_text_field(wp_unslash($_POST['faq_groups'])) : [];
 
     $faq_groups = [];
 

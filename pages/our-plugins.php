@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') or die('Nice Try!');
+
 $faq_image = WOO_FAQ_ASSETS . '/img/product-faq.png';
 $group_product = WOO_FAQ_ASSETS . '/img/WPT-for-group-product.png';
 ?>

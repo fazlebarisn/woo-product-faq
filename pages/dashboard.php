@@ -1,3 +1,6 @@
+<?php
+defined('ABSPATH') or die('Nice Try!');
+?>
 <div class="wrap fbs-faq-admin">
     <h1>Product FAQ Settings</h1>
     <?php settings_errors(); ?>
