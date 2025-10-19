@@ -166,7 +166,7 @@
 }
 
 .fbs-faq-admin .woo-faq-settings-content .form-table select,
-.fbs-faq-admin .woo-faq-settings-content .form-table input[type="text"],
+/* .fbs-faq-admin .woo-faq-settings-content .form-table input[type="text"], */
 .fbs-faq-admin .woo-faq-settings-content .form-table input[type="color"] {
     width: 100%;
     max-width: 400px;
@@ -255,6 +255,69 @@
     .fbs-faq-admin .woo-faq-settings-nav .nav-tab.nav-tab-active::before {
         display: none;
     }
+}
+
+/* FAQ Product Tab Styles */
+.faq-group {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #f9fafb;
+}
+
+.faq-group .form-field {
+    margin-bottom: 15px;
+}
+
+.faq-group .form-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #374151;
+}
+
+.faq-group .faq_input {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 8px 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.faq-group .faq_input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.faq-group .faq-remove-question {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.faq-group .faq-remove-question:hover {
+    background: #dc2626 !important;
+    color: white !important;
+    border-color: #dc2626 !important;
+}
+
+.faq-note {
+    background: #fef3cd;
+    border: 1px solid #fbbf24;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 15px 0;
+    color: #92400e;
+}
+
+.faq-note span {
+    font-weight: 600;
 }
 
 /* Pro Features Styles */

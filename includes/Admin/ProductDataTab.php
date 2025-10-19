@@ -65,36 +65,62 @@ class ProductDataTab
         global $post;
         $value = get_post_meta($post->ID, 'faq', true);
 
-        $value = is_array($value) ? $value : array(
-            'question' => array(''),
-            'answer' => array(''),
-        );
+        // Ensure we have a proper array structure
+        if (!is_array($value) || !isset($value['question']) || !isset($value['answer'])) {
+            $value = array(
+                'question' => array(''),
+                'answer' => array(''),
+            );
+        }
+
+        // Ensure both arrays have the same length and are not empty
+        $max_count = max(count($value['question']), count($value['answer']), 1);
+        for ($i = 0; $i < $max_count; $i++) {
+            if (!isset($value['question'][$i])) {
+                $value['question'][$i] = '';
+            }
+            if (!isset($value['answer'][$i])) {
+                $value['answer'][$i] = '';
+            }
+        }
 
         $args = array();
 
         foreach ($value['question'] as $key => $val) {
-            echo '<div class="options_group">';
+            echo '<div class="options_group faq-group" data-index="' . esc_attr($key) . '">';
+            
+            // Add remove button for each FAQ item (except the first one)
+            if ($key > 0) {
+                echo '<button type="button" class="faq-remove-question" style="float:right; margin-top:5px; background:#fff; color:#b32d2e; border:1px solid #b32d2e; border-radius:50%; width:24px; height:24px; padding:0; cursor:pointer;">
+                    <span class="dashicons dashicons-no-alt" style="font-size:12px; line-height:22px;"></span>
+                </button>';
+            }
+            
             woocommerce_wp_text_input([
                 'id'        => 'faq_' . $key,
                 'name'      => 'faq[question][' . $key . ']',
-                'label'     =>  'Question',
+                'label'     =>  'Question ' . ($key + 1),
                 'class'     =>  'faq_input faq-question-box',
                 'type'      =>  'text',
                 'desc_tip'  =>  true,
                 'data_type' => 'text',
                 'value'     =>  $value['question'][$key] ?? '',
+                'placeholder' => 'Enter your question here...',
+                'style'     => 'width: 98%;',
             ]);
-            woocommerce_wp_text_input([
+            
+            woocommerce_wp_textarea_input([
                 'id'        => 'faq_ans_' . $key,
                 'name'      => 'faq[answer][' . $key . ']',
-                'label'     => 'Answer',
-                'class'     => 'faq_input',
-                'type'      => 'text',
+                'label'     => 'Answer ' . ($key + 1),
+                'class'     => 'faq_input faq-answer-box',
                 'desc_tip'  => true,
-                'data_type' => 'text',
                 'value'     =>  $value['answer'][$key] ?? '',
+                'placeholder' => 'Enter your answer here...',
+                'rows'      => 3,
+                'style'     => 'width: 100%;',
             ]);
-            // echo '<button type="button" class="faq-remove-question" style="float:right; background:#fff; color:#b32d2e; border-color:#b32d2e; margin-top:5px; padding:0; border-radius: 50%;"><span class="dashicons dashicons-no-alt"></span></button>';
+            
             echo '</div>';
         }
 
@@ -108,23 +134,43 @@ class ProductDataTab
     // save data
     function faq_save_field_data($post_id)
     {
-        $_data = isset($_POST['faq']) ? sanitize_text_field(wp_unslash($_POST['faq'])) : '';
+        // Check if this is an autosave
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return;
+        }
 
-        if (! is_array($_data)) return;
+        // Check user permissions
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
+        // Check if our FAQ data is being submitted
+        if (!isset($_POST['faq']) || !is_array($_POST['faq'])) {
+            return;
+        }
+
+        $_data = wp_unslash($_POST['faq']);
         $sanitize_data = [];
-        // dd($_data); die;
-        foreach ($_data as $key => $data) {
-            $each_data = isset($data)  && is_array($data) ? $data : false;
 
-            if ($each_data && ($key == 'question' || $key == 'answer')) {
-                $sanitize_data[$key] = array_filter($each_data, function ($item) {
-                    $sanitize_string = sanitize_text_field($item);
-                    return is_string($sanitize_string) && ! empty($sanitize_string);
-                });
+        foreach ($_data as $key => $data) {
+            if (!is_array($data) || !in_array($key, ['question', 'answer'])) {
+                continue;
+            }
+
+            $sanitize_data[$key] = array();
+            foreach ($data as $index => $item) {
+                if (!empty($item)) {
+                    $sanitize_data[$key][$index] = sanitize_text_field($item);
+                }
             }
         }
 
-        if (empty($sanitize_data)) return;
-        update_post_meta($post_id, 'faq', $sanitize_data);
+        // Only update if we have valid data
+        if (!empty($sanitize_data['question']) || !empty($sanitize_data['answer'])) {
+            $result = update_post_meta($post_id, 'faq', $sanitize_data);
+        } else {
+            // If no valid data, delete the meta
+            delete_post_meta($post_id, 'faq');
+        }
     }
 }

@@ -5,8 +5,9 @@
     const MAX_GROUPS_FREE = isProActive ? Infinity : 2;
     const MAX_FAQS_FREE = isProActive ? Infinity : 3;
 
-    // Declare a global counter to track the number of FAQs
-    var faqCounter = 1;
+    // Initialize FAQ counter based on existing FAQs
+    var faqCounter = $("div.option-group-wrapper .options_group").length;
+    
     // Disable the add button on page load if limit is reached
     if ($("div.option-group-wrapper .options_group").length >= MAX_SINGLE_FAQS) {
       const $btn = $(".faq-add-question");
@@ -24,25 +25,23 @@
         return;
       }
 
-      var lastFaqNumber = $(
-        "div.option-group-wrapper .options_group .faq-question-box"
-      ).length;
-      // Use the counter value directly and increment it for each new FAQ
-      var faqNumber = faqCounter + lastFaqNumber;
+      // Use the current counter value for the new FAQ
+      var faqNumber = faqCounter;
 
       // Use template literals for better readability
       var myElement = `
-              <div class="options_group">
-                  <button type="button" class="faq-remove-question" style="float:right; background:#fff; color:#b32d2e; border-color:#b32d2e; margin-top:5px; padding:0; border-radius: 50%;"><span class="dashicons dashicons-no-alt"></span></button>
+              <div class="options_group faq-group" data-index="${faqNumber}">
+                  <button type="button" class="faq-remove-question" style="float:right; margin-top:5px; background:#fff; color:#b32d2e; border:1px solid #b32d2e; border-radius:50%; width:24px; height:24px; padding:0; cursor:pointer;">
+                      <span class="dashicons dashicons-no-alt" style="font-size:12px; line-height:22px;"></span>
+                  </button>
                   <p class="form-field faq_${faqNumber}_field">
-                      <label for="faq_${faqNumber}">Question</label>
-                      <input type="text" class="faq_input" name="faq[question][${faqNumber}]" id="faq_${faqNumber}" value="" placeholder="Add Question">
+                      <label for="faq_${faqNumber}">Question ${faqNumber + 1}</label>
+                      <input type="text" class="faq_input faq-question-box" name="faq[question][${faqNumber}]" id="faq_${faqNumber}" value="" placeholder="Enter your question here..." style="width: 97%;">
                   </p>
                   <p class="form-field faq_ans_${faqNumber}_field">
-                      <label for="faq_ans_${faqNumber}">Answer</label>
-                      <input type="text" class="faq_input" name="faq[answer][${faqNumber}]" id="faq_ans_${faqNumber}" value="" placeholder="Add Answer">
+                      <label for="faq_ans_${faqNumber}">Answer ${faqNumber + 1}</label>
+                      <textarea class="faq_input faq-answer-box" name="faq[answer][${faqNumber}]" id="faq_ans_${faqNumber}" rows="3" placeholder="Enter your answer here..." style="width: 97%;"></textarea>
                   </p>
-                  
               </div>
           `;
 
