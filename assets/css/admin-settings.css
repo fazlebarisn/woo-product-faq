@@ -630,54 +630,198 @@
 }
 
 .archive-form-container {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border: 1px solid #e5e7eb;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.archive-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+.archive-form-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.15), 
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .form-actions {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e5e7eb;
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    position: relative;
+    overflow: hidden;
 }
 
-.fbs-add-faq-group {
+.form-actions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.fbs-product-archive-faq .archive-form-container .fbs-add-faq-group {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: #f3f4f6;
-    border: 2px solid #e5e7eb;
-    color: #374151;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border: 2px solid #cbd5e1;
+    color: #475569;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.fbs-add-faq-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
 }
 
 .fbs-add-faq-group:hover {
-    background: #e5e7eb;
-    border-color: #d1d5db;
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    border-color: #94a3b8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    color: #334155;
+}
+
+.fbs-add-faq-group:hover::before {
+    left: 100%;
+}
+
+.fbs-add-faq-group .dashicons {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.fbs-add-faq-group:hover .dashicons {
+    transform: rotate(90deg);
+}
+
+/* Enhanced Save Button in Form Actions */
+.fbs-product-archive-faq .form-actions .button-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 5px;
+    padding: 7px 12px;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-actions .button-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.form-actions .button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.form-actions .button-primary:hover::before {
+    left: 100%;
+}
+
+.form-actions .button-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+#faq-groups-container {
+    margin: 2rem 0;
+    min-height: 100px;
+    position: relative;
+}
+
+#faq-groups-container:empty::before {
+    content: 'No FAQ groups created yet. Click "Add FAQ Group" to get started.';
+    display: block;
+    text-align: center;
+    color: #64748b;
+    font-style: italic;
+    padding: 3rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 2px dashed #cbd5e1;
+    border-radius: 16px;
+    margin: 2rem 0;
 }
 
 .fbs-faq-archive-group {
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.fbs-faq-archive-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px 16px 0 0;
 }
 
 .fbs-faq-archive-group:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: #d1d5db;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: #cbd5e1;
 }
 
 .fbs-archive-remove-faq-group {
@@ -715,6 +859,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .fbs-faq-archive-group .form-table th,
@@ -779,7 +924,6 @@
 .term-pill {
     display: inline-block;
     background: #667eea;
-    color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     margin: 0.25rem;
@@ -807,6 +951,10 @@
     position: relative;
 }
 
+.fbs-archive-faq-item p {
+    margin-bottom: 0.5rem;
+}
+
 .fbs-archive-remove-faq-item {
     position: absolute;
     top: 1rem;
@@ -832,7 +980,7 @@
 .fbs-archive-faq-item label {
     font-weight: 500;
     color: #374151;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     display: block;
 }
 
@@ -844,7 +992,7 @@
     border-radius: 6px;
     font-size: 14px;
     transition: all 0.3s ease;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 .fbs-archive-faq-item input[type="text"]:focus,
