@@ -34,7 +34,7 @@ class AdminNotice{
         }
         
         // Show notice randomly (20% chance)
-        if (rand(1, 5) !== 1) {
+        if (wp_rand(1, 5) !== 1) {
             return;
         }
         
@@ -64,7 +64,7 @@ class AdminNotice{
             $('.woo-faq-pro-notice').on('click', '.notice-dismiss', function() {
                 $.post(ajaxurl, {
                     action: 'woo_faq_dismiss_pro_notice',
-                    nonce: '<?php echo wp_create_nonce('woo_faq_dismiss_pro_notice'); ?>'
+                    nonce: '<?php echo esc_js(wp_create_nonce('woo_faq_dismiss_pro_notice')); ?>'
                 });
             });
         });

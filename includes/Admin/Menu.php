@@ -78,8 +78,8 @@ class Menu{
      */
     public function wooFaqSettings(){
         // register sections
-        register_setting('woofaq-settings-group', 'product_faq');
-        register_setting('woofaq-settings-group', 'product_faq_position');
+        register_setting('woofaq-settings-group', 'product_faq', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'product_faq_position', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'faq_heading', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'faq_heading_color', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'faq_question_color', [$this, 'sanitizeTextField']);
