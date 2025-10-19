@@ -3,9 +3,9 @@ Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page
 Requires at least: 5.0
 Tested up to: 6.8
-WC tested up to: 10.1
+WC tested up to: 10.2.2
 Requires PHP: 7.3
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,22 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 5. Faq output in single product page
 
 == Changelog ==
+= 1.2.5 =
+* Modernized admin dashboard design with improved UI/UX
+* Enhanced FAQ product tab with better field styling and layout
+* Improved remove button design (icon-only, compact)
+* Fixed field width consistency between question and answer fields
+* Consolidated all admin CSS into centralized admin-settings.css file
+* Fixed FAQ data saving/updating issues in product tabs
+* Enhanced security with proper nonce verification and input sanitization
+* Replaced deprecated rand() with wp_rand() for better security
+* Removed external jQuery UI CSS resource for WordPress compliance
+* Added proper sanitization callbacks for all plugin settings
+* Improved JavaScript functionality for FAQ management
+* Enhanced mobile responsiveness across admin interfaces
+* Added modern styling with gradients, shadows, and smooth transitions
+* Improved accessibility and user experience throughout the plugin
+
 = 1.2.0 =
 * Reupload asset folder
 
@@ -75,7 +91,6 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 * Fixed Faq display issue on single product page. 
 * Tested with latest WooCommerce version.
 
-== Changelog ==
 = 1.1.7 =
 * Fixed single page design.
 * Tested with latest WooCommerce version 9.8.5
