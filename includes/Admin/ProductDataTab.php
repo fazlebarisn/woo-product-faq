@@ -144,11 +144,18 @@ class ProductDataTab
             return;
         }
 
+        // Verify nonce for security
+        if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'update-post_' . $post_id)) {
+            return;
+        }
+
         // Check if our FAQ data is being submitted
         if (!isset($_POST['faq']) || !is_array($_POST['faq'])) {
             return;
         }
 
+        // Sanitize the FAQ data array
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- wp_unslash() is used, individual sanitization happens in the loop
         $_data = wp_unslash($_POST['faq']);
         $sanitize_data = [];
 
