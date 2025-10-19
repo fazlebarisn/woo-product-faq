@@ -23,8 +23,9 @@ Whether you're selling physical products, digital downloads, or services, this p
 **individual product** : Go to 'Product data' section on the product edit page. Click on FAQ tab.
 **Bulk Entry** : Look for 'Bulk FAQ' menu under 'Product FAQ'on the WordPress dashboard.
 
-🎥 **Watch the demo video:**  
-[How To Use](https://www.youtube.com/watch?v=nHY8yj2fuE8)
+**How to use Product FAQ for WooCommerce**
+
+https://www.youtube.com/watch?v=nHY8yj2fuE8
 
 = ✨ Key Features =
 * Create FAQ groups and items and add bulk FAQ by categories.
