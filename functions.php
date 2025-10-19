@@ -49,3 +49,18 @@ add_action('wp_ajax_faq_term_search', function () {
 
     wp_send_json($formatted);
 });
+
+/**
+ * Handle dismissing pro promotion notice
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ */
+add_action('wp_ajax_woo_faq_dismiss_pro_notice', function () {
+    check_ajax_referer('woo_faq_dismiss_pro_notice', 'nonce');
+    
+    $user_id = get_current_user_id();
+    if ($user_id) {
+        update_user_meta($user_id, 'woo_faq_pro_notice_dismissed', true);
+    }
+    
+    wp_send_json_success();
+});

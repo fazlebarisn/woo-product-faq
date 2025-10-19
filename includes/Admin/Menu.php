@@ -12,6 +12,7 @@ class Menu{
         add_action('admin_init', [$this, 'wooFaqSettings']);
 
         add_action('load-toplevel_page_woo_sfaq', [$this, 'enqueueAssets']);
+        add_action('load-product-faq_page_woo_afaq', [$this, 'enqueueAssets']);
     }
 
     /**
@@ -32,7 +33,8 @@ class Menu{
      */
     public function settingsLink( $links ){
         $settings_link = '<a href="admin.php?page=woo_sfaq">Settings</a>';
-        array_push($links,$settings_link);
+        $pro_link = '<a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" style="color: #667eea; font-weight: 600;">🚀 Upgrade to Pro</a>';
+        array_push($links, $settings_link, $pro_link);
         return $links;
     }
     /**

@@ -40,14 +40,40 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 
 <div class="wrap">
     <div class="fbs-product-archive-faq">
-        <h1>Settings for Product Archive FAQ</h1>
-        <form method="post" action="">
-            <?php wp_nonce_field('save_woo_afaq_data', 'woo_afaq_nonce'); ?>
-            <div id="faq-groups-container"></div>
-            <p><button type="button" class="button fbs-add-faq-group">Add FAQ Group</button></p>
-            <hr>
-            <input type="submit" name="save_woo_afaq" class="button button-primary" value="Save FAQs">
-        </form>
+        <div class="archive-header">
+            <h1>🚀 Bulk FAQ Management</h1>
+            <p class="archive-description">Create FAQ groups that automatically apply to products based on categories, tags, or custom taxonomies.</p>
+        </div>
+        
+        <!-- Pro Upgrade Banner -->
+        <div class="pro-upgrade-banner">
+            <div class="pro-banner-content">
+                <div class="pro-banner-icon">⭐</div>
+                <div class="pro-banner-text">
+                    <h3>Unlock Advanced Bulk FAQ Features</h3>
+                    <p>Get unlimited FAQ groups, advanced filtering, and priority support with our Pro version.</p>
+                </div>
+                <div class="pro-banner-action">
+                    <a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" class="pro-banner-button">
+                        Upgrade to Pro
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="archive-form-container">
+            <form method="post" action="">
+                <?php wp_nonce_field('save_woo_afaq_data', 'woo_afaq_nonce'); ?>
+                <div id="faq-groups-container"></div>
+                <div class="form-actions">
+                    <button type="button" class="button button-secondary fbs-add-faq-group">
+                        <span class="dashicons dashicons-plus-alt"></span>
+                        Add FAQ Group
+                    </button>
+                    <input type="submit" name="save_woo_afaq" class="button button-primary" value="Save All FAQs">
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -198,12 +224,4 @@ if (!empty($saved_data)) {
         });
     });
     </script>
-
-    <style>
-    .fbs-term-error {
-      color: #b32d2e;
-      font-size: 14px;
-      margin-top: 6px;
-    }
-    </style>
 <?php } ?>
