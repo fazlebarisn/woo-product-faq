@@ -12,7 +12,9 @@ defined('ABSPATH') or die('Nice Try!');
             <div class="woo-faq-settings-nav">
                 <button type="button" class="nav-tab" data-target="tab-general">General</button>
                 <button type="button" class="nav-tab" data-target="tab-design">Design</button>
+                <?php if ( ! in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) : ?>
                 <button type="button" class="nav-tab" data-target="tab-pro">🚀 Pro Features</button>
+                <?php endif; ?>
             </div>
             <div class="woo-faq-settings-content">
                 <div id="tab-general" class="tab-content">
@@ -61,6 +63,7 @@ defined('ABSPATH') or die('Nice Try!');
                         </tr>
                     </table>
                 </div>
+                <?php if ( ! in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) : ?>
                 <div id="tab-pro" class="tab-content">
                     <h2>🚀 Upgrade to Pro</h2>
                     <div class="pro-features-container">
@@ -170,6 +173,7 @@ defined('ABSPATH') or die('Nice Try!');
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
         

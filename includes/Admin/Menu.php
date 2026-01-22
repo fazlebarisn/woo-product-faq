@@ -33,8 +33,15 @@ class Menu{
      */
     public function settingsLink( $links ){
         $settings_link = '<a href="admin.php?page=woo_sfaq">Settings</a>';
-        $pro_link = '<a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" style="color: #667eea; font-weight: 600;">🚀 Upgrade to Pro</a>';
-        array_push($links, $settings_link, $pro_link);
+        
+        // Only show upgrade link if pro plugin is not active
+        if ( ! in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+            $pro_link = '<a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" style="color: #667eea; font-weight: 600;">🚀 Upgrade to Pro</a>';
+            array_push($links, $settings_link, $pro_link);
+        } else {
+            array_push($links, $settings_link);
+        }
+        
         return $links;
     }
     /**

@@ -47,6 +47,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
         </div>
         
         <!-- Pro Upgrade Banner -->
+        <?php if ( ! in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) : ?>
         <div class="pro-upgrade-banner">
             <div class="pro-banner-content">
                 <div class="pro-banner-icon">⭐</div>
@@ -61,6 +62,7 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
                 </div>
             </div>
         </div>
+        <?php endif; ?>
         
         <div class="archive-form-container">
             <form method="post" action="">

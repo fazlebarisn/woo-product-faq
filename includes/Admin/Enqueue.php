@@ -19,6 +19,12 @@ class Enqueue{
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('faq_nonce')
         ]);
+        
+        // Check if pro plugin is active and localize accordingly
+        $is_pro_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+        wp_localize_script('faq-admin-script', 'wooFaqPro', [
+            'is_pro' => $is_pro_active,
+        ]);
     }
     
 }

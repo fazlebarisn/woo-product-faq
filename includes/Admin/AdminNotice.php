@@ -21,6 +21,11 @@ class AdminNotice{
     }
     
     public function pro_promotion_notice(){
+        // Don't show if pro plugin is active
+        if ( in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+            return;
+        }
+        
         // Only show on plugin pages and occasionally
         $screen = get_current_screen();
         if ( !$screen || strpos($screen->id, 'woo_') === false ) {
