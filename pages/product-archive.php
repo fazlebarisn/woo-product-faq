@@ -2,39 +2,94 @@
 defined('ABSPATH') or die('Nice Try!');
 
 if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 'woo_afaq_nonce')) {
-    // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- wp_unslash() is used, individual sanitization happens in the loop
-    $raw_faq_groups = isset($_POST['faq_groups']) ? wp_unslash($_POST['faq_groups']) : [];
+    // Check if pro plugin is active first
+    $is_pro_plugin_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+    
+    // Only check license if pro plugin is active
+    // If pro plugin is deactivated, allow saving (free limits enforced by JavaScript)
+    if ( $is_pro_plugin_active ) {
+        $is_license_active = false;
+        if ( function_exists( 'faq_pro_is_license_active' ) ) {
+            $is_license_active = faq_pro_is_license_active();
+        }
+        
+        // Block saving if pro plugin is active but license is not
+        if ( ! $is_license_active ) {
+            echo '<div class="notice notice-error is-dismissible"><p>Please activate your license to use pro features.</p></div>';
+            // Don't process the save, just show the error and return
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- wp_unslash() is used, individual sanitization happens in the loop
+        } else {
+            // License is active, proceed with save (unlimited)
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- wp_unslash() is used, individual sanitization happens in the loop
+            $raw_faq_groups = isset($_POST['faq_groups']) ? wp_unslash($_POST['faq_groups']) : [];
 
-    $faq_groups = [];
+            $faq_groups = [];
 
-    foreach ($raw_faq_groups as $group) {
-        if (empty($group['archive_type']) || empty($group['archive_terms'])) continue;
+            foreach ($raw_faq_groups as $group) {
+                if (empty($group['archive_type']) || empty($group['archive_terms'])) continue;
 
-        $archive_type = sanitize_text_field($group['archive_type']);
-        $archive_terms = array_map('intval', (array) $group['archive_terms']);
+                $archive_type = sanitize_text_field($group['archive_type']);
+                $archive_terms = array_map('intval', (array) $group['archive_terms']);
 
-        $faqs = [];
-        if (!empty($group['faqs']) && is_array($group['faqs'])) {
-            foreach ($group['faqs'] as $faq) {
-                $question = sanitize_text_field($faq['question'] ?? '');
-                $answer = sanitize_textarea_field($faq['answer'] ?? '');
+                $faqs = [];
+                if (!empty($group['faqs']) && is_array($group['faqs'])) {
+                    foreach ($group['faqs'] as $faq) {
+                        $question = sanitize_text_field($faq['question'] ?? '');
+                        $answer = sanitize_textarea_field($faq['answer'] ?? '');
 
-                if ($question && $answer) {
-                    $faqs[] = compact('question', 'answer');
+                        if ($question && $answer) {
+                            $faqs[] = compact('question', 'answer');
+                        }
+                    }
+                }
+
+                $faq_groups[] = [
+                    'archive_type' => $archive_type,
+                    'archive_terms' => $archive_terms,
+                    'faqs' => $faqs,
+                ];
+            }
+
+            update_option('woo_afaq_global_groups', $faq_groups);
+
+            echo '<div class="notice notice-success is-dismissible"><p>FAQ groups saved successfully!</p></div>';
+        }
+    } else {
+        // Pro plugin is not active, allow saving with free limits (JavaScript enforces limits)
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- wp_unslash() is used, individual sanitization happens in the loop
+        $raw_faq_groups = isset($_POST['faq_groups']) ? wp_unslash($_POST['faq_groups']) : [];
+
+        $faq_groups = [];
+
+        foreach ($raw_faq_groups as $group) {
+            if (empty($group['archive_type']) || empty($group['archive_terms'])) continue;
+
+            $archive_type = sanitize_text_field($group['archive_type']);
+            $archive_terms = array_map('intval', (array) $group['archive_terms']);
+
+            $faqs = [];
+            if (!empty($group['faqs']) && is_array($group['faqs'])) {
+                foreach ($group['faqs'] as $faq) {
+                    $question = sanitize_text_field($faq['question'] ?? '');
+                    $answer = sanitize_textarea_field($faq['answer'] ?? '');
+
+                    if ($question && $answer) {
+                        $faqs[] = compact('question', 'answer');
+                    }
                 }
             }
+
+            $faq_groups[] = [
+                'archive_type' => $archive_type,
+                'archive_terms' => $archive_terms,
+                'faqs' => $faqs,
+            ];
         }
 
-        $faq_groups[] = [
-            'archive_type' => $archive_type,
-            'archive_terms' => $archive_terms,
-            'faqs' => $faqs,
-        ];
+        update_option('woo_afaq_global_groups', $faq_groups);
+
+        echo '<div class="notice notice-success is-dismissible"><p>FAQ groups saved successfully!</p></div>';
     }
-
-    update_option('woo_afaq_global_groups', $faq_groups);
-
-    echo '<div class="notice notice-success is-dismissible"><p>FAQ groups saved successfully!</p></div>';
 }
 
 ?>
@@ -47,7 +102,15 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
         </div>
         
         <!-- Pro Upgrade Banner -->
-        <?php if ( ! in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) : ?>
+        <?php 
+        $is_pro_plugin_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+        $is_license_active = false;
+        if ( $is_pro_plugin_active && function_exists( 'faq_pro_is_license_active' ) ) {
+            $is_license_active = faq_pro_is_license_active();
+        }
+        // Show upgrade banner only if pro plugin is not active (not if license is inactive)
+        if ( ! $is_pro_plugin_active ) : 
+        ?>
         <div class="pro-upgrade-banner">
             <div class="pro-banner-content">
                 <div class="pro-banner-icon">⭐</div>
@@ -64,16 +127,20 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
         </div>
         <?php endif; ?>
         
-        <div class="archive-form-container">
-            <form method="post" action="">
+            <div class="archive-form-container">
+                <?php
+                // License notice removed - SDK will show its own notice
+                // Only disable form if pro plugin is active but license is not
+                ?>
+                <form method="post" action="" <?php echo ( $is_pro_plugin_active && ! $is_license_active ) ? 'style="opacity: 0.5; pointer-events: none;"' : ''; ?>>
                 <?php wp_nonce_field('save_woo_afaq_data', 'woo_afaq_nonce'); ?>
                 <div id="faq-groups-container"></div>
                 <div class="form-actions">
-                    <button type="button" class="button button-secondary fbs-add-faq-group">
+                    <button type="button" class="button button-secondary fbs-add-faq-group" <?php echo ( $is_pro_plugin_active && ! $is_license_active ) ? 'disabled' : ''; ?>>
                         <span class="dashicons dashicons-plus-alt"></span>
                         Add FAQ Group
                     </button>
-                    <input type="submit" name="save_woo_afaq" class="button button-primary" value="Save All FAQs">
+                    <input type="submit" name="save_woo_afaq" class="button button-primary" value="Save All FAQs" <?php echo ( $is_pro_plugin_active && ! $is_license_active ) ? 'disabled' : ''; ?>>
                 </div>
             </form>
         </div>

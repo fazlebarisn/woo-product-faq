@@ -20,10 +20,20 @@ class Enqueue{
             'nonce'    => wp_create_nonce('faq_nonce')
         ]);
         
-        // Check if pro plugin is active and localize accordingly
-        $is_pro_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+        // Check if pro plugin is active AND license is valid
+        $is_pro_plugin_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+        
+        // Check if license is active (only if pro plugin is active)
+        $is_license_active = false;
+        if ( $is_pro_plugin_active && function_exists( 'faq_pro_is_license_active' ) ) {
+            $is_license_active = faq_pro_is_license_active();
+        }
+        
+        // Only enable pro features if both plugin is active AND license is valid
+        $is_pro = $is_pro_plugin_active && $is_license_active;
+        
         wp_localize_script('faq-admin-script', 'wooFaqPro', [
-            'is_pro' => $is_pro_active,
+            'is_pro' => $is_pro,
         ]);
     }
     
