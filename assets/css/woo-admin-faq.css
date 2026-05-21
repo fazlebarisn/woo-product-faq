@@ -31,15 +31,10 @@ button.faq-add-question.button.button-primary {
 }
 
 .wrap.fbs-plugins article {
-  --img-scale: 1.001;
-  --title-color: black;
-  --link-icon-translate: -20px;
-  --link-icon-opacity: 0;
   position: relative;
   border-radius: 16px;
   box-shadow: none;
   background: #fff;
-  transform-origin: center;
   transition: all 0.4s ease-in-out;
   overflow: hidden;
 }
@@ -71,9 +66,7 @@ button.faq-add-question.button.button-primary {
 
 .wrap.fbs-plugins article img {
   max-width: 100%;
-  transform-origin: center;
-  transform: scale(var(--img-scale));
-  transition: transform 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
 }
 
 .wrap.fbs-plugins .article-body {
@@ -98,19 +91,18 @@ button.faq-add-question.button.button-primary {
   min-width: 24px;
   width: 24px;
   height: 24px;
-  margin-left: 5px;
-  transform: translateX(var(--link-icon-translate));
-  opacity: var(--link-icon-opacity);
+  margin-left: -15px;
+  opacity: 0;
   transition: all 0.3s;
 }
 
-/* using the has() relational pseudo selector to update our custom properties */
 .wrap.fbs-plugins article:has(:hover, :focus) {
-  --img-scale: 1.1;
-  --title-color: #28666e;
-  --link-icon-translate: 0;
-  --link-icon-opacity: 1;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.wrap.fbs-plugins article:has(:hover, :focus) a .icon {
+  margin-left: 5px;
+  opacity: 1;
 }
 
 
@@ -228,104 +220,4 @@ button.faq-add-question.button.button-primary {
   margin-bottom: 5px;
 }
 
-.fbs-product-archive-faq h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #222;
-}
 
-#faq-groups-container {
-  display: block;
-  overflow: hidden;
-}
-
-.fbs-faq-archive-group {
-  width: 98%;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(34,113,177,0.07), 0 1.5px 4px rgba(0,0,0,0.04);
-  border: 1px solid #e3e8ee;
-  padding: 32px 24px 24px 24px;
-  margin-bottom: 32px;
-  position: relative;
-}
-
-.fbs-faq-archive-group .fbs-archive-remove-faq-group {
-  position: absolute;
-  top: 5px;
-  right: 35px;
-  background: #fff;
-  color: #b32d2e;
-  border: 1px solid #b32d2e;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
-  font-weight: bold;
-  box-shadow: 0 1px 3px rgba(34,113,177,0.04);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  z-index: 2;
-}
-.fbs-faq-archive-group .fbs-archive-remove-faq-group:hover {
-  background: #b32d2e;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(179,45,46,0.13);
-}
-
-.fbs-archive-faq-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.fbs-archive-faq-item {
-  background: #f8fafc;
-  border: 1.5px solid #e3e8ee;
-  border-radius: 8px;
-  padding: 18px 16px 16px 16px;
-  margin-bottom: 0;
-  position: relative;
-  box-shadow: 0 1px 3px rgba(34,113,177,0.04);
-  width: 48%;
-  min-width: 260px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.fbs-archive-faq-item button.fbs-archive-remove-faq-item {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #fff;
-  color: #b32d2e;
-  border: 1px solid #b32d2e;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1em;
-  font-weight: bold;
-  box-shadow: 0 1px 3px rgba(34,113,177,0.04);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  z-index: 2;
-}
-.fbs-archive-faq-item button.fbs-archive-remove-faq-item:hover {
-  background: #b32d2e;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(179,45,46,0.13);
-}
-
-@media (max-width: 900px) {
-  .fbs-archive-faq-item {
-    width: 100%;
-    min-width: 0;
-  }
-}

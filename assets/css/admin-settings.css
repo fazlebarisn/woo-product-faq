@@ -74,8 +74,7 @@
     content: '';
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    top: calc(50% - 8px);
     width: 0;
     height: 0;
     border-top: 8px solid transparent;
@@ -216,12 +215,11 @@
 }
 
 .fbs-faq-admin .button-primary:hover {
-    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 .fbs-faq-admin .button-primary:active {
-    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 /* Responsive Design */
@@ -370,7 +368,6 @@
 
 .pro-upgrade-button:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
     color: white;
 }
 
@@ -409,7 +406,6 @@
 }
 
 .pro-feature-card:hover {
-    transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -526,7 +522,6 @@
 }
 
 .pro-cta-button:hover {
-    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     color: white;
 }
@@ -625,7 +620,6 @@
 
 .pro-banner-button:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
     color: white;
 }
 
@@ -655,7 +649,6 @@
 }
 
 .archive-form-container:hover {
-    transform: translateY(-2px);
     box-shadow: 
         0 25px 50px -12px rgba(0, 0, 0, 0.15), 
         0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -686,19 +679,26 @@
 }
 
 .fbs-product-archive-faq .archive-form-container .fbs-add-faq-group {
-    display: inline-flex;
-    align-items: center;
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    border: 2px solid #cbd5e1;
-    color: #475569;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    height: 38px !important;
+    box-sizing: border-box !important;
+    gap: 8px !important;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+    border: 2px solid #cbd5e1 !important;
+    color: #475569 !important;
+    padding: 0 20px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
 }
 
 .fbs-add-faq-group::before {
@@ -713,11 +713,10 @@
 }
 
 .fbs-add-faq-group:hover {
-    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-    border-color: #94a3b8;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    color: #334155;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+    border-color: #94a3b8 !important;
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+    color: #334155 !important;
 }
 
 .fbs-add-faq-group:hover::before {
@@ -725,29 +724,56 @@
 }
 
 .fbs-add-faq-group .dashicons {
-    font-size: 16px;
-    transition: transform 0.3s ease;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    transition: color 0.3s ease !important;
+}
+
+.fbs-add-faq-group .dashicons::before {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
 }
 
 .fbs-add-faq-group:hover .dashicons {
-    transform: rotate(90deg);
+    color: #4f46e5 !important;
 }
 
 /* Enhanced Save Button in Form Actions */
 .fbs-product-archive-faq .form-actions .button-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    border-radius: 5px;
-    padding: 7px 12px;
-    font-weight: 600;
-    font-size: 14px;
-    color: white;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: 2px solid transparent !important;
+    height: 38px !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+    padding: 0 24px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    color: white !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+    cursor: pointer !important;
 }
 
 .form-actions .button-primary::before {
@@ -762,7 +788,6 @@
 }
 
 .form-actions .button-primary:hover {
-    transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
     background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
 }
@@ -772,7 +797,6 @@
 }
 
 .form-actions .button-primary:active {
-    transform: translateY(0);
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
@@ -798,119 +822,169 @@
 .fbs-faq-archive-group {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border: 1px solid rgba(226, 232, 240, 0.8);
+    border-left: 5px solid #667eea;
     border-radius: 16px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-}
-
-.fbs-faq-archive-group::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    border-radius: 16px 16px 0 0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
 }
 
 .fbs-faq-archive-group:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    border-color: #cbd5e1;
+    box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.1), 0 8px 12px -4px rgba(0, 0, 0, 0.04);
+    border-color: rgba(102, 126, 234, 0.4);
+}
+
+.fbs-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.fbs-group-title {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fbs-group-title .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: #667eea;
 }
 
 .fbs-archive-remove-faq-group {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: #ef4444;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 6px;
+    background: #fef2f2 !important;
+    color: #ef4444 !important;
+    border: 1px solid #fee2e2 !important;
+    border-radius: 8px !important;
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease-in-out;
 }
 
 .fbs-archive-remove-faq-group:hover {
-    background: #dc2626;
-    transform: scale(1.1);
+    background: #ef4444 !important;
+    color: #ffffff !important;
+    border-color: #ef4444 !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }
 
-.fbs-faq-archive-group h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin: 0 0 1.5rem 0;
-    padding-right: 3rem;
+.fbs-archive-remove-faq-group .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
 }
 
-.fbs-faq-archive-group .form-table {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+/* Compact settings row and elements */
+.fbs-group-settings {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 24px !important;
+    align-items: flex-start !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 18px 24px !important;
+    margin-bottom: 24px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
 }
 
-.fbs-faq-archive-group .form-table th,
-.fbs-faq-archive-group .form-table td {
-    padding: 1rem;
-    border-bottom: 1px solid #f3f4f6;
+.fbs-settings-field {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    flex: 1 !important;
+    min-width: 250px !important;
 }
 
-.fbs-faq-archive-group .form-table th {
-    background: #f9fafb;
-    font-weight: 600;
-    color: #374151;
-    width: 150px;
+.fbs-settings-label {
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    color: #475569 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin: 0 !important;
 }
 
 .fbs-faq-archive-group select,
-.fbs-faq-archive-group input[type="text"] {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: all 0.3s ease;
+.fbs-faq-archive-group input.archive-term {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 40px !important;
+    padding: 0 14px !important;
+    border: 2px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-family: inherit !important;
+    color: #334155 !important;
+    background-color: #ffffff !important;
+    box-sizing: border-box !important;
+    transition: all 0.2s ease !important;
+}
+
+.fbs-faq-archive-group select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 0.75rem center !important;
+    background-repeat: no-repeat !important;
+    background-size: 1.5em 1.5em !important;
+    padding-right: 2.5rem !important;
+    appearance: none !important;
 }
 
 .fbs-faq-archive-group select:focus,
-.fbs-faq-archive-group input[type="text"]:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+.fbs-faq-archive-group input.archive-term:focus {
+    outline: none !important;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15) !important;
+}
+
+.search-term-wrapper {
+    position: relative;
+    max-width: 400px;
 }
 
 .term-suggestions {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    max-height: 200px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    max-height: 220px;
     overflow-y: auto;
-    margin-top: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-top: 6px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    z-index: 99;
 }
 
 .term-suggestion {
-    padding: 0.75rem;
+    padding: 10px 14px;
     cursor: pointer;
-    border-bottom: 1px solid #f3f4f6;
+    color: #475569;
+    font-size: 14px;
+    border-bottom: 1px solid #f1f5f9;
     transition: background-color 0.2s ease;
 }
 
 .term-suggestion:hover {
-    background: #f3f4f6;
+    background: #f8fafc;
+    color: #667eea;
 }
 
 .term-suggestion:last-child {
@@ -918,112 +992,302 @@
 }
 
 .selected-terms {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .term-pill {
-    display: inline-block;
-    background: #667eea;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    margin: 0.25rem;
-    font-size: 14px;
-    font-weight: 500;
+    display: inline-flex !important;
+    align-items: center !important;
+    background: rgba(102, 126, 234, 0.06) !important;
+    border: 1px solid rgba(102, 126, 234, 0.15) !important;
+    color: #4f46e5 !important;
+    padding: 5px 10px 5px 14px !important;
+    border-radius: 100px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+    margin: 4px !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.term-pill:hover {
+    background: rgba(102, 126, 234, 0.1) !important;
+    border-color: rgba(102, 126, 234, 0.25) !important;
 }
 
 .remove-term {
-    margin-left: 0.5rem;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-weight: bold;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: 6px !important;
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    transition: all 0.2s ease-in-out !important;
 }
 
 .remove-term:hover {
-    color: white;
+    color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.1) !important;
 }
 
+/* Responsive Grid Layout for FAQ Items */
+.fbs-archive-faq-items {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 2rem 0 !important;
+}
+
+/* Individual FAQ Card Redesign */
 .fbs-archive-faq-item {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    position: relative;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    transition: all 0.25s ease-in-out !important;
 }
 
-.fbs-archive-faq-item p {
-    margin-bottom: 0.5rem;
+.fbs-archive-faq-item:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+    border-color: #cbd5e1 !important;
 }
 
-.fbs-archive-remove-faq-item {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: #ef4444;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
+/* FAQ Item Header */
+.fbs-faq-item-header {
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 48px;
+    box-sizing: border-box;
+}
+
+.fbs-faq-item-title {
+    font-weight: 600;
+    color: #475569;
+    font-size: 13px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fbs-faq-item-title .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: #667eea;
+}
+
+/* Gorgeous Clean Remove Button */
+.fbs-archive-remove-faq-item {
+    position: static !important; /* Reset absolute position */
+    background: transparent !important;
+    color: #94a3b8 !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 28px !important;
+    height: 28px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
 }
 
 .fbs-archive-remove-faq-item:hover {
-    background: #dc2626;
-    transform: scale(1.1);
+    background: #fef2f2 !important;
+    color: #ef4444 !important;
 }
 
-.fbs-archive-faq-item label {
-    font-weight: 500;
-    color: #374151;
-    margin-bottom: 0;
-    display: block;
+.fbs-archive-remove-faq-item .dashicons {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+    line-height: 18px !important;
+}
+
+/* FAQ Item Body */
+.fbs-faq-item-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-sizing: border-box;
+}
+
+.fbs-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.fbs-field-label {
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    color: #475569 !important;
+    text-transform: capitalize;
 }
 
 .fbs-archive-faq-item input[type="text"],
 .fbs-archive-faq-item textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    margin-bottom: 0;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: #ffffff !important;
+    border: 2px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    color: #334155 !important;
+    transition: all 0.25s ease !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+.fbs-archive-faq-item input[type="text"]::placeholder,
+.fbs-archive-faq-item textarea::placeholder {
+    color: #94a3b8;
 }
 
 .fbs-archive-faq-item input[type="text"]:focus,
 .fbs-archive-faq-item textarea:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none !important;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15) !important;
+    background: #ffffff !important;
+}
+
+/* Actions inside the group card */
+.group-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f1f5f9;
 }
 
 .fsb-archive-add-faq-item {
-    background: #f3f4f6;
-    border: 2px solid #e5e7eb;
-    color: #374151;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    height: 38px !important;
+    box-sizing: border-box !important;
+    gap: 8px !important;
+    background: #ffffff !important;
+    border: 2px solid #e2e8f0 !important;
+    color: #475569 !important;
+    padding: 0 20px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
 
 .fsb-archive-add-faq-item:hover {
-    background: #e5e7eb;
-    border-color: #d1d5db;
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+    color: #334155 !important;
+}
+
+.fsb-archive-add-faq-item .dashicons {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    transition: color 0.3s ease !important;
+}
+
+.fsb-archive-add-faq-item .dashicons::before {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+.fsb-archive-add-faq-item:hover .dashicons {
+    color: #4f46e5 !important;
 }
 
 .fbs-term-error {
-    color: #dc2626;
-    font-size: 14px;
+    color: #ef4444;
+    font-size: 13px;
     margin-top: 6px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .fbs-faq-archive-group {
+        padding: 1.5rem;
+    }
+    
+    .fbs-group-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .fbs-archive-remove-faq-group {
+        width: 100% !important;
+        justify-content: center;
+    }
+    
+    .fbs-archive-faq-items {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .group-actions {
+        justify-content: stretch;
+    }
+    
+    .fsb-archive-add-faq-item {
+        width: 100% !important;
+        justify-content: center;
+    }
 }
 
 /* Mobile Responsive for Pro Features */

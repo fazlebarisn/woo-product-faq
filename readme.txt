@@ -2,10 +2,10 @@
 Contributors: fazlebari
 Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page
 Requires at least: 5.0
-Tested up to: 6.9
-WC tested up to: 10.4.3
+Tested up to: 7.0
+WC tested up to: 10.7.0
 Requires PHP: 7.3
-Stable tag: 1.2.8
+Stable tag: 1.3.0
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,17 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 5. Faq output in single product page
 
 == Changelog ==
+
+= 1.3.0 =
+* Compatible with WordPress 7.0
+* Compatible with WooCommerce 10.7.0
+* Major overhaul of the Bulk FAQ Management interface with a clean, user-friendly, and modern SaaS-like design
+* Fixed overlap issue of individual FAQ close/remove button by placing it in card headers
+* Redesigned settings panel into a sleek, compact side-by-side flex layout to save massive vertical space
+* Unified heights, border-radii, paddings, and borders of select dropdowns and search inputs to be pixel-perfect identical
+* Fixed visual bug where an empty suggestions container rendered a stray border line by automatically hiding it when empty
+* Removed all transition transforms across the plugin to ensure a perfectly flat, clean, and modern styling flow
+* Centered vertical alignments of add/save buttons and standardized matching 38px button heights
 
 = 1.2.8 = 
 * Fix notification issues

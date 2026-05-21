@@ -150,47 +150,70 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
 <!-- Templates -->
 <script type="text/html" id="fbs-faq-group-template">
     <div class="fbs-faq-archive-group">
-        <button type="button" class="button fbs-archive-remove-faq-group"><span class="dashicons dashicons-no-alt"></span></button>
-        <h2>FAQ Group</h2>
-        <table class="form-table">
-            <tr>
-                <th scope="row"><label>Archive Type</label></th>
-                <td>
-                    <select class="archive-type" name="faq_groups[_INDEX_][archive_type]">
-                        <option value="">Select Archive Type</option>
-                        <option value="product_cat">Category</option>
-                        <option value="product_tag">Tag</option>
-                    </select>
-                </td>
-            </tr>
-            <tr class="archive-term-row" style="display:none;">
-                <th scope="row"><label>Term</label></th>
-                <td>
-                    <input type="text" class="archive-term regular-text" name="" placeholder="Search..." />
-                    <div class="term-suggestions"></div>
-                    <div class="selected-terms"></div>
-                </td>
-            </tr>
-        </table>
+        <div class="fbs-group-header">
+            <h2 class="fbs-group-title">
+                <span class="dashicons dashicons-category"></span> FAQ Group
+            </h2>
+            <button type="button" class="fbs-archive-remove-faq-group" title="Remove Group">
+                <span class="dashicons dashicons-no-alt"></span> Remove Group
+            </button>
+        </div>
+        
+        <div class="fbs-group-body">
+            <div class="fbs-group-settings">
+                <div class="fbs-settings-field">
+                    <label class="fbs-settings-label">Archive Type</label>
+                    <div class="fbs-settings-input-wrap">
+                        <select class="archive-type" name="faq_groups[_INDEX_][archive_type]">
+                            <option value="">Select Archive Type</option>
+                            <option value="product_cat">Category</option>
+                            <option value="product_tag">Tag</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fbs-settings-field archive-term-row" style="display:none;">
+                    <label class="fbs-settings-label">Term</label>
+                    <div class="fbs-settings-input-wrap">
+                        <div class="search-term-wrapper">
+                            <input type="text" class="archive-term regular-text" name="" placeholder="Search and select terms..." />
+                            <div class="term-suggestions"></div>
+                        </div>
+                        <div class="selected-terms"></div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="fbs-archive-faq-items"></div>
-        <p><button type="button" class="button fsb-archive-add-faq-item">Add New FAQ</button></p>
+            <div class="fbs-archive-faq-items"></div>
+            
+            <div class="group-actions">
+                <button type="button" class="button fsb-archive-add-faq-item">
+                    <span class="dashicons dashicons-plus-alt"></span> Add New FAQ
+                </button>
+            </div>
+        </div>
     </div>
 </script>
 
 <script type="text/html" id="fbs-archive-faq-item-template">
     <div class="fbs-archive-faq-item">
-        <button type="button" class="button fbs-archive-remove-faq-item"><span class="dashicons dashicons-no-alt"></span></button>
-        <p>
-            <label>Question<br>
-                <input type="text" name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][question]" class="regular-text" />
-            </label>
-        </p>
-        <p>
-            <label>Answer<br>
-                <textarea name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][answer]" rows="3" class="large-text"></textarea>
-            </label>
-        </p>
+        <div class="fbs-faq-item-header">
+            <span class="fbs-faq-item-title">
+                <span class="dashicons dashicons-editor-help"></span> FAQ Item
+            </span>
+            <button type="button" class="fbs-archive-remove-faq-item" title="Remove FAQ">
+                <span class="dashicons dashicons-no-alt"></span>
+            </button>
+        </div>
+        <div class="fbs-faq-item-body">
+            <div class="fbs-field-group">
+                <label class="fbs-field-label">Question</label>
+                <input type="text" name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][question]" class="regular-text" placeholder="Enter your question here..." />
+            </div>
+            <div class="fbs-field-group">
+                <label class="fbs-field-label">Answer</label>
+                <textarea name="faq_groups[_GROUP_INDEX_][faqs][_FAQ_INDEX_][answer]" rows="3" class="large-text" placeholder="Enter your answer here..."></textarea>
+            </div>
+        </div>
     </div>
 </script>
 
@@ -238,9 +261,9 @@ if (!empty($saved_data)) {
                 if (Array.isArray(group.archive_terms)) {
                     group.archive_terms.forEach(function (termId) {
                         const termName = termNames[termId] || 'Term #' + termId;
-                        const termHtml = `<span class="term-pill" style="display:inline-block; margin:3px; padding:3px 8px; background:#f1f1f1; border:1px solid #ccc; border-radius:20px;" data-id="${termId}">
+                        const termHtml = `<span class="term-pill" data-id="${termId}">
                             ${termName}
-                            <a href="#" class="remove-term" style="margin-left:5px; color:red; text-decoration:none;">×</a>
+                            <a href="#" class="remove-term">&times;</a>
                             <input type="hidden" name="faq_groups[${gIndex}][archive_terms][]" value="${termId}">
                         </span>`;
 

@@ -181,16 +181,7 @@
       window.open("https://wpbay.com/product/product-faq-for-woocommerce-pro/", "_blank");
     });
 
-    // Show/hide archive term row
-    $("#faq-groups-container").on("change", "select.archive-type", function () {
-      const selected = $(this).val();
-      const $termRow = $(this).closest("table").find(".archive-term-row");
-      if (selected === "product_cat" || selected === "product_tag") {
-        $termRow.show();
-      } else {
-        $termRow.hide();
-      }
-    });
+
 
     // Delegate input event on term field
     $("#faq-groups-container").on("focus", ".archive-term", function () {
@@ -232,9 +223,9 @@
           }
 
           const selectedHtml = `
-                      <span class="term-pill" style="display:inline-block; margin:3px; padding:3px 8px; background:#f1f1f1; border:1px solid #ccc; border-radius:20px;">
+                      <span class="term-pill" data-id="${ui.item.value}">
                           ${ui.item.label}
-                          <a href="#" class="remove-term" style="margin-left:5px; color:red; text-decoration:none;">&times;</a>
+                          <a href="#" class="remove-term">&times;</a>
                           <input type="hidden" name="faq_groups[${$group.index()}][archive_terms][]" value="${
             ui.item.value
           }">
