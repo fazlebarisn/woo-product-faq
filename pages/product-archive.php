@@ -165,9 +165,16 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
                     <label class="fbs-settings-label">Archive Type</label>
                     <div class="fbs-settings-input-wrap">
                         <select class="archive-type" name="faq_groups[_INDEX_][archive_type]">
-                            <option value="">Select Archive Type</option>
-                            <option value="product_cat">Category</option>
-                            <option value="product_tag">Tag</option>
+                            <option value=""><?php esc_html_e( 'Select Archive Type', 'product-faq-for-woocommerce' ); ?></option>
+                            <?php
+                            $taxonomies = apply_filters( 'woo_faq_archive_taxonomies', [
+                                'product_cat' => __( 'Category', 'product-faq-for-woocommerce' ),
+                                'product_tag' => __( 'Tag', 'product-faq-for-woocommerce' ),
+                            ] );
+                            foreach ( $taxonomies as $slug => $label ) {
+                                echo '<option value="' . esc_attr( $slug ) . '">' . esc_html( $label ) . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
                 </div>

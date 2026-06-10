@@ -40,6 +40,9 @@ https://www.youtube.com/watch?v=nHY8yj2fuE8
 * Add FAQs based on categories, tags, or custom product taxonomies.
 * Display FAQs on archive pages or filtered views.
 * Create unlimited FAQ groups and items (free version includes limited entries).
+* Smart Search: Real-time search filter bar with auto-expanding accordions.
+* Custom Styling: Adjust active background & text colors, border-radius (card layout), custom toggle icons (chevrons), and custom CSS.
+* Engagement Analytics: Clean statistics dashboard displaying total FAQ views, top questions, and top products.
 * Priority support and updates.
 
 Improve product clarity and build trust with your customers using Product FAQ for WooCommerce — the smarter way to answer common questions!
@@ -57,8 +60,14 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 3. Add bulk FAQ.
 4. Add FAQ for single product.
 5. Faq output in single product page
+6. Smart Search Settings
+7. Smart Search
+8. Advanced Styling Settings
+9. FAQ Engagement Analytics
 
 == Changelog ==
+= 1.3.0 =
+* Screenshots update.
 
 = 1.3.0 =
 * Compatible with WordPress 7.0

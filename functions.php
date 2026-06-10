@@ -10,7 +10,12 @@ add_action('wp_ajax_faq_term_search', function () {
     $term     = isset($_GET['term']) ? sanitize_text_field(wp_unslash($_GET['term'])) : '';
     $taxonomy = isset($_GET['taxonomy']) ? sanitize_text_field(wp_unslash($_GET['taxonomy'])) : '';
 
-    if (!in_array($taxonomy, ['product_cat', 'product_tag'])) {
+    $allowed_taxonomies = apply_filters( 'woo_faq_archive_taxonomies', [
+        'product_cat' => __( 'Category', 'product-faq-for-woocommerce' ),
+        'product_tag' => __( 'Tag', 'product-faq-for-woocommerce' ),
+    ] );
+
+    if (!array_key_exists($taxonomy, $allowed_taxonomies)) {
         wp_send_json([]);
     }
 
