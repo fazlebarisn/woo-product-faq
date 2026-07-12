@@ -20,6 +20,8 @@ class FaqHtml{
             add_action( 'woocommerce_after_single_product_summary', [ $this, 'rendeFaqHtml'] );
         }elseif( 'after_single_product' == $product_faq_position ){
             add_action( 'woocommerce_after_single_product', [ $this, 'rendeFaqHtml'] );
+        }elseif( 'product_tab' == $product_faq_position ){
+            add_filter( 'woocommerce_product_tabs', [ $this, 'addProductFaqTab' ] );
         }
     }
 
@@ -162,5 +164,44 @@ class FaqHtml{
             </div>
         <?php
         // endif;
+    }
+
+    /**
+     * Add custom Product FAQ tab
+     *
+     * @param array $tabs
+     * @return array
+     */
+    public function addProductFaqTab( $tabs ) {
+        if ( ! is_product() ) {
+            return $tabs;
+        }
+
+        $product_id = get_the_ID();
+        $faqs = get_post_meta( $product_id, 'faq', true );
+        $global_groups = get_option( 'woo_afaq_global_groups', [] );
+
+        // If both are empty, don't add the tab
+        if ( empty( $faqs['question'] ) && empty( $global_groups ) ) {
+            return $tabs;
+        }
+
+        $faq_heading = esc_attr( get_option( 'faq_heading' ) );
+        $tab_title = ! empty( $faq_heading ) ? $faq_heading : __( 'FAQs', 'product-faq-for-woocommerce' );
+
+        $tabs['product_faq_tab'] = array(
+            'title'    => esc_html( $tab_title ),
+            'priority' => 50,
+            'callback' => [ $this, 'rendeTabFaqHtml' ]
+        );
+
+        return $tabs;
+    }
+
+    /**
+     * Callback to render tab FAQ content
+     */
+    public function rendeTabFaqHtml() {
+        $this->rendeFaqHtml();
     }
 }

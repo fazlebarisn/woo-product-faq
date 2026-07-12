@@ -177,6 +177,7 @@ class Menu{
                 <option value="after_meta" <?php echo esc_attr( $faq_position ) && $faq_position == 'after_meta' ? 'selected' : ''; ?> >After Meta</option>
                 <option value="after_summary" <?php echo esc_attr( $faq_position ) && $faq_position == 'after_summary' ? 'selected' : ''; ?> >After Summary</option>
                 <option value="after_single_product" <?php echo esc_attr( $faq_position ) && $faq_position == 'after_single_product' ? 'selected' : ''; ?> >After Single Product</option>
+                <option value="product_tab" <?php echo esc_attr( $faq_position ) && $faq_position == 'product_tab' ? 'selected' : ''; ?> >Product Tab</option>
             </select>
         <?php
     }
