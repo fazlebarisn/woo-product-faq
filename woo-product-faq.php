@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name:          Product FAQ for WooCommerce
+* Plugin Name:          Product FAQ for WooCommerce — Tab & Accordion FAQs
 * Requires Plugins:     woocommerce
 * Plugin URI:           https://github.com/fazlebarisn/woo-product-faq
 * Description:          Product FAQ for WooCommerce helps you to add frequently asked questions on single product page. Your customer can know some common questions answered.

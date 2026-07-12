@@ -1,6 +1,6 @@
-=== Product FAQ for WooCommerce ===
+=== Product FAQ for WooCommerce — Tab & Accordion FAQs ===
 Contributors: fazlebari
-Tags: product-faq-for-woocommerce, product-faq, frequently-asked-questions, faq-in-single-product-page
+Tags: woocommerce-faq, product-faq, faq, accordion, questions-answers
 Requires at least: 5.0
 Tested up to: 7.0
 WC tested up to: 10.7.0
