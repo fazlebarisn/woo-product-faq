@@ -11,6 +11,9 @@ class AdminNotice{
         
         // Show pro promotion notice occasionally
         add_action( 'admin_notices', [ $this, 'pro_promotion_notice' ] );
+
+        // Show review request notice after 7 days of installation
+        add_action( 'admin_notices', [ $this, 'review_request_notice' ] );
     }
 
     public function admin_notice_missing_main_plugin(){
@@ -71,6 +74,72 @@ class AdminNotice{
                     action: 'woo_faq_dismiss_pro_notice',
                     nonce: '<?php echo esc_js(wp_create_nonce('woo_faq_dismiss_pro_notice')); ?>'
                 });
+            });
+        });
+        </script>
+        <?php
+    }
+
+    /**
+     * Show review request notice after 7 days of installation
+     * @since 1.3.2
+     */
+    public function review_request_notice(){
+        // Only show if user has permission
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
+        // Check if user has dismissed the notice
+        $dismissed = get_user_meta(get_current_user_id(), 'woo_faq_review_notice_dismissed', true);
+        if ($dismissed) {
+            return;
+        }
+
+        // Only show if plugin has been installed for 7 days or more
+        $installed_time = get_option( 'woo_faq_installed' );
+        if ( ! $installed_time || ( time() - $installed_time ) < 7 * DAY_IN_SECONDS ) {
+            return;
+        }
+
+        ?>
+        <div class="notice notice-info is-dismissible woo-faq-review-notice" style="border-left: 4px solid #4caf50;">
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0;">
+                <div style="font-size: 2rem;">⭐</div>
+                <div style="flex: 1;">
+                    <h3 style="margin: 0 0 0.5rem 0; color: #1f2937;">Enjoying Product FAQ for WooCommerce?</h3>
+                    <p style="margin: 0; color: #6b7280;">
+                        We hope our plugin is helping you organize FAQs and boost conversions. If you like it, please leave us a 5-star review on WordPress.org. It helps us keep the free version alive!
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <a href="https://wordpress.org/support/plugin/product-faq-for-woocommerce/reviews/?filter=5#new-post" target="_blank" class="button button-primary" style="background: #4caf50; border: none; border-radius: 6px; font-weight: 600; text-decoration: none;">
+                        Sure, I'd love to!
+                    </a>
+                    <a href="#" class="woo-faq-review-dismiss" style="color: #6b7280; text-decoration: none; font-size: 13px; margin-left: 0.5rem; font-weight: 500;">
+                        No, thanks
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+        jQuery(document).ready(function($) {
+            function dismissReviewNotice() {
+                $.post(ajaxurl, {
+                    action: 'woo_faq_dismiss_review_notice',
+                    nonce: '<?php echo esc_js(wp_create_nonce('woo_faq_dismiss_review_notice')); ?>'
+                });
+                $('.woo-faq-review-notice').fadeTo(100, 0, function() {
+                    $(this).slideUp(100, function() {
+                        $(this).remove();
+                    });
+                });
+            }
+
+            $('.woo-faq-review-notice').on('click', '.notice-dismiss, .woo-faq-review-dismiss', function(e) {
+                e.preventDefault();
+                dismissReviewNotice();
             });
         });
         </script>
