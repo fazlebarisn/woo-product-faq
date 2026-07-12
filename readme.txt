@@ -5,7 +5,7 @@ Requires at least: 5.0
 Tested up to: 7.0
 WC tested up to: 10.7.0
 Requires PHP: 7.3
-Stable tag: 1.3.2
+Stable tag: 1.4.0
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,8 +66,10 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 9. FAQ Engagement Analytics
 
 == Changelog ==
-= 1.3.2 =
+= 1.4.0 =
 * Added "Product Tab" position option to render FAQs within custom WooCommerce tabs.
+
+= 1.3.2 =
 * Added a polished, dismissible "Review Loop" notification prompt displaying 7 days after installation.
 * Hardened CSS styling rules to isolate the settings panel and banners from parent theme style leakage.
 * Fully redesigned "Our Plugins" and "Meet the Author" pages with a modern CSS grid portfolio layout.
