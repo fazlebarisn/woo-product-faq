@@ -103,12 +103,70 @@ class AdminNotice{
         }
 
         ?>
-        <div class="notice notice-info is-dismissible woo-faq-review-notice" style="border-left: 4px solid #4caf50;">
+        <style>
+        .woo-faq-review-notice {
+            border-left-color: #4caf50 !important;
+            padding: 15px 20px !important;
+            margin: 15px 20px 15px 0 !important;
+            background: #fff !important;
+            box-shadow: 0 1px 1px 0 rgba(0,0,0,.1) !important;
+            border-radius: 4px !important;
+        }
+        .woo-faq-review-notice h3 {
+            margin: 0 0 5px 0 !important;
+            color: #1f2937 !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            line-height: 1.4 !important;
+        }
+        .woo-faq-review-notice p {
+            margin: 0 !important;
+            color: #6b7280 !important;
+            font-size: 13px !important;
+            line-height: 1.5 !important;
+        }
+        .woo-faq-review-notice .button-primary {
+            background: #4caf50 !important;
+            border: none !important;
+            border-radius: 6px !important;
+            padding: 8px 16px !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            color: #fff !important;
+            cursor: pointer !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+            height: auto !important;
+            line-height: 1.4 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+            transition: background 0.2s ease !important;
+        }
+        .woo-faq-review-notice .button-primary:hover {
+            background: #43a047 !important;
+            color: #fff !important;
+        }
+        .woo-faq-review-notice .woo-faq-review-dismiss {
+            color: #6b7280 !important;
+            text-decoration: none !important;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            margin-left: 10px !important;
+            line-height: 1.4 !important;
+            display: inline-block !important;
+        }
+        .woo-faq-review-notice .woo-faq-review-dismiss:hover {
+            color: #1f2937 !important;
+        }
+        </style>
+        <div class="notice notice-info is-dismissible woo-faq-review-notice">
             <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0;">
                 <div style="font-size: 2rem;">⭐</div>
                 <div style="flex: 1;">
-                    <h3 style="margin: 0 0 0.5rem 0; color: #1f2937;">Enjoying Product FAQ for WooCommerce?</h3>
-                    <p style="margin: 0; color: #6b7280;">
+                    <h3>Enjoying Product FAQ for WooCommerce?</h3>
+                    <p>
                         We hope our plugin is helping you organize FAQs and boost conversions. If you like it, please leave us a 5-star review on WordPress.org. It helps us keep the free version alive!
                     </p>
                 </div>

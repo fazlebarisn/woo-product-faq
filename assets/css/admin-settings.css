@@ -164,34 +164,52 @@
     border-bottom: none;
 }
 
-.fbs-faq-admin .woo-faq-settings-content .form-table select,
-/* .fbs-faq-admin .woo-faq-settings-content .form-table input[type="text"], */
-.fbs-faq-admin .woo-faq-settings-content .form-table input[type="color"] {
-    width: 100%;
-    max-width: 400px;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 15px;
-    font-family: inherit;
-    transition: all 0.3s ease;
-    background: #ffffff;
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table select,
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table input[type="text"],
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table input[type="number"],
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table input[type="color"],
+.wp-core-ui .fbs-faq-admin select,
+.wp-core-ui .fbs-faq-admin input[type="text"],
+.wp-core-ui .fbs-faq-admin input[type="number"],
+.wp-core-ui .fbs-faq-admin input[type="color"] {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 42px !important;
+    line-height: 1.5 !important;
+    padding: 8px 16px !important;
+    margin: 0 !important;
+    border: 2px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    font-family: inherit !important;
+    transition: all 0.3s ease !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
 }
 
-.fbs-faq-admin .woo-faq-settings-content .form-table select:focus,
-.fbs-faq-admin .woo-faq-settings-content .form-table input[type="text"]:focus,
-.fbs-faq-admin .woo-faq-settings-content .form-table input[type="color"]:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table select:focus,
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table input[type="text"]:focus,
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table input[type="number"]:focus,
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table input[type="color"]:focus,
+.wp-core-ui .fbs-faq-admin select:focus,
+.wp-core-ui .fbs-faq-admin input[type="text"]:focus,
+.wp-core-ui .fbs-faq-admin input[type="number"]:focus,
+.wp-core-ui .fbs-faq-admin input[type="color"]:focus {
+    outline: none !important;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
 }
 
-.fbs-faq-admin .woo-faq-settings-content .form-table select {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 0.5rem center;
-    background-repeat: no-repeat;
-    background-size: 1.5em 1.5em;
-    padding-right: 2.5rem;
-    appearance: none;
+.wp-core-ui .fbs-faq-admin .woo-faq-settings-content .form-table select,
+.wp-core-ui .fbs-faq-admin select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 0.75rem center !important;
+    background-repeat: no-repeat !important;
+    background-size: 1.5em 1.5em !important;
+    padding-right: 2.5rem !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
 }
 
 /* Submit Button Styling */
@@ -201,21 +219,29 @@
     border-top: 1px solid #e5e7eb;
 }
 
-.fbs-faq-admin .button-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    border-radius: 8px;
-    padding: 0.75rem 2rem;
-    font-size: 15px;
-    font-weight: 600;
-    color: #ffffff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+.wp-core-ui .fbs-faq-admin .button-primary,
+.wp-core-ui .fbs-faq-admin input[type="submit"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 2rem !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    text-shadow: none !important;
+    display: inline-block !important;
 }
 
-.fbs-faq-admin .button-primary:hover {
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+.wp-core-ui .fbs-faq-admin .button-primary:hover,
+.wp-core-ui .fbs-faq-admin input[type="submit"]:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
 }
 
 .fbs-faq-admin .button-primary:active {
