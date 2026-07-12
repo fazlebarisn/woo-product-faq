@@ -66,8 +66,14 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 9. FAQ Engagement Analytics
 
 == Changelog ==
-= 1.3.0 =
-* Screenshots update.
+= 1.3.2 =
+* Added "Product Tab" position option to render FAQs within custom WooCommerce tabs.
+* Added a polished, dismissible "Review Loop" notification prompt displaying 7 days after installation.
+* Hardened CSS styling rules to isolate the settings panel and banners from parent theme style leakage.
+* Fully redesigned "Our Plugins" and "Meet the Author" pages with a modern CSS grid portfolio layout.
+
+= 1.3.1 =
+* Bumped version for code adjustments.
 
 = 1.3.0 =
 * Compatible with WordPress 7.0
