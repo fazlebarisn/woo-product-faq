@@ -2,6 +2,10 @@
 
 namespace Woo\Faq\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AdminNotice{
     public function __construct(){
 
@@ -51,17 +55,17 @@ class AdminNotice{
             <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0;">
                 <div style="font-size: 2rem;">🚀</div>
                 <div style="flex: 1;">
-                    <h3 style="margin: 0 0 0.5rem 0; color: #1f2937;">Upgrade to Product FAQ Pro!</h3>
+                    <h3 style="margin: 0 0 0.5rem 0; color: #1f2937;"><?php esc_html_e( 'Upgrade to Product FAQ Pro!', 'product-faq-for-woocommerce' ); ?></h3>
                     <p style="margin: 0; color: #6b7280;">
-                        Unlock advanced features like unlimited FAQ groups, analytics, custom styling, and priority support.
+                        <?php esc_html_e( 'Unlock advanced features like unlimited FAQ groups, analytics, custom styling, and priority support.', 'product-faq-for-woocommerce' ); ?>
                         <a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" style="color: #667eea; font-weight: 600; text-decoration: none;">
-                            Get Pro Version →
+                            <?php esc_html_e( 'Get Pro Version →', 'product-faq-for-woocommerce' ); ?>
                         </a>
                     </p>
                 </div>
                 <div>
                     <a href="https://wpbay.com/product/product-faq-for-woocommerce-pro/" target="_blank" class="button button-primary" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 6px; font-weight: 600;">
-                        Upgrade Now
+                        <?php esc_html_e( 'Upgrade Now', 'product-faq-for-woocommerce' ); ?>
                     </a>
                 </div>
             </div>
@@ -165,17 +169,17 @@ class AdminNotice{
             <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0;">
                 <div style="font-size: 2rem;">⭐</div>
                 <div style="flex: 1;">
-                    <h3>Enjoying Product FAQ for WooCommerce?</h3>
+                    <h3><?php esc_html_e( 'Enjoying Product FAQ for WooCommerce?', 'product-faq-for-woocommerce' ); ?></h3>
                     <p>
-                        We hope our plugin is helping you organize FAQs and boost conversions. If you like it, please leave us a 5-star review on WordPress.org. It helps us keep the free version alive!
+                        <?php esc_html_e( 'We hope our plugin is helping you organize FAQs and boost conversions. If you like it, please consider leaving a review on WordPress.org. It helps us keep the free version alive!', 'product-faq-for-woocommerce' ); ?>
                     </p>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
-                    <a href="https://wordpress.org/support/plugin/product-faq-for-woocommerce/reviews/?filter=5#new-post" target="_blank" class="button button-primary" style="background: #4caf50; border: none; border-radius: 6px; font-weight: 600; text-decoration: none;">
-                        Sure, I'd love to!
+                    <a href="https://wordpress.org/support/plugin/product-faq-for-woocommerce/reviews/#new-post" target="_blank" class="button button-primary" style="background: #4caf50; border: none; border-radius: 6px; font-weight: 600; text-decoration: none;">
+                        <?php esc_html_e( "Sure, I'd love to!", 'product-faq-for-woocommerce' ); ?>
                     </a>
                     <a href="#" class="woo-faq-review-dismiss" style="color: #6b7280; text-decoration: none; font-size: 13px; margin-left: 0.5rem; font-weight: 500;">
-                        No, thanks
+                        <?php esc_html_e( 'No, thanks', 'product-faq-for-woocommerce' ); ?>
                     </a>
                 </div>
             </div>

@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Search taxonomy
  * @author Fazle Bari <fazlebarisn@gmail.com>

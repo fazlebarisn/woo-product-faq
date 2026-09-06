@@ -2,6 +2,10 @@
 
 namespace Woo\Faq\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class ProductDataTab
 {
 

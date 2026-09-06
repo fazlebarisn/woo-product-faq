@@ -2,6 +2,10 @@
 
 namespace Woo\Faq;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Admin{
 
     function __construct()

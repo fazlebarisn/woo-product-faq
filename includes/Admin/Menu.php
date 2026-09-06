@@ -1,6 +1,10 @@
 <?php
 
 namespace Woo\Faq\Admin;
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class Menu{
 
     public function __construct(){
@@ -19,7 +23,8 @@ class Menu{
      * @since 1.1.9
      */
     public function enqueueAssets($hook = '') {
-        $current_page = sanitize_text_field($_GET['page'] ?? '');
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
         if (!in_array($current_page, ['woo_sfaq', 'woo_afaq', 'woo_pfaq', 'woo_author_faq'])) {
             return;
         }

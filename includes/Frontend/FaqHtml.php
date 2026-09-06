@@ -2,6 +2,10 @@
 
 namespace Woo\Faq\Frontend;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class FaqHtml{
 
     function __construct()

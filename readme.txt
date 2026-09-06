@@ -1,6 +1,6 @@
-=== Product FAQ for WooCommerce — Tab & Accordion FAQs with AI Assistant & SEO Schema ===
+=== Product FAQ for WooCommerce — Tab & Accordion FAQs ===
 Contributors: fazlebari
-Tags: woocommerce-faq, product-faq, faq, accordion, ai-faq, google-faq-schema, questions-answers
+Tags: woocommerce-faq, product-faq, faq, accordion, ai-faq
 Requires at least: 5.0
 Tested up to: 7.1
 WC requires at least: 5.0
