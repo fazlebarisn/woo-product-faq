@@ -11,17 +11,25 @@ class Menu{
         // active custom settings
         add_action('admin_init', [$this, 'wooFaqSettings']);
 
-        add_action('load-toplevel_page_woo_sfaq', [$this, 'enqueueAssets']);
-        add_action('load-product-faq_page_woo_afaq', [$this, 'enqueueAssets']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueAssets']);
     }
 
     /**
      * Enqueue assets for the settings page
      * @since 1.1.9
      */
-    public function enqueueAssets() {
+    public function enqueueAssets($hook = '') {
+        $current_page = sanitize_text_field($_GET['page'] ?? '');
+        if (!in_array($current_page, ['woo_sfaq', 'woo_afaq', 'woo_pfaq', 'woo_author_faq'])) {
+            return;
+        }
+
         wp_enqueue_style('woo-faq-admin-settings', WOO_FAQ_URL . '/assets/css/admin-settings.css', [], WOO_FAQ_VERSION);
         wp_enqueue_script('woo-faq-admin-settings', WOO_FAQ_URL . '/assets/js/admin-settings.js', ['jquery'], WOO_FAQ_VERSION, true);
+        wp_localize_script('woo-faq-admin-settings', 'faqAjax', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce'    => wp_create_nonce('faq_nonce')
+        ]);
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_script('wp-color-picker');
     }
@@ -94,6 +102,10 @@ class Menu{
         register_setting('woofaq-settings-group', 'faq_heading_font_size', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'faq_question_font_size', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'faq_ans_font_size', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'woo_faq_enable_schema', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'woo_faq_ai_provider', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'woo_faq_ai_api_key', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'woo_faq_ai_tone', [$this, 'sanitizeTextField']);
     }
 
     /**
@@ -276,6 +288,67 @@ class Menu{
         $faq_ans_font_size = get_option('faq_ans_font_size');
         ?>
             <input type="text" name="faq_ans_font_size" value="<?php echo esc_attr( $faq_ans_font_size ); ?>" placeholder="Example: 45px" />
+        <?php
+    }
+
+    /**
+     * Display Google Schema JSON-LD toggle
+     */
+    public function EnableSchema(){
+        $enable_schema = get_option('woo_faq_enable_schema', 'enable');
+        ?>
+            <select name="woo_faq_enable_schema">
+                <option value="enable" <?php selected($enable_schema, 'enable'); ?>><?php esc_html_e('Enable (Recommended for Google SEO)', 'product-faq-for-woocommerce'); ?></option>
+                <option value="disable" <?php selected($enable_schema, 'disable'); ?>><?php esc_html_e('Disable', 'product-faq-for-woocommerce'); ?></option>
+            </select>
+            <p class="description"><?php esc_html_e('Automatically generates Schema.org FAQPage structured data (JSON-LD) for rich results in Google Search.', 'product-faq-for-woocommerce'); ?></p>
+        <?php
+    }
+
+    /**
+     * Display AI Provider selection
+     */
+    public function AiProvider(){
+        $provider = get_option('woo_faq_ai_provider', 'gemini');
+        ?>
+            <select name="woo_faq_ai_provider" id="woo_faq_ai_provider">
+                <option value="gemini" <?php selected($provider, 'gemini'); ?>>Google Gemini (Fast & Free Tier)</option>
+                <option value="openai" <?php selected($provider, 'openai'); ?>>OpenAI (ChatGPT / GPT-4o-mini)</option>
+            </select>
+        <?php
+    }
+
+    /**
+     * Display AI API Key input
+     */
+    public function AiApiKey(){
+        $key = get_option('woo_faq_ai_api_key', '');
+        ?>
+            <div style="display: flex; gap: 10px; align-items: center; max-width: 500px;">
+                <input type="password" name="woo_faq_ai_api_key" id="woo_faq_ai_api_key" value="<?php echo esc_attr($key); ?>" placeholder="<?php esc_attr_e('Paste your Google Gemini or OpenAI API Key here', 'product-faq-for-woocommerce'); ?>" style="flex: 1;" />
+                <button type="button" class="button button-secondary" id="woo-faq-test-ai-key"><?php esc_html_e('Test Connection', 'product-faq-for-woocommerce'); ?></button>
+            </div>
+            <p class="description" style="margin-top: 6px;">
+                <span id="woo-faq-ai-test-result" style="font-weight: 600;"></span>
+                <span id="woo-faq-key-hint">
+                    Get a free Gemini API key from <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a> or OpenAI key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a>.
+                </span>
+            </p>
+        <?php
+    }
+
+    /**
+     * Display AI Tone selection
+     */
+    public function AiTone(){
+        $tone = get_option('woo_faq_ai_tone', 'sales');
+        ?>
+            <select name="woo_faq_ai_tone">
+                <option value="sales" <?php selected($tone, 'sales'); ?>>Persuasive & Sales-Focused (Objection Buster)</option>
+                <option value="friendly" <?php selected($tone, 'friendly'); ?>>Warm, Helpful & Friendly</option>
+                <option value="concise" <?php selected($tone, 'concise'); ?>>Concise & Direct (Brief Answers)</option>
+                <option value="technical" <?php selected($tone, 'technical'); ?>>Technical, Detailed & Professional</option>
+            </select>
         <?php
     }
 }

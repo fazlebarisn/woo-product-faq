@@ -1,11 +1,11 @@
 === Product FAQ for WooCommerce — Tab & Accordion FAQs ===
 Contributors: fazlebari
-Tags: woocommerce-faq, product-faq, faq, accordion, questions-answers
+Tags: woocommerce-faq, product-faq, faq, accordion, questions-answers, ai-faq, google-faq-schema
 Requires at least: 5.0
-Tested up to: 7.0
-WC tested up to: 10.7.0
+Tested up to: 7.1
+WC tested up to: 11.1.0
 Requires PHP: 7.3
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,9 +28,12 @@ Whether you're selling physical products, digital downloads, or services, this p
 https://www.youtube.com/watch?v=nHY8yj2fuE8
 
 = ✨ Key Features =
+* **🤖 AI FAQ Assistant**: Generate objection-handling FAQs in seconds using Google Gemini or OpenAI (ChatGPT).
+* **🔍 Google FAQ Schema (JSON-LD)**: Automatically output Schema.org structured data for rich accordion results in Google Search.
+* **💡 1-Click Objection-Buster Templates**: Pre-built templates for shipping, returns, warranty, sizing, and care guides.
 * Create FAQ groups and items and add bulk FAQ by categories.
 * Add FAQs to individual WooCommerce products.
-* Change dispaly position on single product page.
+* Change display position on single product page (Product Tab, After Summary, After Cart, etc.).
 * Organize FAQs into groups for better readability.
 * Customize the FAQ section title, colors, font size, and position.
 * Easy-to-use interface for managing questions and answers.
@@ -66,6 +69,14 @@ Improve product clarity and build trust with your customers using Product FAQ fo
 9. FAQ Engagement Analytics
 
 == Changelog ==
+= 1.4.1 =
+* **New**: AI FAQ Assistant integration supporting both Google Gemini and OpenAI (ChatGPT) models.
+* **New**: Added Google SEO FAQ Schema (JSON-LD) structured data output for organic search rich results.
+* **New**: Added 1-Click Objection-Buster FAQ Templates (Shipping, Returns, Warranty, Sizing, Care Guide).
+* **New**: Added dedicated AI Assistant settings tab with API connection testing.
+* Tested with latest WordPress version 7.1
+* Tested with latest WooCommerce version 11.1.0
+
 = 1.4.0 =
 * Added "Product Tab" position option to render FAQs within custom WooCommerce tabs.
 

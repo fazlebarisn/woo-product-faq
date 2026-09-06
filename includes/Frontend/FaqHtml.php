@@ -163,7 +163,7 @@ class FaqHtml{
                 ?>
             </div>
         <?php
-        // endif;
+        $this->renderJsonLdSchema($faqs, $global_groups, $product_id);
     }
 
     /**
@@ -203,5 +203,76 @@ class FaqHtml{
      */
     public function rendeTabFaqHtml() {
         $this->rendeFaqHtml();
+    }
+
+    /**
+     * Render Schema.org FAQPage JSON-LD Structured Data for Google Rich Results
+     */
+    public function renderJsonLdSchema($faqs, $global_groups, $product_id) {
+        if (get_option('woo_faq_enable_schema', 'enable') === 'disable') {
+            return;
+        }
+
+        $schema_items = [];
+
+        // 1. Product-specific FAQs
+        if (!empty($faqs) && !empty($faqs['question'])) {
+            foreach ($faqs['question'] as $key => $faq_question) {
+                $faq_answer = $faqs['answer'][$key] ?? '';
+                if (!empty($faq_question) && !empty($faq_answer)) {
+                    $schema_items[] = [
+                        '@type'          => 'Question',
+                        'name'           => wp_strip_all_tags($faq_question),
+                        'acceptedAnswer' => [
+                            '@type' => 'Answer',
+                            'text'  => wp_strip_all_tags($faq_answer)
+                        ]
+                    ];
+                }
+            }
+        } elseif (!empty($global_groups)) {
+            // 2. Global category FAQs
+            $product_term_ids = [];
+            $taxonomies = get_object_taxonomies('product');
+            foreach ($taxonomies as $taxonomy) {
+                $terms = wp_get_post_terms($product_id, $taxonomy, ['fields' => 'ids']);
+                if (!is_wp_error($terms)) {
+                    $product_term_ids = array_merge($product_term_ids, $terms);
+                }
+            }
+            $product_term_ids = array_unique($product_term_ids);
+
+            foreach ($global_groups as $group) {
+                $group_faqs = $group['faqs'] ?? [];
+                $archive_terms = $group['archive_terms'] ?? [];
+                $intersect = array_intersect($product_term_ids, $archive_terms);
+                if (!empty($intersect) && !empty($group_faqs)) {
+                    foreach ($group_faqs as $faq) {
+                        $q = $faq['question'] ?? '';
+                        $a = $faq['answer'] ?? '';
+                        if (!empty($q) && !empty($a)) {
+                            $schema_items[] = [
+                                '@type'          => 'Question',
+                                'name'           => wp_strip_all_tags($q),
+                                'acceptedAnswer' => [
+                                    '@type' => 'Answer',
+                                    'text'  => wp_strip_all_tags($a)
+                                ]
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!empty($schema_items)) {
+            $schema_data = [
+                '@context'   => 'https://schema.org',
+                '@type'      => 'FAQPage',
+                'mainEntity' => $schema_items
+            ];
+            echo "\n<!-- Product FAQ for WooCommerce - Google SEO FAQ Schema -->\n";
+            echo '<script type="application/ld+json">' . wp_json_encode($schema_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+        }
     }
 }

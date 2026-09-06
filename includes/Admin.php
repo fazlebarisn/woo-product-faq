@@ -10,6 +10,7 @@ class Admin{
         new Admin\Enqueue();
         new Admin\AdminNotice();
         new Admin\ProductDataTab();
+        new Admin\AiEngine();
     }
     
 }

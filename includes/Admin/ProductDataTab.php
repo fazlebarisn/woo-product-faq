@@ -45,6 +45,29 @@ class ProductDataTab
     {
         ?>
         <div id="frequently_asked_questions" class="panel woocommerce_options_panel">
+            <div class="faq-product-toolbar" style="display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 12px 15px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 15px;">
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button type="button" class="faq-add-question button button-primary">
+                        <span class="dashicons dashicons-plus-alt2" style="font-size: 16px; line-height: 26px; vertical-align: middle;"></span>
+                        <?php esc_html_e('Add New FAQ', 'product-faq-for-woocommerce'); ?>
+                    </button>
+                    <select id="faq-insert-template-select" style="max-width: 220px; height: 30px; font-size: 13px;">
+                        <option value=""><?php esc_html_e('💡 Insert FAQ Template...', 'product-faq-for-woocommerce'); ?></option>
+                        <option value="shipping"><?php esc_html_e('🚚 Shipping & Delivery', 'product-faq-for-woocommerce'); ?></option>
+                        <option value="returns"><?php esc_html_e('🔄 Returns & Refunds', 'product-faq-for-woocommerce'); ?></option>
+                        <option value="warranty"><?php esc_html_e('🛡️ Warranty & Guarantee', 'product-faq-for-woocommerce'); ?></option>
+                        <option value="sizing"><?php esc_html_e('📏 Sizing & Fit Guide', 'product-faq-for-woocommerce'); ?></option>
+                        <option value="care"><?php esc_html_e('🧼 Care & Cleaning', 'product-faq-for-woocommerce'); ?></option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" class="button button-secondary faq-ai-modal-open-btn" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: #ffffff; border: none; box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25); font-weight: 500;">
+                        <span class="dashicons dashicons-superhero" style="font-size: 16px; line-height: 26px; vertical-align: middle; color: #fbbf24;"></span>
+                        <?php esc_html_e('✨ Generate with AI', 'product-faq-for-woocommerce'); ?>
+                    </button>
+                </div>
+            </div>
+
             <div class="option-group-wrapper">
                 <?php do_action('faq_woocommerce_product_options'); ?>
                 <?php
@@ -54,7 +77,63 @@ class ProductDataTab
                     <p class="faq-note"><span>Importent note: </span>Please Enable 'Product Faq' from the setting page. ( Deshboard -> Product Faq )</p>
                 <?php endif; ?>
             </div>
-            <button type="button" class="faq-add-question button button-primary">Add New FAQ</button>
+
+            <!-- AI Modal Container -->
+            <div id="faq-ai-modal-backdrop" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(3px); z-index: 99999; justify-content: center; align-items: center;">
+                <div id="faq-ai-modal-box" style="background: #ffffff; width: 560px; max-width: 90%; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: #ffffff; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="margin: 0; color: #ffffff; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                            <span>✨</span> <?php esc_html_e('AI Product FAQ Generator', 'product-faq-for-woocommerce'); ?>
+                        </h3>
+                        <button type="button" id="faq-ai-modal-close" style="background: transparent; border: none; color: #ffffff; font-size: 20px; cursor: pointer; line-height: 1;">&times;</button>
+                    </div>
+                    <div style="padding: 20px; max-height: 480px; overflow-y: auto;">
+                        <p style="margin-top: 0; font-size: 13px; color: #64748b;">
+                            <?php esc_html_e('Generate customer-focused, high-converting objection-handling FAQs using AI based on this product’s title and details.', 'product-faq-for-woocommerce'); ?>
+                        </p>
+                        
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <label style="display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 4px;"><?php esc_html_e('Tone & Style', 'product-faq-for-woocommerce'); ?></label>
+                                <select id="faq-ai-tone-select" style="width: 100%;">
+                                    <option value="sales"><?php esc_html_e('Persuasive & Sales-Focused', 'product-faq-for-woocommerce'); ?></option>
+                                    <option value="friendly"><?php esc_html_e('Friendly & Casual', 'product-faq-for-woocommerce'); ?></option>
+                                    <option value="concise"><?php esc_html_e('Concise & Direct', 'product-faq-for-woocommerce'); ?></option>
+                                    <option value="technical"><?php esc_html_e('Technical & Professional', 'product-faq-for-woocommerce'); ?></option>
+                                </select>
+                            </div>
+                            <div style="width: 130px;">
+                                <label style="display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 4px;"><?php esc_html_e('Number of FAQs', 'product-faq-for-woocommerce'); ?></label>
+                                <select id="faq-ai-count-select" style="width: 100%;">
+                                    <option value="3">3 FAQs (Free Max)</option>
+                                    <option value="2">2 FAQs</option>
+                                    <option value="1">1 FAQ</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <button type="button" class="button button-primary" id="faq-ai-generate-submit-btn" style="padding: 6px 20px; height: 36px; font-weight: 600; background: #4f46e5; border-color: #4f46e5;">
+                                <span class="dashicons dashicons-update faq-ai-spinner" style="display: none; font-size: 16px; vertical-align: middle; animation: spin 1s infinite linear;"></span>
+                                <span class="faq-ai-btn-text"><?php esc_html_e('⚡ Generate FAQs with AI', 'product-faq-for-woocommerce'); ?></span>
+                            </button>
+                        </div>
+
+                        <div id="faq-ai-results-wrapper" style="display: none; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                            <div id="faq-ai-notice" style="font-size: 12px; color: #059669; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; display: none;"></div>
+                            <h4 style="margin: 0 0 10px 0; font-size: 13px; color: #1e293b;"><?php esc_html_e('Review & Select FAQs to Insert:', 'product-faq-for-woocommerce'); ?></h4>
+                            <div id="faq-ai-items-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                        </div>
+                    </div>
+                    <div style="background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 11px; color: #94a3b8;"><?php esc_html_e('Powered by Product FAQ AI Assistant', 'product-faq-for-woocommerce'); ?></span>
+                        <div style="display: flex; gap: 8px;">
+                            <button type="button" class="button" id="faq-ai-modal-cancel-btn"><?php esc_html_e('Cancel', 'product-faq-for-woocommerce'); ?></button>
+                            <button type="button" class="button button-primary" id="faq-ai-insert-all-btn" style="display: none; background: #10b981; border-color: #10b981;"><?php esc_html_e('Insert into Product', 'product-faq-for-woocommerce'); ?></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <?php
     }

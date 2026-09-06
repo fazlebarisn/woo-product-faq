@@ -13,6 +13,7 @@ $is_pro_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filt
             <div class="woo-faq-settings-nav">
                 <button type="button" class="nav-tab" data-target="tab-general">General</button>
                 <button type="button" class="nav-tab" data-target="tab-design">Design</button>
+                <button type="button" class="nav-tab" data-target="tab-ai">🤖 AI Assistant</button>
                 <?php do_action( 'woo_faq_settings_tabs' ); ?>
                 <?php if ( ! $is_pro_active ) : ?>
                 <button type="button" class="nav-tab" data-target="tab-analytics-mock">📊 Analytics <span class="nav-lock-icon" style="font-size: 10px; margin-left: 2px;">🔒</span></button>
@@ -34,6 +35,10 @@ $is_pro_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filt
                         <tr valign="top">
                             <th scope="row">Faq Heading</th>
                             <td><?php $menu_instance->Heading(); ?></td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">Google FAQ Schema (JSON-LD)</th>
+                            <td><?php $menu_instance->EnableSchema(); ?></td>
                         </tr>
                         <?php if ( ! $is_pro_active ) : ?>
                         <tr valign="top" class="pro-locked-row">
@@ -134,6 +139,35 @@ $is_pro_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filt
                         </tr>
                         <?php endif; ?>
                     </table>
+                </div>
+                <div id="tab-ai" class="tab-content">
+                    <h2>🤖 AI FAQ Assistant Settings</h2>
+                    <p style="color: #4b5563; font-size: 14px; margin-bottom: 20px;">
+                        Connect your AI provider to instantly generate high-converting, objection-busting FAQs for your WooCommerce products in 1 click.
+                    </p>
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row">AI Provider</th>
+                            <td><?php $menu_instance->AiProvider(); ?></td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">API Key</th>
+                            <td><?php $menu_instance->AiApiKey(); ?></td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">Default Generation Tone</th>
+                            <td><?php $menu_instance->AiTone(); ?></td>
+                        </tr>
+                    </table>
+
+                    <div style="margin-top: 25px; padding: 18px; border-radius: 10px; background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%); border: 1px solid #e0e7ff; max-width: 650px;">
+                        <h4 style="margin: 0 0 8px 0; color: #3730a3; font-size: 15px; display: flex; align-items: center; gap: 6px;">
+                            <span>✨</span> How AI Generation Works on Products
+                        </h4>
+                        <p style="margin: 0; color: #4338ca; font-size: 13px; line-height: 1.5;">
+                            When editing any WooCommerce product, open the <strong>FAQ</strong> tab and click the <strong>"✨ Generate with AI"</strong> button. The AI analyzes your product title, description, and categories to create realistic, customer-focused FAQs that resolve buyer hesitation and boost sales.
+                        </p>
+                    </div>
                 </div>
                 <?php if ( ! $is_pro_active ) : ?>
                 <div id="tab-analytics-mock" class="tab-content">
