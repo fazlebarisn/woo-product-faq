@@ -151,6 +151,10 @@ $is_pro_active = in_array( 'woo-product-faq-pro/product-faq-pro.php', apply_filt
                             <td><?php $menu_instance->AiProvider(); ?></td>
                         </tr>
                         <tr valign="top">
+                            <th scope="row">AI Model</th>
+                            <td><?php $menu_instance->AiModel(); ?></td>
+                        </tr>
+                        <tr valign="top">
                             <th scope="row">API Key</th>
                             <td><?php $menu_instance->AiApiKey(); ?></td>
                         </tr>

@@ -29,6 +29,29 @@ jQuery(document).ready(function($) {
         $('.color-field').wpColorPicker();
     }
 
+    // Toggle AI Model dropdown options based on selected AI Provider
+    function updateAiModelOptions() {
+        var provider = $('#woo_faq_ai_provider').val();
+        if (provider === 'openai') {
+            $('#optgroup-gemini').hide();
+            $('#optgroup-openai').show();
+            if ($('#woo_faq_ai_model option:selected').parent().attr('id') === 'optgroup-gemini') {
+                $('#woo_faq_ai_model').val('gpt-4o-mini');
+            }
+        } else {
+            $('#optgroup-gemini').show();
+            $('#optgroup-openai').hide();
+            if ($('#woo_faq_ai_model option:selected').parent().attr('id') === 'optgroup-openai') {
+                $('#woo_faq_ai_model').val('gemini-3.6-flash');
+            }
+        }
+    }
+
+    $('#woo_faq_ai_provider').on('change', function() {
+        updateAiModelOptions();
+    });
+    updateAiModelOptions();
+
     // AI Connection Test Handler
     $(document).on('click', '#woo-faq-test-ai-key', function(e) {
         e.preventDefault();

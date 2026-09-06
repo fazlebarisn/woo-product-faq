@@ -104,6 +104,7 @@ class Menu{
         register_setting('woofaq-settings-group', 'faq_ans_font_size', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'woo_faq_enable_schema', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'woo_faq_ai_provider', [$this, 'sanitizeTextField']);
+        register_setting('woofaq-settings-group', 'woo_faq_ai_model', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'woo_faq_ai_api_key', [$this, 'sanitizeTextField']);
         register_setting('woofaq-settings-group', 'woo_faq_ai_tone', [$this, 'sanitizeTextField']);
     }
@@ -315,6 +316,30 @@ class Menu{
                 <option value="gemini" <?php selected($provider, 'gemini'); ?>>Google Gemini (Fast & Free Tier)</option>
                 <option value="openai" <?php selected($provider, 'openai'); ?>>OpenAI (ChatGPT / GPT-4o-mini)</option>
             </select>
+        <?php
+    }
+
+    /**
+     * Display AI Model selection
+     */
+    public function AiModel(){
+        $provider = get_option('woo_faq_ai_provider', 'gemini');
+        $model = get_option('woo_faq_ai_model', 'gemini-3.6-flash');
+        ?>
+            <select name="woo_faq_ai_model" id="woo_faq_ai_model">
+                <optgroup label="Google Gemini Models" id="optgroup-gemini">
+                    <option value="gemini-3.6-flash" <?php selected($model, 'gemini-3.6-flash'); ?>>Gemini 3.6 Flash (Recommended - High Speed & High Reliability)</option>
+                    <option value="gemini-flash-latest" <?php selected($model, 'gemini-flash-latest'); ?>>Gemini Flash Latest (Auto-Updated)</option>
+                    <option value="gemini-3.5-flash" <?php selected($model, 'gemini-3.5-flash'); ?>>Gemini 3.5 Flash</option>
+                    <option value="gemini-3.7-flash" <?php selected($model, 'gemini-3.7-flash'); ?>>Gemini 3.7 Flash</option>
+                </optgroup>
+                <optgroup label="OpenAI Models" id="optgroup-openai">
+                    <option value="gpt-4o-mini" <?php selected($model, 'gpt-4o-mini'); ?>>GPT-4o mini (Recommended - Fast & Cost-Effective)</option>
+                    <option value="gpt-4o" <?php selected($model, 'gpt-4o'); ?>>GPT-4o (High Intelligence)</option>
+                    <option value="gpt-3.5-turbo" <?php selected($model, 'gpt-3.5-turbo'); ?>>GPT-3.5 Turbo (Legacy)</option>
+                </optgroup>
+            </select>
+            <p class="description"><?php esc_html_e('Select which AI model is used for generating WooCommerce product FAQs.', 'product-faq-for-woocommerce'); ?></p>
         <?php
     }
 

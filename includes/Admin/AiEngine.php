@@ -132,11 +132,77 @@ class AiEngine
     }
 
     /**
-     * Call Google Gemini API
+     * Discover supported Gemini model for the user's API key
+     */
+    private function getGeminiWorkingModel($api_key)
+    {
+        $cached = get_transient('woo_faq_gemini_model_' . md5($api_key));
+        if (!empty($cached)) {
+            return $cached;
+        }
+
+        $list_url = 'https://generativelanguage.googleapis.com/v1beta/models?key=' . urlencode($api_key);
+        $response = wp_remote_get($list_url, ['timeout' => 15]);
+
+        if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+            $data = json_decode(wp_remote_retrieve_body($response), true);
+            if (!empty($data['models']) && is_array($data['models'])) {
+                // Priority 1: Flash models (fastest and free)
+                foreach ($data['models'] as $m) {
+                    $name = $m['name'] ?? '';
+                    $methods = $m['supportedGenerationMethods'] ?? [];
+                    if (in_array('generateContent', $methods) && stripos($name, 'flash') !== false) {
+                        set_transient('woo_faq_gemini_model_' . md5($api_key), $name, 7 * DAY_IN_SECONDS);
+                        return $name;
+                    }
+                }
+                // Priority 2: Any model supporting generateContent
+                foreach ($data['models'] as $m) {
+                    $name = $m['name'] ?? '';
+                    $methods = $m['supportedGenerationMethods'] ?? [];
+                    if (in_array('generateContent', $methods)) {
+                        set_transient('woo_faq_gemini_model_' . md5($api_key), $name, 7 * DAY_IN_SECONDS);
+                        return $name;
+                    }
+                }
+            }
+        }
+
+        return 'models/gemini-1.5-flash-latest';
+    }
+
+    /**
+     * Call Google Gemini API with intelligent fallback chain
      */
     private function callGemini($api_key, $prompt, $count)
     {
-        $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' . urlencode($api_key);
+        $selected_model = get_option('woo_faq_ai_model', 'gemini-3.6-flash');
+        if (empty($selected_model) || stripos($selected_model, 'gpt') !== false) {
+            $selected_model = 'gemini-3.6-flash';
+        }
+
+        // Map old/deprecated names to active models
+        $model_mapping = [
+            'gemini-1.5-flash'    => 'gemini-3.6-flash',
+            'gemini-2.5-flash'    => 'gemini-3.6-flash',
+            'gemini-1.5-pro'      => 'gemini-3.6-flash',
+            'gemini-2.5-pro'      => 'gemini-3.6-flash',
+            'gemini-flash-latest' => 'gemini-3.6-flash'
+        ];
+
+        $clean_selected = preg_replace('#^models/#', '', trim($selected_model));
+        if (isset($model_mapping[$clean_selected])) {
+            $clean_selected = $model_mapping[$clean_selected];
+        }
+
+        // Build candidate models chain for high availability
+        $candidates = array_unique([
+            $clean_selected,
+            'gemini-3.6-flash',
+            'gemini-3.5-flash',
+            'gemini-3.7-flash',
+            'gemini-flash-latest'
+        ]);
 
         $body = [
             'contents' => [
@@ -147,38 +213,45 @@ class AiEngine
                 ]
             ],
             'generationConfig' => [
-                'responseMimeType' => 'application/json',
                 'temperature' => 0.7
             ]
         ];
 
-        $response = wp_remote_post($url, [
-            'headers' => ['Content-Type' => 'application/json'],
-            'body'    => wp_json_encode($body),
-            'timeout' => 30
-        ]);
+        $last_error_message = '';
 
-        if (is_wp_error($response)) {
-            return $response;
+        foreach ($candidates as $model_to_try) {
+            $url = 'https://generativelanguage.googleapis.com/v1beta/models/' . urlencode($model_to_try) . ':generateContent?key=' . urlencode($api_key);
+
+            $response = wp_remote_post($url, [
+                'headers' => ['Content-Type' => 'application/json'],
+                'body'    => wp_json_encode($body),
+                'timeout' => 30
+            ]);
+
+            if (is_wp_error($response)) {
+                $last_error_message = $response->get_error_message();
+                continue;
+            }
+
+            $status = wp_remote_retrieve_response_code($response);
+            $raw_body = wp_remote_retrieve_body($response);
+            $data = json_decode($raw_body, true);
+
+            if ($status === 200 && !empty($data['candidates'][0]['content']['parts'][0]['text'])) {
+                $text = $data['candidates'][0]['content']['parts'][0]['text'];
+                return $this->extractFaqsFromRawText($text, $count);
+            }
+
+            if (!empty($data['error']['message'])) {
+                $last_error_message = $data['error']['message'];
+            }
         }
 
-        $status = wp_remote_retrieve_response_code($response);
-        $raw_body = wp_remote_retrieve_body($response);
-        $data = json_decode($raw_body, true);
-
-        if ($status !== 200 || !empty($data['error'])) {
-            $err = $data['error']['message'] ?? __('Gemini API request failed.', 'product-faq-for-woocommerce');
-            return new \WP_Error('gemini_error', $err);
+        if (!empty($last_error_message)) {
+            return new \WP_Error('gemini_error', $last_error_message);
         }
 
-        $text = $data['candidates'][0]['content']['parts'][0]['text'] ?? '';
-        $parsed = json_decode($text, true);
-
-        if (isset($parsed['faqs']) && is_array($parsed['faqs'])) {
-            return $parsed['faqs'];
-        }
-
-        return $this->extractFaqsFromRawText($text, $count);
+        return new \WP_Error('gemini_error', __('Could not generate FAQs from Gemini API. Please try again.', 'product-faq-for-woocommerce'));
     }
 
     /**
@@ -186,10 +259,15 @@ class AiEngine
      */
     private function callOpenAi($api_key, $prompt, $count)
     {
+        $selected_model = get_option('woo_faq_ai_model', 'gpt-4o-mini');
+        if (empty($selected_model) || stripos($selected_model, 'gemini') !== false) {
+            $selected_model = 'gpt-4o-mini';
+        }
+
         $url = 'https://api.openai.com/v1/chat/completions';
 
         $body = [
-            'model' => 'gpt-4o-mini',
+            'model' => $selected_model,
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a professional WooCommerce FAQ copywriter. Return ONLY valid JSON: {"faqs": [{"question": "...", "answer": "..."}]}'],
                 ['role' => 'user', 'content' => $prompt]
@@ -235,17 +313,28 @@ class AiEngine
      */
     private function extractFaqsFromRawText($text, $count)
     {
-        $clean = preg_replace('/```json|```/', '', $text);
-        $decoded = json_decode(trim($clean), true);
+        $clean = trim($text);
+        $clean = preg_replace('/^```(?:json)?\s*/i', '', $clean);
+        $clean = preg_replace('/\s*```$/', '', $clean);
+        $clean = trim($clean);
+
+        // Try direct decode
+        $decoded = json_decode($clean, true);
+
+        // If direct decode failed, try regex match for JSON object or array
+        if (!is_array($decoded) && preg_match('/\{[\s\S]*\}/', $clean, $matches)) {
+            $decoded = json_decode($matches[0], true);
+        }
+
         if (is_array($decoded)) {
-            if (isset($decoded['faqs'])) {
+            if (isset($decoded['faqs']) && is_array($decoded['faqs'])) {
                 return $decoded['faqs'];
             }
-            // Check if it's a direct array of Q&As
             if (isset($decoded[0]['question'])) {
                 return $decoded;
             }
         }
+
         return $this->generateFallbackFaqs('Product', '', $count);
     }
 

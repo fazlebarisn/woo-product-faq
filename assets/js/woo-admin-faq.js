@@ -390,12 +390,12 @@
 
             faqs.forEach(function (faq, idx) {
               const itemHtml = `
-                <div class="faq-ai-item-card" style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; background: #f8fafc;">
-                  <label style="display: flex; gap: 8px; align-items: flex-start; cursor: pointer;">
-                    <input type="checkbox" class="faq-ai-select-checkbox" checked style="margin-top: 3px;" data-q="${$("<div>").text(faq.question).html()}" data-a="${$("<div>").text(faq.answer).html()}">
-                    <div style="flex: 1;">
-                      <strong style="color: #1e293b; font-size: 13px; display: block; margin-bottom: 4px;">${faq.question}</strong>
-                      <p style="margin: 0; color: #475569; font-size: 12px; line-height: 1.4;">${faq.answer}</p>
+                <div class="fbs-ai-item-card">
+                  <label class="fbs-ai-item-label">
+                    <input type="checkbox" class="faq-ai-select-checkbox" checked data-q="${$("<div>").text(faq.question).html()}" data-a="${$("<div>").text(faq.answer).html()}">
+                    <div class="fbs-ai-item-content">
+                      <strong class="fbs-ai-item-q">${faq.question}</strong>
+                      <p class="fbs-ai-item-a">${faq.answer}</p>
                     </div>
                   </label>
                 </div>

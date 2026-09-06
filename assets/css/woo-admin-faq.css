@@ -220,4 +220,378 @@ button.faq-add-question.button.button-primary {
   margin-bottom: 5px;
 }
 
+/* ==========================================================================
+   AI FAQ Generator Modal & Toolbar Styling
+   ========================================================================== */
+.faq-product-toolbar {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px 16px !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  margin: 10px 0 16px 0 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03) !important;
+}
+
+.faq-product-toolbar select {
+  float: none !important;
+  margin: 0 !important;
+  height: 36px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  padding: 0 12px !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+  background: #ffffff !important;
+}
+
+.faq-product-toolbar .faq-add-question {
+  float: none !important;
+  margin: 0 !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+.faq-product-toolbar .faq-ai-modal-open-btn {
+  float: none !important;
+  margin: 0 !important;
+  height: 36px !important;
+  padding: 0 18px !important;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.35) !important;
+  transition: all 0.2s ease-in-out !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.faq-product-toolbar .faq-ai-modal-open-btn:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.45) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Modal Overlay & Card Container */
+#faq-ai-modal-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  z-index: 999999 !important;
+  display: none;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+#faq-ai-modal-box {
+  background: #ffffff !important;
+  width: 580px !important;
+  max-width: 92% !important;
+  border-radius: 14px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255,255,255,0.1) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+
+/* Modal Header */
+.fbs-ai-modal-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  padding: 16px 22px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  color: #ffffff !important;
+}
+
+.fbs-ai-modal-title {
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.fbs-ai-modal-close-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: none !important;
+  color: #ffffff !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+.fbs-ai-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.05);
+}
+
+/* Modal Body */
+.fbs-ai-modal-body {
+  padding: 22px !important;
+  max-height: 70vh !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+}
+
+.fbs-ai-modal-intro {
+  margin: 0 0 18px 0 !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+  line-height: 1.5 !important;
+  float: none !important;
+}
+
+.fbs-ai-modal-grid {
+  display: flex !important;
+  gap: 16px !important;
+  margin-bottom: 20px !important;
+  align-items: flex-start !important;
+  box-sizing: border-box !important;
+}
+
+.fbs-ai-field-group {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.fbs-ai-field-group.is-count {
+  flex: 0 0 180px !important;
+  max-width: 180px !important;
+}
+
+.fbs-ai-field-label {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  margin: 0 0 6px 0 !important;
+  float: none !important;
+  width: auto !important;
+  text-align: left !important;
+}
+
+.fbs-ai-select {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 38px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  padding: 0 12px !important;
+  font-size: 13px !important;
+  color: #1e293b !important;
+  background: #f8fafc !important;
+  float: none !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.2s, background-color 0.2s !important;
+}
+
+.fbs-ai-select:focus {
+  border-color: #6366f1 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+  outline: none !important;
+}
+
+.fbs-ai-generate-action {
+  text-align: center !important;
+  margin-bottom: 18px !important;
+}
+
+.fbs-ai-generate-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  height: 42px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.fbs-ai-generate-btn:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%) !important;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4) !important;
+  transform: translateY(-1px);
+}
+
+.fbs-ai-generate-btn:disabled {
+  opacity: 0.7 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Results section */
+.fbs-ai-results-box {
+  border-top: 1px solid #e2e8f0 !important;
+  padding-top: 18px !important;
+}
+
+.fbs-ai-notice-banner {
+  font-size: 12px !important;
+  color: #065f46 !important;
+  background: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  margin-bottom: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.fbs-ai-item-card {
+  padding: 12px 14px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  background: #f8fafc !important;
+  margin-bottom: 10px !important;
+  transition: all 0.2s ease !important;
+}
+
+.fbs-ai-item-card:hover {
+  border-color: #cbd5e1 !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04) !important;
+}
+
+.fbs-ai-item-label {
+  display: flex !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  float: none !important;
+  width: auto !important;
+}
+
+.fbs-ai-item-label input[type="checkbox"] {
+  margin: 3px 0 0 0 !important;
+  float: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  accent-color: #4f46e5 !important;
+}
+
+.fbs-ai-item-content {
+  flex: 1 !important;
+}
+
+.fbs-ai-item-q {
+  color: #0f172a !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+  display: block !important;
+}
+
+.fbs-ai-item-a {
+  color: #475569 !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+}
+
+/* Modal Footer */
+.fbs-ai-modal-footer {
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  padding: 14px 22px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.fbs-ai-footer-brand {
+  font-size: 12px !important;
+  color: #94a3b8 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.fbs-ai-btn-cancel {
+  background: #ffffff !important;
+  color: #475569 !important;
+  border: 1px solid #cbd5e1 !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  height: 34px !important;
+  transition: all 0.2s !important;
+}
+
+.fbs-ai-btn-cancel:hover {
+  background: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-color: #94a3b8 !important;
+}
+
+.fbs-ai-btn-insert {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: 1px solid #10b981 !important;
+  padding: 6px 18px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3) !important;
+  transition: all 0.2s !important;
+}
+
+.fbs-ai-btn-insert:hover {
+  background: #059669 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4) !important;
+}
+
 
