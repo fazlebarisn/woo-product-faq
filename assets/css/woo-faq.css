@@ -67,21 +67,27 @@
 .single-product .accordion button[aria-expanded='true'] .icon::after {
   width: 0;
 }
-.single-product .accordion button[aria-expanded='true'] + .accordion-content {
+.single-product .accordion button[aria-expanded='true'] + .accordion-content,
+.accordion button[aria-expanded='true'] + .accordion-content {
   opacity: 1;
-  max-height: 9em;
-  transition: all 200ms linear;
+  max-height: 2000px;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
   will-change: opacity, max-height;
 }
-.single-product .accordion .accordion-content {
+.single-product .accordion .accordion-content,
+.accordion .accordion-content {
   opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: opacity 200ms linear, max-height 200ms linear;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
   will-change: opacity, max-height;
 }
-.single-product .accordion .accordion-content p {
+.single-product .accordion .accordion-content p,
+.accordion .accordion-content p {
   font-size: 1rem;
   font-weight: 300;
-  margin: 2em 0;
+  margin: 1.2em 0;
+  line-height: 1.6;
+  word-break: break-word;
 }
+

@@ -196,6 +196,11 @@ if (isset($_POST['save_woo_afaq']) && check_admin_referer('save_woo_afaq_data', 
                 <button type="button" class="button fsb-archive-add-faq-item">
                     <span class="dashicons dashicons-plus-alt"></span> Add New FAQ
                 </button>
+                <?php if ( $is_pro_plugin_active && $is_license_active ) : ?>
+                <button type="button" class="button button-secondary fbs-bulk-ai-generate-btn" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: #ffffff; border: none; font-weight: 600; padding: 0 14px; height: 32px; display: inline-flex; align-items: center; gap: 6px; border-radius: 4px; margin-left: 10px; cursor: pointer; vertical-align: middle;">
+                    <span>✨</span> Generate with AI
+                </button>
+                <?php endif; ?>
             </div>
         </div>
     </div>

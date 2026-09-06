@@ -6,7 +6,6 @@ class FaqHtml{
 
     function __construct()
     {
-        
         $product_faq = esc_attr( get_option('product_faq') );
         $product_faq_position = esc_attr( get_option('product_faq_position') );
 
@@ -26,144 +25,222 @@ class FaqHtml{
     }
 
     /**
-     * shortcode handeler function
+     * Resolve FAQs for a product according to hierarchy:
+     * 1. If product has FAQs, use product FAQs (ignoring category & subcategory)
+     * 2. If Sub category and Main category have FAQs, use Sub category FAQs
+     * 3. If Main category has FAQs (and Sub category has none), use Main category FAQs
+     * 4. Fallback to other matching taxonomy FAQs (e.g. tags)
      *
-     * @param array $atts
-     * @param string $content
-     * @return string
+     * @param int $product_id
+     * @return array Array with 'source' and 'faqs'
      */
-    public function rendeFaqHtml(){
+    public function get_product_resolved_faqs( $product_id ) {
+        // 1. Check Product-Specific FAQs (Highest Priority)
+        $product_faqs = get_post_meta( $product_id, 'faq', true );
+        $valid_product_faqs = [];
 
-        if ( !is_product() ) {
-            return;
+        if ( ! empty( $product_faqs['question'] ) && is_array( $product_faqs['question'] ) ) {
+            foreach ( $product_faqs['question'] as $k => $q ) {
+                $q = trim( (string) $q );
+                $a = trim( (string) ( $product_faqs['answer'][ $k ] ?? '' ) );
+                if ( '' !== $q && '' !== $a ) {
+                    $valid_product_faqs[] = [
+                        'question' => $q,
+                        'answer'   => $a,
+                    ];
+                }
+            }
         }
-        $product_id = get_the_ID();
 
-        $faqs = get_post_meta($product_id,'faq',true);
-        $global_groups = get_option('woo_afaq_global_groups', []);
-
-        // Clean checks
-        $has_product_faqs = !empty($faqs['question']);
-        $has_global_faqs = !empty($global_groups);
-
-        // If both are empty, exit early
-        if (!$has_product_faqs && !$has_global_faqs) {
-            return;
+        // Rule 3: If product has FAQ, show product FAQ and ignore main and sub category
+        if ( ! empty( $valid_product_faqs ) ) {
+            return [
+                'source' => 'product',
+                'faqs'   => $valid_product_faqs,
+            ];
         }
-         
-        // if( in_array(!null, $faqs['question']) ) :
 
-        // Style
-        $faq_heading = esc_attr( get_option('faq_heading') );
-        $faq_heading_color = esc_attr( get_option('faq_heading_color') );
-        $faq_question_color = esc_attr( get_option('faq_question_color') );
-        $faq_ans_color = esc_attr( get_option('faq_ans_color') );
-        $faq_heading_font_size = esc_attr( get_option('faq_heading_font_size') );
-        $faq_question_font_size = esc_attr( get_option('faq_question_font_size') );
-        $faq_ans_font_size = esc_attr( get_option('faq_ans_font_size') );
-        $faq_heading_style = 'color:'.$faq_heading_color.';' . 'font-size:'.$faq_heading_font_size;
-        $faq_question_style = 'color:'.$faq_question_color.';' . 'font-size:'.$faq_question_font_size;
-        $faq_ans_style = 'color:'.$faq_ans_color.';' . 'font-size:'.$faq_ans_font_size;
-        //if( !empty($faqs) ): 
-        ?>
-            <div class="container">
-                <?php
-                if (!empty($faqs)  && !empty($faqs['question'])) {
-                    ?>
-                    <h2 style="<?php echo esc_attr($faq_heading_style); ?>">
-                        <?php 
-                            if(!empty($faq_heading)){
-                                echo esc_html($faq_heading);
-                            }else{
-                                echo esc_html__('Frequently Asked Questions' , 'product-faq-for-woocommerce');
-                            }
-                        ?>
-                    </h2>
-                    <?php
-                    // Product-specific FAQs
-                    foreach ($faqs['question'] as $key => $faq_question) {
-                        $faq_answer = $faqs['answer'][$key] ?? '';
-                        ?>
-                        <div class="accordion">
-                            <div class="accordion-item">
-                                <button aria-expanded="false">
-                                    <span class="accordion-title" style="<?php echo esc_attr($faq_question_style); ?>">
-                                        <?php echo esc_html($faq_question); ?>
-                                    </span>
-                                    <span class="icon" aria-hidden="true"></span>
-                                </button>
-                                <div class="accordion-content">
-                                    <p style="<?php echo esc_attr($faq_ans_style); ?>">
-                                        <?php echo esc_html($faq_answer); ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                } else {
-                    // No product-specific FAQs, fallback to global groups
-                    $global_groups = get_option('woo_afaq_global_groups', []);
-                    // dd(global_groups);
-                    $product_term_ids = [];
+        // 2. Resolve Category & Subcategory Bulk FAQs
+        $global_groups = get_option( 'woo_afaq_global_groups', [] );
+        if ( empty( $global_groups ) || ! is_array( $global_groups ) ) {
+            return [ 'source' => 'none', 'faqs' => [] ];
+        }
 
-                    $taxonomies = get_object_taxonomies('product'); // or get_post_type($product_id)
+        // Get product categories
+        $cat_terms = wp_get_post_terms( $product_id, 'product_cat' );
+        if ( is_wp_error( $cat_terms ) ) {
+            $cat_terms = [];
+        }
 
-                    foreach ($taxonomies as $taxonomy) {
-                        $terms = wp_get_post_terms($product_id, $taxonomy, ['fields' => 'ids']);
-                        if (!is_wp_error($terms)) {
-                            $product_term_ids = array_merge($product_term_ids, $terms);
-                        }
-                    }
-                    $product_term_ids = array_unique($product_term_ids);
-                    if (!empty($global_groups) && !empty($product_term_ids)) {
- 
-                        foreach ($global_groups as $group) {
-                            $faqs = $group['faqs'] ?? [];
-                            $archive_terms = $group['archive_terms'] ?? [];
-                
-                            // Check if product has matching terms in this taxonomy
-                            $intersect = array_intersect($product_term_ids, $archive_terms);
-                            if (!empty($intersect) && !empty($faqs ) ) {
-                                ?>
-                                <h2 style="<?php echo esc_attr($faq_heading_style); ?>">
-                                    <?php 
-                                        if(!empty($faq_heading)){
-                                            echo esc_html($faq_heading);
-                                        }else{
-                                            echo esc_html__('Frequently Asked Questions' , 'product-faq-for-woocommerce');
-                                        }
-                                    ?>
-                                </h2>
-                                <?php
-                                // Match found, render these FAQs
-                                foreach ($faqs as $faq) {
-                                    ?>                                  
-                                    <div class="accordion">
-                                        <div class="accordion-item">
-                                            <button aria-expanded="false">
-                                                <span class="accordion-title" style="<?php echo esc_attr($faq_question_style); ?>">
-                                                    <?php echo esc_html($faq['question'] ?? ''); ?>
-                                                </span>
-                                                <span class="icon" aria-hidden="true"></span>
-                                            </button>
-                                            <div class="accordion-content">
-                                                <p style="<?php echo esc_attr($faq_ans_style); ?>">
-                                                    <?php echo esc_html($faq['answer'] ?? ''); ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php
-                                }
-                            }
-                        }
+        // Separate sub-categories and main categories + ancestors
+        $sub_cat_ids = [];
+        $main_cat_ids = [];
+        $all_cat_ancestors = [];
+
+        foreach ( $cat_terms as $term ) {
+            if ( $term->parent > 0 ) {
+                $sub_cat_ids[] = (int) $term->term_id;
+                // Fetch all parent/ancestor IDs of this subcategory
+                $ancestors = get_ancestors( $term->term_id, 'product_cat', 'taxonomy' );
+                if ( ! empty( $ancestors ) ) {
+                    $all_cat_ancestors = array_merge( $all_cat_ancestors, array_map( 'intval', $ancestors ) );
+                }
+            } else {
+                $main_cat_ids[] = (int) $term->term_id;
+            }
+        }
+
+        $all_parent_cat_ids = array_unique( array_merge( $main_cat_ids, $all_cat_ancestors ) );
+        $sub_cat_ids = array_unique( $sub_cat_ids );
+
+        // Other taxonomy terms (e.g. product_tag)
+        $all_other_term_ids = [];
+        $taxonomies = get_object_taxonomies( 'product' );
+        foreach ( $taxonomies as $tax ) {
+            if ( 'product_cat' === $tax ) {
+                continue;
+            }
+            $terms = wp_get_post_terms( $product_id, $tax, [ 'fields' => 'ids' ] );
+            if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+                $all_other_term_ids = array_merge( $all_other_term_ids, array_map( 'intval', $terms ) );
+            }
+        }
+
+        $sub_cat_faqs = [];
+        $main_cat_faqs = [];
+        $other_faqs = [];
+
+        foreach ( $global_groups as $group ) {
+            $archive_type  = $group['archive_type'] ?? '';
+            $archive_terms = array_map( 'intval', (array) ( $group['archive_terms'] ?? [] ) );
+            $group_faqs    = $group['faqs'] ?? [];
+
+            $clean_group_faqs = [];
+            if ( is_array( $group_faqs ) ) {
+                foreach ( $group_faqs as $gf ) {
+                    $g_q = trim( (string) ( $gf['question'] ?? '' ) );
+                    $g_a = trim( (string) ( $gf['answer'] ?? '' ) );
+                    if ( '' !== $g_q && '' !== $g_a ) {
+                        $clean_group_faqs[] = [ 'question' => $g_q, 'answer' => $g_a ];
                     }
                 }
+            }
+
+            if ( empty( $clean_group_faqs ) ) {
+                continue;
+            }
+
+            if ( 'product_cat' === $archive_type ) {
+                // Check if matches sub-category
+                $matched_sub = array_intersect( $sub_cat_ids, $archive_terms );
+                if ( ! empty( $matched_sub ) ) {
+                    $sub_cat_faqs = array_merge( $sub_cat_faqs, $clean_group_faqs );
+                }
+
+                // Check if matches main / parent category
+                $matched_main = array_intersect( $all_parent_cat_ids, $archive_terms );
+                if ( ! empty( $matched_main ) ) {
+                    $main_cat_faqs = array_merge( $main_cat_faqs, $clean_group_faqs );
+                }
+            } else {
+                $matched_other = array_intersect( $all_other_term_ids, $archive_terms );
+                if ( ! empty( $matched_other ) ) {
+                    $other_faqs = array_merge( $other_faqs, $clean_group_faqs );
+                }
+            }
+        }
+
+        // Rule 2: If Sub category has FAQ, show sub category FAQ
+        if ( ! empty( $sub_cat_faqs ) ) {
+            return [
+                'source' => 'sub_category',
+                'faqs'   => $sub_cat_faqs,
+            ];
+        }
+
+        // Rule 1: If main category has FAQ, show main category FAQ
+        if ( ! empty( $main_cat_faqs ) ) {
+            return [
+                'source' => 'main_category',
+                'faqs'   => $main_cat_faqs,
+            ];
+        }
+
+        // Fallback: Other taxonomy (tag/custom) FAQs
+        if ( ! empty( $other_faqs ) ) {
+            return [
+                'source' => 'taxonomy',
+                'faqs'   => $other_faqs,
+            ];
+        }
+
+        return [ 'source' => 'none', 'faqs' => [] ];
+    }
+
+    /**
+     * Render FAQ HTML on Single Product Page
+     */
+    public function rendeFaqHtml(){
+        if ( ! is_product() ) {
+            return;
+        }
+
+        $product_id = get_the_ID();
+        $resolved = $this->get_product_resolved_faqs( $product_id );
+
+        if ( empty( $resolved['faqs'] ) ) {
+            return;
+        }
+
+        $faqs = $resolved['faqs'];
+        $source = $resolved['source'];
+
+        // Styling
+        $faq_heading           = esc_attr( get_option( 'faq_heading' ) );
+        $faq_heading_color     = esc_attr( get_option( 'faq_heading_color' ) );
+        $faq_question_color    = esc_attr( get_option( 'faq_question_color' ) );
+        $faq_ans_color         = esc_attr( get_option( 'faq_ans_color' ) );
+        $faq_heading_font_size = esc_attr( get_option( 'faq_heading_font_size' ) );
+        $faq_question_font_size = esc_attr( get_option( 'faq_question_font_size' ) );
+        $faq_ans_font_size     = esc_attr( get_option( 'faq_ans_font_size' ) );
+
+        $faq_heading_style  = 'color:' . $faq_heading_color . ';' . 'font-size:' . $faq_heading_font_size;
+        $faq_question_style = 'color:' . $faq_question_color . ';' . 'font-size:' . $faq_question_font_size;
+        $faq_ans_style      = 'color:' . $faq_ans_color . ';' . 'font-size:' . $faq_ans_font_size;
+        ?>
+        <div class="container" data-faq-source="<?php echo esc_attr( $source ); ?>">
+            <h2 style="<?php echo esc_attr( $faq_heading_style ); ?>">
+                <?php 
+                if ( ! empty( $faq_heading ) ) {
+                    echo esc_html( $faq_heading );
+                } else {
+                    echo esc_html__( 'Frequently Asked Questions', 'product-faq-for-woocommerce' );
+                }
                 ?>
-            </div>
+            </h2>
+            <?php foreach ( $faqs as $key => $faq ) : 
+                $question = $faq['question'] ?? '';
+                $answer   = $faq['answer'] ?? '';
+            ?>
+                <div class="accordion">
+                    <div class="accordion-item" data-faq-index="<?php echo esc_attr( $key ); ?>" data-source="<?php echo esc_attr( $source ); ?>">
+                        <button aria-expanded="false">
+                            <span class="accordion-title" style="<?php echo esc_attr( $faq_question_style ); ?>">
+                                <?php echo esc_html( $question ); ?>
+                            </span>
+                            <span class="icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p style="<?php echo esc_attr($faq_ans_style); ?>">
+                                <?php echo esc_html( $answer ); ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
         <?php
-        $this->renderJsonLdSchema($faqs, $global_groups, $product_id);
+        $this->renderJsonLdSchema( $faqs, $product_id );
     }
 
     /**
@@ -178,11 +255,9 @@ class FaqHtml{
         }
 
         $product_id = get_the_ID();
-        $faqs = get_post_meta( $product_id, 'faq', true );
-        $global_groups = get_option( 'woo_afaq_global_groups', [] );
+        $resolved = $this->get_product_resolved_faqs( $product_id );
 
-        // If both are empty, don't add the tab
-        if ( empty( $faqs['question'] ) && empty( $global_groups ) ) {
+        if ( empty( $resolved['faqs'] ) ) {
             return $tabs;
         }
 
@@ -208,71 +283,39 @@ class FaqHtml{
     /**
      * Render Schema.org FAQPage JSON-LD Structured Data for Google Rich Results
      */
-    public function renderJsonLdSchema($faqs, $global_groups, $product_id) {
-        if (get_option('woo_faq_enable_schema', 'enable') === 'disable') {
+    public function renderJsonLdSchema( $faqs, $product_id ) {
+        if ( get_option( 'woo_faq_enable_schema', 'enable' ) === 'disable' ) {
+            return;
+        }
+
+        if ( empty( $faqs ) || ! is_array( $faqs ) ) {
             return;
         }
 
         $schema_items = [];
-
-        // 1. Product-specific FAQs
-        if (!empty($faqs) && !empty($faqs['question'])) {
-            foreach ($faqs['question'] as $key => $faq_question) {
-                $faq_answer = $faqs['answer'][$key] ?? '';
-                if (!empty($faq_question) && !empty($faq_answer)) {
-                    $schema_items[] = [
-                        '@type'          => 'Question',
-                        'name'           => wp_strip_all_tags($faq_question),
-                        'acceptedAnswer' => [
-                            '@type' => 'Answer',
-                            'text'  => wp_strip_all_tags($faq_answer)
-                        ]
-                    ];
-                }
-            }
-        } elseif (!empty($global_groups)) {
-            // 2. Global category FAQs
-            $product_term_ids = [];
-            $taxonomies = get_object_taxonomies('product');
-            foreach ($taxonomies as $taxonomy) {
-                $terms = wp_get_post_terms($product_id, $taxonomy, ['fields' => 'ids']);
-                if (!is_wp_error($terms)) {
-                    $product_term_ids = array_merge($product_term_ids, $terms);
-                }
-            }
-            $product_term_ids = array_unique($product_term_ids);
-
-            foreach ($global_groups as $group) {
-                $group_faqs = $group['faqs'] ?? [];
-                $archive_terms = $group['archive_terms'] ?? [];
-                $intersect = array_intersect($product_term_ids, $archive_terms);
-                if (!empty($intersect) && !empty($group_faqs)) {
-                    foreach ($group_faqs as $faq) {
-                        $q = $faq['question'] ?? '';
-                        $a = $faq['answer'] ?? '';
-                        if (!empty($q) && !empty($a)) {
-                            $schema_items[] = [
-                                '@type'          => 'Question',
-                                'name'           => wp_strip_all_tags($q),
-                                'acceptedAnswer' => [
-                                    '@type' => 'Answer',
-                                    'text'  => wp_strip_all_tags($a)
-                                ]
-                            ];
-                        }
-                    }
-                }
+        foreach ( $faqs as $faq ) {
+            $q = $faq['question'] ?? '';
+            $a = $faq['answer'] ?? '';
+            if ( ! empty( $q ) && ! empty( $a ) ) {
+                $schema_items[] = [
+                    '@type'          => 'Question',
+                    'name'           => wp_strip_all_tags( $q ),
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => wp_strip_all_tags( $a )
+                    ]
+                ];
             }
         }
 
-        if (!empty($schema_items)) {
+        if ( ! empty( $schema_items ) ) {
             $schema_data = [
                 '@context'   => 'https://schema.org',
                 '@type'      => 'FAQPage',
                 'mainEntity' => $schema_items
             ];
             echo "\n<!-- Product FAQ for WooCommerce - Google SEO FAQ Schema -->\n";
-            echo '<script type="application/ld+json">' . wp_json_encode($schema_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+            echo '<script type="application/ld+json">' . wp_json_encode( $schema_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
         }
     }
 }
