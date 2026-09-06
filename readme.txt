@@ -1,4 +1,4 @@
-=== Product FAQ for WooCommerce — Tab & Accordion FAQs ===
+=== Product FAQ for WooCommerce — Tab, Accordion & AI FAQ Generator ===
 Contributors: fazlebari
 Tags: woocommerce-faq, product-faq, faq, accordion, ai-faq
 Requires at least: 5.0
