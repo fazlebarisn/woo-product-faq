@@ -59,15 +59,20 @@ The **Product FAQ for WooCommerce** plugin enables you to easily add beautifully
 
 == Screenshots ==
 
-1. **AI FAQ Assistant Settings** – Connect Google Gemini or OpenAI with live connection verification.
-2. **1-Click AI FAQ Generator** – Generate objection-busting FAQs directly inside the WooCommerce product edit screen.
-3. **Objection-Buster Templates** – Pre-built 1-click templates for shipping, returns, warranty, and sizing.
-4. **General & Position Settings** – Choose where FAQs render on single product pages and toggle Google FAQ Schema.
-5. **Bulk Category FAQs** – Manage and assign FAQs across entire product categories in bulk.
-6. **Frontend FAQ Accordion Display** – Clean, responsive product page FAQ accordions matching your store design.
-7. **Google FAQ Schema (JSON-LD)** – Structured data markup for Google rich search snippet eligibility.
-8. *(Pro Feature)* **Live Smart Search** – Instant interactive FAQ search bar with auto-expanding accordions.
-9. *(Pro Feature)* **Engagement Analytics Dashboard** – Track FAQ views, engagement rates, and customer queries.
+1. FAQ basic settings.
+2. AI FAQ Assistant Settings (Google Gemini & OpenAI configuration).
+3. 1-Click AI FAQ Generator modal on WooCommerce product edit screen.
+4. Pre-built Objection-Buster FAQ Templates dropdown on single product.
+5. Google FAQ Schema (JSON-LD) structured data for organic search rich results.
+6. FAQ Design settings.
+7. Add bulk FAQ.
+8. Add FAQ for single product.
+9. Faq output in single product page
+10. Smart Search Settings
+11. Smart Search
+12. Advanced Styling Settings
+13. FAQ Engagement Analytics
+
 
 == Changelog ==
 
